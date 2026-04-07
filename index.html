@@ -19,7 +19,6 @@
 html{scroll-behavior:smooth}
 body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#c5d0de;border-radius:3px}
-
 .hdr{background:var(--navy);height:62px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:500;border-bottom:3px solid var(--red);box-shadow:0 2px 10px rgba(0,0,0,.18)}
 .logo{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#fff;background:none;border:none;cursor:pointer;padding:0;transition:opacity .18s;letter-spacing:-.01em}
 .logo:hover{opacity:.85}.logo b{color:#e87c76}
@@ -27,7 +26,6 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-web
 .pill{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f0c060;border:1px solid rgba(240,192,96,.45);padding:.22rem .65rem;border-radius:20px}
 .btn-sub{background:var(--red);color:#fff;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.4rem 1rem;border-radius:var(--radius);transition:background .18s;white-space:nowrap}
 .btn-sub:hover{background:var(--red2)}
-
 .hero{background:linear-gradient(160deg,#1a3a5c 0%,#2c5282 55%,#1a4a6c 100%);padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 70% at 15% 55%,rgba(192,57,43,.13) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 82% 40%,rgba(26,107,71,.1) 0%,transparent 60%)}
 .hero::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:44px 44px}
@@ -35,17 +33,16 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-web
 .hero-sup::before,.hero-sup::after{content:'';width:28px;height:1px;background:rgba(240,192,96,.5)}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:.75rem;position:relative}
 .hero h1 em{font-style:italic;color:rgba(255,255,255,.52)}
-.hero-desc{font-size:.88rem;color:rgba(255,255,255,.52);max-width:520px;margin:0 auto 2rem;line-height:1.75;position:relative}
+.hero-desc{font-size:.88rem;color:rgba(255,255,255,.52);max-width:540px;margin:0 auto 2rem;line-height:1.75;position:relative}
 .wa-btn{display:inline-flex;align-items:center;gap:.55rem;background:#25d366;color:#fff;padding:.65rem 1.5rem;border-radius:40px;font-size:.8rem;font-weight:700;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.32);transition:transform .18s,box-shadow .18s;margin-bottom:2.5rem;position:relative}
 .wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.48)}
 .wa-dot{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.kpis{display:inline-grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);overflow:hidden;position:relative}
+.kpis{display:inline-grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);overflow:hidden}
 .kpi{padding:.85rem 1.8rem;text-align:center}.kpi+.kpi{border-left:1px solid rgba(255,255,255,.1)}
 .kpi strong{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;display:block;line-height:1}
 .kpi small{font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);display:block;margin-top:.2rem}
 .ke{color:#8ab8d8}.kc{color:#e8a0a0}.kb{color:#82c4a4}
-
 .tabs-bar{position:sticky;top:62px;z-index:400;background:var(--paper);border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto}
 .tab{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:1rem .5rem;border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
@@ -54,7 +51,6 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-web
 .tab[data-t="e"].on{color:var(--ce);border-bottom-color:var(--ce)}.tab[data-t="e"].on .cnt{background:var(--ce);color:#fff}
 .tab[data-t="c"].on{color:var(--cc);border-bottom-color:var(--cc)}.tab[data-t="c"].on .cnt{background:var(--cc);color:#fff}
 .tab[data-t="b"].on{color:var(--cb);border-bottom-color:var(--cb)}.tab[data-t="b"].on .cnt{background:var(--cb);color:#fff}
-
 .main{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 5rem}
 .panel{display:none;animation:pIn .26s ease}.panel.active{display:block}
 @keyframes pIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -63,16 +59,14 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-web
 .btn-add{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:var(--radius);border:none;cursor:pointer;color:#fff;box-shadow:var(--sh1);transition:filter .18s,transform .14s;display:none}
 .btn-add:hover{filter:brightness(1.1);transform:translateY(-1px)}
 body.admin .btn-add{display:inline-block}
-
 .fbar{display:flex;gap:.5rem;margin-bottom:1.4rem;flex-wrap:wrap}
 .fbar input,.fbar select{font-family:'Outfit',sans-serif;font-size:.82rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--paper);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
 .fbar input{flex:1;min-width:180px}
 .fbar input:focus,.fbar select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.07)}
-
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
 .card{background:var(--paper);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;position:relative}
 .card:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
-.card.expired{opacity:.65}
+.card.expired{opacity:.62}
 .cbar{height:3px}
 .cbe{background:linear-gradient(90deg,#1a3a5c,#2a6496)}
 .cbc{background:linear-gradient(90deg,#c0392b,#e67e22)}
@@ -85,31 +79,31 @@ body.admin .btn-add{display:inline-block}
 .t-urgent{background:#fef0ed;color:#922b21;border:1px solid #f1948a}
 .t-cam{background:#fef9e7;color:#7d6608;border:1px solid #f9e79f}
 .t-eco{background:#f0ebff;color:#5a3e8a;border:1px solid #c4a8e8}
-.t-expired{background:#f1f1f1;color:#888;border:1px solid #ccc}
+.t-expired{background:#f1f1f1;color:#999;border:1px solid #ddd}
 .t-closing{background:#fff3cd;color:#856404;border:1px solid #ffc107;animation:pw 2s infinite}
-@keyframes pw{0%,100%{opacity:1}50%{opacity:.65}}
+@keyframes pw{0%,100%{opacity:1}50%{opacity:.6}}
 .ctitle{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1.35;color:var(--text);margin-bottom:.38rem}
 .corg{font-size:.74rem;color:var(--muted);margin-bottom:.5rem}
 .creg{display:inline-block;font-size:.6rem;font-weight:600;color:var(--gold);background:rgba(183,134,11,.08);border:1px solid rgba(183,134,11,.28);padding:.1rem .42rem;border-radius:3px;margin-left:.3rem}
 .cdesc{font-size:.78rem;color:#4a5568;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .cfoot{padding:.7rem 1.2rem;border-top:1px solid #edf0f5;background:var(--light);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.35rem}
 .cdl{font-size:.67rem;font-weight:700;color:var(--cc)}
-.cdl.expired{color:#888}.cdl.closing{color:#856404}
+.cdl.exp-dl{color:#999}.cdl.close-dl{color:#856404}
 .cbtns{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
 .cbtn{font-family:'Outfit',sans-serif;font-size:.66rem;font-weight:600;padding:.28rem .65rem;border-radius:5px;border:1px solid var(--border);background:var(--paper);color:var(--muted);cursor:pointer;transition:all .16s;white-space:nowrap;text-decoration:none;display:inline-block}
 .cbtn:hover{background:var(--light);color:var(--text)}
+.cbtn-wa{border-color:#c8f0d8;background:#f0fff6}
 .cbtn-wa:hover{background:#25d366;border-color:#25d366;color:#fff}
-.cbtn-post{font-family:'Outfit',sans-serif;font-size:.66rem;font-weight:700;padding:.3rem .82rem;border-radius:5px;border:none;cursor:pointer;color:#fff;white-space:nowrap;text-decoration:none;display:inline-block;transition:filter .16s}
-.cbtn-post:hover{filter:brightness(1.12)}
-.cbtn-exp{font-family:'Outfit',sans-serif;font-size:.66rem;font-weight:700;padding:.3rem .82rem;border-radius:5px;border:none;background:#bbb;color:#fff;cursor:not-allowed;white-space:nowrap;display:inline-block}
+.btn-post{font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;padding:.3rem .9rem;border-radius:5px;border:none;cursor:pointer;color:#fff;white-space:nowrap;text-decoration:none;display:inline-block;transition:filter .16s,transform .1s}
+.btn-post:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn-exp{font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;padding:.3rem .9rem;border-radius:5px;border:none;background:#ccc;color:#fff;white-space:nowrap;display:inline-block;cursor:not-allowed}
 .cadm{position:absolute;top:.5rem;right:.5rem;display:none;gap:.25rem}
 body.admin .card:hover .cadm{display:flex}
-.cadm-btn{font-size:.58rem;font-weight:700;padding:.2rem .48rem;border-radius:4px;border:none;cursor:pointer;transition:filter .14s}
+.cadm-btn{font-size:.58rem;font-weight:700;padding:.2rem .48rem;border-radius:4px;border:none;cursor:pointer}
 .cadm-e{background:#fef9c3;color:#854d0e}.cadm-d{background:#fee2e2;color:#991b1b}
 .empty{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--muted)}
 .empty h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:.4rem}
-
-.ov{display:none;position:fixed;inset:0;z-index:800;background:rgba(10,25,47,.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem}
+.ov{display:none;position:fixed;inset:0;z-index:800;background:rgba(10,25,47,.72);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem}
 .ov.open{display:flex}
 .mbox{background:var(--paper);border-radius:12px;box-shadow:var(--sh3);animation:mIn .23s cubic-bezier(.34,1.5,.64,1)}
 @keyframes mIn{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
@@ -135,7 +129,7 @@ body.admin .card:hover .cadm{display:flex}
 .mbdy{padding:1.2rem 1.6rem}
 .fg{margin-bottom:.9rem}
 .fg label{display:block;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:.28rem}
-.fg label .req{color:var(--red)}
+.req{color:var(--red)}
 .fc{width:100%;padding:.6rem .88rem;border:1px solid var(--border);border-radius:var(--radius);font-family:'Outfit',sans-serif;font-size:.84rem;color:var(--text);background:var(--paper);outline:none;transition:border-color .2s,box-shadow .2s}
 .fc:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.07)}
 textarea.fc{resize:vertical;min-height:82px;line-height:1.6}
@@ -145,7 +139,7 @@ textarea.fc{resize:vertical;min-height:82px;line-height:1.6}
 .btn-cancel:hover{background:var(--light)}
 .btn-save{padding:.55rem 1.3rem;border:none;border-radius:var(--radius);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;color:#fff;transition:filter .18s}
 .btn-save:hover{filter:brightness(1.1)}
-.sub-box{width:100%;max-width:400px;overflow:hidden}
+.sub-box{width:100%;max-width:410px;overflow:hidden}
 .sub-hdr{background:var(--navy);padding:1.6rem 1.8rem;position:relative}
 .sub-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red)}
 .sub-hdr h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.2rem}
@@ -162,19 +156,19 @@ textarea.fc{resize:vertical;min-height:82px;line-height:1.6}
 #sub-msg.err{background:#fef0ed;color:#922b21;border:1px solid #f1948a;display:block}
 .share-box{width:100%;max-width:330px;padding:1.6rem;text-align:center}
 .share-box h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.25rem}
-.sh-sub{font-size:.74rem;color:var(--muted);margin-bottom:1.1rem;font-style:italic}
+.sh-sub{font-size:.74rem;color:var(--muted);margin-bottom:1.1rem;font-style:italic;display:block}
 .sh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
 .sh-btn{display:flex;flex-direction:column;align-items:center;gap:.28rem;padding:.6rem .35rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--light);cursor:pointer;text-decoration:none;transition:transform .14s,box-shadow .14s}
 .sh-btn:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
-.sh-ico{font-size:1.1rem;line-height:1;font-weight:700;font-family:serif}
+.sh-ico{font-size:1.1rem;line-height:1;font-weight:700}
 .sh-lbl{font-size:.56rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .sh-wa{border-color:#25d366;background:#edfbf1}.sh-fb{border-color:#1877f2;background:#eef4ff}
-.sh-tw{border-color:#1da1f2;background:#e8f5fd}.sh-cp{border-color:var(--border)}
+.sh-tw{border-color:#000;background:#f5f5f5}.sh-cp{border-color:var(--border)}
 .share-foot{display:flex;justify-content:flex-end;margin-top:1rem}
 .toast{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%) translateY(18px);opacity:0;background:var(--navy);color:#fff;padding:.72rem 1.3rem;border-radius:40px;font-size:.77rem;font-weight:600;z-index:9999;box-shadow:var(--sh3);max-width:320px;text-align:center;transition:opacity .26s,transform .26s;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{background:var(--green)}.toast.err{background:var(--red)}
-.alock{position:fixed;bottom:1.2rem;left:1.2rem;z-index:900;width:32px;height:32px;border-radius:50%;background:rgba(26,58,92,.55);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);font-size:.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:'Outfit',sans-serif}
+.alock{position:fixed;bottom:1.2rem;left:1.2rem;z-index:900;width:32px;height:32px;border-radius:50%;background:rgba(26,58,92,.55);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);font-size:.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .alock:hover{background:var(--navy);color:#fff}
 body.admin .alock{color:#f0c060;border-color:rgba(240,192,96,.45)}
 footer{background:var(--navy);border-top:2px solid var(--red);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
@@ -195,7 +189,6 @@ footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-
 <header class="hdr">
   <button class="logo" onclick="openOv('ov-about')">Actualités<b>Inter</b></button>
   <div class="hdr-r">
@@ -207,7 +200,7 @@ footer a:hover{text-decoration:underline}
 <section class="hero">
   <div class="hero-sup">Info 24h/24 — Main dans la main</div>
   <h1>Toutes vos<br><em>Opportunités</em></h1>
-  <p class="hero-desc">Emplois, stages, concours, bourses et financements — sélectionnés pour la communauté camerounaise, africaine et mondiale.</p>
+  <p class="hero-desc">Emplois, stages, concours, bourses et financements — sélectionnés pour la communauté camerounaise, africaine et mondiale. Chaque lien vous redirige directement sur la page officielle de candidature.</p>
   <a class="wa-btn" href="https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd" target="_blank" rel="noopener">
     <span class="wa-dot"></span>Rejoindre notre groupe WhatsApp
   </a>
@@ -233,7 +226,7 @@ footer a:hover{text-decoration:underline}
       <button class="btn-add" style="background:var(--ce)" onclick="openAdd('e')">+ Ajouter</button>
     </div>
     <div class="fbar">
-      <input type="search" placeholder="Rechercher un poste, organisation, pays, catégorie..." oninput="applyS('e',this.value)">
+      <input type="search" placeholder="Rechercher poste, organisation, pays, type..." oninput="applyS('e',this.value)">
       <select onchange="applyT('e',this.value)">
         <option value="">Tous les types</option>
         <option>CDI</option><option>CDD</option><option>Stage</option>
@@ -243,7 +236,6 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="grid" id="ge"></div>
   </div>
-
   <div class="panel" id="pc">
     <div class="ptop">
       <h2 class="ptitle">Concours</h2>
@@ -260,14 +252,13 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="grid" id="gc"></div>
   </div>
-
   <div class="panel" id="pb">
     <div class="ptop">
       <h2 class="ptitle">Bourses d'études &amp; Financements</h2>
       <button class="btn-add" style="background:var(--cb)" onclick="openAdd('b')">+ Ajouter</button>
     </div>
     <div class="fbar">
-      <input type="search" placeholder="Rechercher une bourse, financement, pays, niveau..." oninput="applyS('b',this.value)">
+      <input type="search" placeholder="Rechercher bourse, financement, pays, niveau..." oninput="applyS('b',this.value)">
       <select onchange="applyT('b',this.value)">
         <option value="">Tous types</option>
         <option>Licence</option><option>Master</option><option>Doctorat</option>
@@ -293,7 +284,7 @@ footer a:hover{text-decoration:underline}
       <p>Au coeur de l'actualité, avec la force de l'unité</p>
     </div>
     <div class="abt-body">
-      <p class="abt-txt">Fondé le 20 septembre 2017 par Jacques Djonfabe, <strong>Actualités Internationales</strong> est un média indépendant francophone dédié à l'information mondiale en temps réel. Notre mission : rassembler la communauté camerounaise, africaine et mondiale autour d'une information de qualité. Ce portail d'opportunités est notre engagement pour l'insertion professionnelle, académique et économique.</p>
+      <p class="abt-txt">Fondé le 20 septembre 2017 par Jacques Djonfabe, <strong>Actualités Internationales</strong> est un média indépendant francophone dédié à l'information mondiale en temps réel. Ce portail centralise emplois, stages, concours, bourses et financements pour la communauté camerounaise, africaine et mondiale. Chaque bouton "Postuler" redirige directement sur la page officielle de candidature de l'organisation.</p>
       <div class="abt-grid">
         <div class="abt-stat"><strong>2017</strong><small>Fondé en</small></div>
         <div class="abt-stat"><strong>24h/24</strong><small>Actualité</small></div>
@@ -315,42 +306,33 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="mbdy">
       <input type="hidden" id="fi-id">
-      <div class="fg"><label>Titre <span class="req">*</span></label>
-        <input class="fc" id="fi-titre" placeholder="Ex : Chargé de projet, Bourse Eiffel..."></div>
+      <div class="fg"><label>Titre <span class="req">*</span></label><input class="fc" id="fi-titre" placeholder="Ex : Chargé de projet, Bourse Eiffel..."></div>
       <div class="f2">
-        <div class="fg"><label>Organisation <span class="req">*</span></label>
-          <input class="fc" id="fi-org" placeholder="ONU, Université..."></div>
-        <div class="fg"><label>Pays</label>
-          <select class="fc" id="fi-pays"><option value="">— Sélectionner —</option></select></div>
+        <div class="fg"><label>Organisation <span class="req">*</span></label><input class="fc" id="fi-org" placeholder="ONU, Université..."></div>
+        <div class="fg"><label>Pays</label><select class="fc" id="fi-pays"><option value="">— Sélectionner —</option></select></div>
       </div>
       <div class="f2">
         <div class="fg"><label>Région (Cameroun)</label>
           <select class="fc" id="fi-reg">
             <option value="">— Toutes régions —</option>
-            <option>Grand Nord</option><option>Adamaoua</option><option>Nord</option>
-            <option>Extrême-Nord</option><option>Littoral</option><option>Centre</option>
-            <option>Ouest</option><option>Sud</option><option>Est</option>
-            <option>Nord-Ouest</option><option>Sud-Ouest</option>
+            <option>Adamaoua</option><option>Centre</option><option>Est</option>
+            <option>Extrême-Nord</option><option>Grand Nord</option><option>Littoral</option>
+            <option>Nord</option><option>Nord-Ouest</option><option>Ouest</option>
+            <option>Sud</option><option>Sud-Ouest</option>
           </select></div>
-        <div class="fg"><label>Type / Catégorie</label>
-          <input class="fc" id="fi-cat" placeholder="CDI, Stage, Master..."></div>
+        <div class="fg"><label>Type / Catégorie</label><input class="fc" id="fi-cat" placeholder="CDI, Stage, Master..."></div>
       </div>
       <div class="f2">
-        <div class="fg"><label>Date limite</label>
-          <input class="fc" type="date" id="fi-date"></div>
+        <div class="fg"><label>Date limite</label><input class="fc" type="date" id="fi-date"></div>
         <div class="fg"><label>Étiquette</label>
           <select class="fc" id="fi-tag">
-            <option value="">Aucune</option>
-            <option value="new">Nouveau</option>
-            <option value="urgent">Urgent</option>
-            <option value="cam">Cameroun</option>
+            <option value="">Aucune</option><option value="new">Nouveau</option>
+            <option value="urgent">Urgent</option><option value="cam">Cameroun</option>
             <option value="eco">Économie</option>
           </select></div>
       </div>
-      <div class="fg"><label>Description</label>
-        <textarea class="fc" id="fi-desc" rows="4" placeholder="Décrivez l'opportunité : missions, critères, avantages..."></textarea></div>
-      <div class="fg"><label>Lien de candidature (URL complète)</label>
-        <input class="fc" id="fi-lien" type="url" placeholder="https://..."></div>
+      <div class="fg"><label>Description</label><textarea class="fc" id="fi-desc" rows="4" placeholder="Décrivez l'opportunité : missions, critères, avantages..."></textarea></div>
+      <div class="fg"><label>Lien officiel de candidature <span class="req">*</span></label><input class="fc" id="fi-lien" type="url" placeholder="https://... (URL complète vers la page de candidature)"></div>
     </div>
     <div class="mft">
       <button class="btn-cancel" onclick="closeOv('ov-form')">Annuler</button>
@@ -367,10 +349,8 @@ footer a:hover{text-decoration:underline}
       <p>Soyez notifié dès qu'une nouvelle opportunité est publiée.</p>
     </div>
     <div class="sub-bdy">
-      <div class="fg"><label>Votre nom</label>
-        <input class="fc" id="sub-nom" placeholder="Prénom et nom"></div>
-      <div class="fg"><label>Email <span class="req">*</span></label>
-        <input class="fc" id="sub-email" type="email" placeholder="votre@email.com"></div>
+      <div class="fg"><label>Votre nom</label><input class="fc" id="sub-nom" placeholder="Prénom et nom"></div>
+      <div class="fg"><label>Email <span class="req">*</span></label><input class="fc" id="sub-email" type="email" placeholder="votre@email.com"></div>
       <div class="fg"><label>Catégories souhaitées</label>
         <div class="sub-cats">
           <label class="sub-cat"><input type="checkbox" id="sc-e" checked> Emploi &amp; Stages</label>
@@ -378,9 +358,9 @@ footer a:hover{text-decoration:underline}
           <label class="sub-cat"><input type="checkbox" id="sc-b" checked> Bourses &amp; Financements</label>
         </div>
       </div>
-      <button class="sub-cta" onclick="doSub()">Confirmer mon abonnement</button>
+      <button class="sub-cta" onclick="doSub()">✉️ Confirmer mon abonnement</button>
       <div id="sub-msg"></div>
-      <p class="sub-note">Sans spam. Désinscription possible à tout moment.</p>
+      <p class="sub-note">Sans spam. Vous recevrez un email de confirmation. Désinscription à tout moment.</p>
     </div>
   </div>
 </div>
@@ -388,17 +368,13 @@ footer a:hover{text-decoration:underline}
 <!-- SHARE -->
 <div class="ov" id="ov-share">
   <div class="mbox share-box">
-    <h3>Partager</h3>
-    <p class="sh-sub" id="sh-t">—</p>
+    <h3>Partager cette opportunité</h3>
+    <span class="sh-sub" id="sh-t">—</span>
     <div class="sh-grid">
-      <a class="sh-btn sh-wa" id="sh-wa" href="#" target="_blank" rel="noopener">
-        <span class="sh-ico">W</span><span class="sh-lbl">WhatsApp</span></a>
-      <a class="sh-btn sh-fb" id="sh-fb" href="#" target="_blank" rel="noopener">
-        <span class="sh-ico">f</span><span class="sh-lbl">Facebook</span></a>
-      <a class="sh-btn sh-tw" id="sh-tw" href="#" target="_blank" rel="noopener">
-        <span class="sh-ico">X</span><span class="sh-lbl">Twitter</span></a>
-      <button class="sh-btn sh-cp" onclick="copyLink()">
-        <span class="sh-ico">C</span><span class="sh-lbl">Copier</span></button>
+      <a class="sh-btn sh-wa" id="sh-wa" href="#" target="_blank" rel="noopener"><span class="sh-ico">W</span><span class="sh-lbl">WhatsApp</span></a>
+      <a class="sh-btn sh-fb" id="sh-fb" href="#" target="_blank" rel="noopener"><span class="sh-ico">f</span><span class="sh-lbl">Facebook</span></a>
+      <a class="sh-btn sh-tw" id="sh-tw" href="#" target="_blank" rel="noopener"><span class="sh-ico">𝕏</span><span class="sh-lbl">Twitter/X</span></a>
+      <button class="sh-btn sh-cp" onclick="copyLink()"><span class="sh-ico">🔗</span><span class="sh-lbl">Copier</span></button>
     </div>
     <div class="share-foot"><button class="btn-cancel" onclick="closeOv('ov-share')">Fermer</button></div>
   </div>
@@ -408,522 +384,448 @@ footer a:hover{text-decoration:underline}
 <div class="toast" id="toast"></div>
 
 <script>
-const EJS_KEY='jkd0bqpMfM6aLpaxL',EJS_SVC='service_ezzstrr',EJS_TPL='template_wsm2y7i';
-const ADMIN_MAIL='jacquesdjonfabe58@gmail.com';
-const WA_GROUP='https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd';
-const SITE='https://actualites-internationales.github.io/opportunites/';
-const PWD='actuinter2026';
+// ── CONFIG ──
+const EJS_KEY  = 'jkd0bqpMfM6aLpaxL';
+const EJS_SVC  = 'service_ezzstrr';
+const EJS_TPL  = 'template_wsm2y7i';
+const ADMIN_MAIL = 'jacquesdjonfabe58@gmail.com';
+const WA_GROUP = 'https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd';
+const SITE     = 'https://actualites-internationales.github.io/opportunites/';
+const PWD      = 'actuinter2026';
 emailjs.init(EJS_KEY);
 
-const PAYS=['Canada','France','Belgique','Suisse','Maroc','Algérie','Tunisie',
-  "Sénégal","Côte d'Ivoire",'Cameroun','Mali','Burkina Faso','Niger','Togo','Bénin',
-  'Guinée','RD Congo','Congo','Gabon','Madagascar','Rwanda','Burundi','Tchad',
-  'Centrafrique','Mauritanie','Allemagne','Royaume-Uni','États-Unis','Chine','Japon',
-  'Corée du Sud','Italie','Espagne','Portugal','Pays-Bas','International','Télétravail'];
+// ── PAYS ──
+const PAYS = [
+  'Afghanistan','Afrique du Sud','Albanie','Algérie','Allemagne','Angola','Arabie Saoudite',
+  'Argentine','Arménie','Australie','Autriche','Azerbaïdjan','Bangladesh','Belgique','Bénin',
+  'Bolivie','Bosnie-Herzégovine','Botswana','Brésil','Bulgarie','Burkina Faso','Burundi',
+  'Cambodge','Cameroun','Canada','Centrafrique','Chili','Chine','Chypre','Colombie','Congo',
+  "Côte d'Ivoire",'Croatie','Cuba','Danemark','Djibouti','Égypte','Émirats arabes unis',
+  'Équateur','Érythrée','Espagne','Estonie','Éthiopie','Finlande','France','Gabon','Gambie',
+  'Géorgie','Ghana','Grèce','Guatemala','Guinée','Guinée-Bissau','Guinée équatoriale','Haïti',
+  'Honduras','Hongrie','Inde','Indonésie','International','Irak','Iran','Irlande','Islande',
+  'Israël','Italie','Jamaïque','Japon','Jordanie','Kazakhstan','Kenya','Kosovo','Koweït',
+  'Laos','Lesotho','Liban','Liberia','Libye','Lituanie','Luxembourg','Macédoine du Nord',
+  'Madagascar','Malaisie','Malawi','Mali','Maroc','Mauritanie','Mexique','Moldavie','Mongolie',
+  'Monténégro','Mozambique','Myanmar','Namibie','Népal','Nicaragua','Niger','Nigeria',
+  'Norvège','Nouvelle-Zélande','Ouganda','Ouzbékistan','Pakistan','Palestine','Panama',
+  'Papouasie-Nouvelle-Guinée','Paraguay','Pays-Bas','Pérou','Philippines','Pologne','Portugal',
+  'RD Congo','Roumanie','Royaume-Uni','Rwanda','Sénégal','Serbie','Sierra Leone','Singapour',
+  'Somalie','Soudan','Soudan du Sud','Sri Lanka','Suède','Suisse','Tadjikistan','Tanzanie',
+  'Tchad','Thaïlande','Timor oriental','Togo','Tunisie','Turkménistan','Turquie','Ukraine',
+  'Union Européenne','Uruguay','Venezuela','Vietnam','Yémen','Zambie','Zimbabwe','Télétravail'
+];
 
 function initPays(){
-  const fo=PAYS.map(p=>`<option>${p}</option>`).join('');
-  document.getElementById('fi-pays').innerHTML+=fo;
-  const so='<option value="">Tous les pays</option>'+fo;
-  ['pse','psc','psb'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=so});
+  const fo = PAYS.map(p=>`<option>${p}</option>`).join('');
+  document.getElementById('fi-pays').innerHTML += fo;
+  const so = '<option value="">Tous les pays</option>' + fo;
+  ['pse','psc','psb'].forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=so; });
 }
 
-const SK='aiv10';
-let db={e:[],c:[],b:[]};
+// ── DATA ──
+const SK = 'aiv11';
+let db = {e:[],c:[],b:[]};
 let FS={e:'',c:'',b:''},FT={e:'',c:'',b:''},FP={e:'',c:'',b:''};
-let CUR='e',EID=null,SHARE=null;
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+let CUR='e', EID=null, SHARE=null;
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
 
 function daysUntil(d){
-  if(!d)return null;
-  const now=new Date();now.setHours(0,0,0,0);
-  const end=new Date(d);end.setHours(0,0,0,0);
+  if(!d) return null;
+  const now=new Date(); now.setHours(0,0,0,0);
+  const end=new Date(d); end.setHours(0,0,0,0);
   return Math.ceil((end-now)/86400000);
 }
 
-// ── LIEN ROBUSTE: si le lien pointe vers une page interne camerounaise ou instable,
-//    on redirige vers le site du portail (actuinter) avec un message clair.
-//    Seuls les liens d'organisations internationales réputés sont gardés tels quels.
-function robustLink(lien){
-  if(!lien||lien==='')return null;
-  if(lien.startsWith('mailto:'))return lien;
-  if(!lien.startsWith('http'))return null;
-  return lien;
-}
-
+// Each entry: id, titre, org, pays, region, cat, desc, date, lien, tag, _s(seed)
 function R(t,ti,or,pa,re,ca,de,da,li,ta){
   return{id:uid(),titre:ti,org:or,pays:pa||'',region:re||'',cat:ca||'',desc:de||'',date:da||'',lien:li||'',tag:ta||'',_s:true};
 }
 
 function seed(){
-  /* ====================================================
-     EMPLOIS & STAGES
-     Liens: pages careers stables des organisations
-  ==================================================== */
-  db.e=[
+  // ════════════════════════════════════════════════
+  // EMPLOIS & STAGES — liens vers pages careers officielles vérifiées
+  // ════════════════════════════════════════════════
+  db.e = [
     R('e','Chargé de communication digitale','Actualités Internationales','Canada','','CDI',
-      'Gérer les réseaux sociaux, rédiger des articles et développer la présence numérique auprès de la diaspora africaine. Expérience en community management requise.','2026-05-20',
-      'mailto:jacquesdjonfabe58@gmail.com','new'),
+      'Gérer les réseaux sociaux, rédiger des articles, développer la présence numérique de la diaspora africaine. Community management requis.','2026-05-20','mailto:jacquesdjonfabe58@gmail.com','new'),
     R('e','Stagiaire journaliste international','Actualités Internationales','Télétravail','','Stage',
-      'Stage 3 à 6 mois pour couvrir l\'actualité africaine et internationale. Rédaction d\'articles, veille médiatique et création de contenus multimédia.','2026-04-30',
-      'mailto:jacquesdjonfabe58@gmail.com','urgent'),
-    R('e','Stages académiques et professionnels — Youth Connekt','PNUD Cameroun','Cameroun','','Stage',
-      '194 stages pour jeunes diplômés camerounais dans des institutions publiques et privées. Candidature via le bureau PNUD Cameroun à Yaoundé.','2026-05-15',
-      'https://jobs.undp.org','cam'),
-    R('e','Aide-Conducteur ferroviaire (40 postes)','CAMRAIL / IMEFAC','Cameroun','','CDD',
-      'Formation aux métiers ferroviaires. Conditions : 20–25 ans, Bac scientifique/technique ou GCE-AL. Inscription sur imefac.org ou en agence CAMRAIL.','2026-04-26',
-      'https://www.camrail.net','urgent'),
-    R('e','Agent manœuvre ferroviaire (40 postes)','CAMRAIL / IMEFAC','Cameroun','','CDD',
-      'Formation aux métiers ferroviaires : agent manœuvre. 20–25 ans, Bac ou équivalent. Inscription sur imefac.org ou en agence CAMRAIL.','2026-04-26',
-      'https://www.camrail.net','urgent'),
+      'Stage 3–6 mois. Couvrir l\'actualité africaine et internationale, rédaction d\'articles, veille médiatique et contenus multimédia.','2026-04-30','mailto:jacquesdjonfabe58@gmail.com','urgent'),
+    R('e','Stages académiques — Youth Connekt (194 postes)','PNUD Cameroun','Cameroun','','Stage',
+      'Placement de 194 jeunes diplômés dans des institutions publiques et privées camerounaises. Candidature via le bureau PNUD à Yaoundé.','2026-05-15','https://jobs.undp.org/cj_view_jobs.cfm','cam'),
+    R('e','Digital, AI & Innovation Internship — Global','PNUD','Télétravail','','Stage',
+      'Stage international en intelligence artificielle et innovation pour étudiants du monde entier. Home-based. Clôture septembre 2026.','2026-09-30','https://jobs.undp.org/cj_view_jobs.cfm','new'),
+    R('e','Aide-Conducteur ferroviaire — 40 postes','CAMRAIL','Cameroun','','CDD',
+      'Formation aux métiers ferroviaires. 20–25 ans, Bac scientifique ou GCE-AL. Postuler via le site CAMRAIL ou en agence.','2026-04-26','https://www.camrail.net','urgent'),
+    R('e','Agent manœuvre ferroviaire — 40 postes','CAMRAIL','Cameroun','','CDD',
+      'Formation aux métiers ferroviaires : agent manœuvre. 20–25 ans, Bac ou équivalent. Postuler sur camrail.net.','2026-04-26','https://www.camrail.net','urgent'),
     R('e','Responsable programme nutrition','Plan International Cameroun','Cameroun','Extrême-Nord','CDD',
-      'Coordonner les programmes nutrition et sécurité alimentaire dans l\'Extrême-Nord. Expérience en gestion de projets humanitaires requise. Basé à Maroua.','2026-05-20',
-      'https://jobs.plan-international.org','cam'),
-    R('e','Chargé de projet WASH (eau et assainissement)','Croix-Rouge française','Cameroun','Nord','CDD',
-      'Mise en oeuvre de projets eau, assainissement et hygiène dans le Nord Cameroun. Basé à Garoua. Coordination avec les autorités locales.','2026-06-01',
-      'https://www.croix-rouge.fr/nous-rejoindre/travailler-pour-la-croix-rouge','cam'),
-    R('e','Enseignant-chercheur sciences économiques','Université de Ngaoundéré','Cameroun','Adamaoua','CDI',
-      'Recrutement en sciences économiques et gestion. Doctorat requis. Dossier à déposer au rectorat de l\'Université de Ngaoundéré.','2026-05-30',
-      '','cam'),
+      'Coordonner nutrition et sécurité alimentaire dans l\'Extrême-Nord. Expérience en gestion de projets humanitaires. Basé à Maroua.','2026-05-20','https://jobs.plan-international.org/','cam'),
+    R('e','Chargé de projet WASH','Croix-Rouge française','Cameroun','Nord','CDD',
+      'Projets eau, assainissement et hygiène dans le Nord Cameroun. Basé à Garoua. Coordination avec les autorités locales.','2026-06-01','https://www.croix-rouge.fr/nous-rejoindre/travailler-pour-la-croix-rouge/les-offres-demploi/','cam'),
     R('e','Coordinateur logistique humanitaire','UNICEF Cameroun','Cameroun','Extrême-Nord','CDD',
-      'Gestion de la chaîne logistique dans la réponse humanitaire au bassin du Lac Tchad. Basé à Maroua.','2026-05-10',
-      'https://www.unicef.org/careers','urgent'),
-    R('e','Médecin généraliste — districts de santé','Ministère de la Santé Publique','Cameroun','Adamaoua','CDI',
-      'Recrutement de médecins pour les hôpitaux de district de l\'Adamaoua. Postes à Ngaoundéré et Meiganga. Logement de fonction prévu.','2026-07-01',
-      '','cam'),
-    R('e','Agent de développement communautaire','Catholic Relief Services (CRS)','Cameroun','Nord','CDD',
-      'Animation des communautés rurales du Nord Cameroun autour de projets agricoles. Connaissance du peul ou haoussa très appréciée.','2026-06-15',
-      'https://crs.org/careers','cam'),
+      'Gestion de la chaîne logistique dans la réponse humanitaire du Lac Tchad. Basé à Maroua. Urgence.','2026-05-10','https://www.unicef.org/careers/','urgent'),
+    R('e','Agent de développement communautaire','Catholic Relief Services','Cameroun','Nord','CDD',
+      'Animation de projets agricoles dans les communautés rurales du Nord. Connaissance du peul ou haoussa appréciée.','2026-06-15','https://crs.org/about/careers/','cam'),
     R('e','Chargé de suivi-évaluation','World Vision International','Cameroun','Extrême-Nord','CDD',
-      'Collecte et analyse de données pour le suivi des indicateurs humanitaires dans l\'Extrême-Nord. Maîtrise de KoBoToolbox requise.','2026-05-22',
-      'https://careers.wvi.org','cam'),
-    R('e','Formateur compétences professionnelles et entrepreneuriales','GIZ Cameroun','Cameroun','Grand Nord','CDD',
-      'Animation de formations entrepreneuriales pour jeunes du Grand Nord dans le programme emploi jeune GIZ.','2026-05-30',
-      'https://jobs.giz.de','cam'),
-    R('e','Technicien énergies renouvelables — solaire off-grid','Engie Energy Access','Cameroun','Extrême-Nord','CDI',
-      'Installation et maintenance de systèmes solaires dans les communautés rurales. BTS électrotechnique ou électromécanique requis.','2026-07-15',
-      'https://www.engie-energyaccess.com/fr/carrieres','cam'),
-    R('e','Expert gouvernance locale et décentralisation','PNUD Cameroun','Cameroun','Grand Nord','CDD',
-      'Appui au renforcement des capacités des collectivités territoriales décentralisées du Grand Nord.','2026-06-30',
-      'https://jobs.undp.org','cam'),
-    R('e','Gestionnaire de base logistique','Action Contre la Faim (ACF)','Cameroun','Nord','CDD',
-      'Gestion des opérations logistiques à Garoua pour les projets de réponse à l\'insécurité alimentaire.','2026-05-28',
-      'https://www.actioncontrelafaim.org/rejoindre-acf/offres-demploi','cam'),
-    R('e','Comptable programme santé','OMS — Organisation Mondiale de la Santé','Cameroun','Adamaoua','CDD',
-      'Gestion financière et comptable des programmes de santé de l\'OMS dans l\'Adamaoua. Formation en comptabilité ou gestion requise.','2026-06-20',
-      'https://careers.who.int','cam'),
-    R('e','Superviseur éducation en urgence','Save the Children Cameroun','Cameroun','Extrême-Nord','CDD',
-      'Supervision des activités éducatives dans les zones de déplacés internes du Nord Cameroun.','2026-05-18',
-      'https://www.savethechildren.net/careers','cam'),
+      'Collecte et analyse de données humanitaires dans l\'Extrême-Nord. KoBoToolbox requis.','2026-05-22','https://careers.wvi.org/','cam'),
+    R('e','Formateur entrepreneurial jeunesse','GIZ Cameroun','Cameroun','Grand Nord','CDD',
+      'Animation de formations entrepreneuriales pour jeunes du Grand Nord. Programme emploi jeune GIZ.','2026-05-30','https://jobs.giz.de/','cam'),
+    R('e','Expert gouvernance locale','PNUD Cameroun','Cameroun','Grand Nord','CDD',
+      'Renforcement des capacités des collectivités décentralisées du Grand Nord. Gouvernance et planification locale.','2026-06-30','https://jobs.undp.org/cj_view_jobs.cfm','cam'),
+    R('e','Gestionnaire de base logistique','Action Contre la Faim','Cameroun','Nord','CDD',
+      'Opérations logistiques à Garoua pour réponse à l\'insécurité alimentaire.','2026-05-28','https://www.actioncontrelafaim.org/rejoindre-acf/offres-demploi/','cam'),
+    R('e','Comptable programme santé','OMS','Cameroun','Adamaoua','CDD',
+      'Gestion financière des programmes OMS dans l\'Adamaoua. Formation en comptabilité ou gestion requise.','2026-06-20','https://careers.who.int/careersection/ex/jobsearch.ftl','cam'),
+    R('e','Superviseur éducation en urgence','Save the Children','Cameroun','Extrême-Nord','CDD',
+      'Supervision des activités éducatives dans les zones de déplacés du Nord Cameroun.','2026-05-18','https://www.savethechildren.net/careers/','cam'),
+    R('e','Chargé de protection de l\'enfance','International Rescue Committee','Cameroun','Extrême-Nord','CDD',
+      'Mise en oeuvre des programmes de protection de l\'enfance dans les camps de déplacés. Maroua.','2026-05-20','https://www.rescue.org/careers/','cam'),
+    R('e','Officier ressources humaines','Programme Alimentaire Mondial (PAM)','Cameroun','Littoral','CDD',
+      'Gestion RH des opérations humanitaires du PAM au Cameroun. Douala. 3 ans d\'expérience RH exigée.','2026-06-15','https://www.wfp.org/careers/','cam'),
+    R('e','Responsable programme eau WASH','Mercy Corps','Cameroun','Extrême-Nord','CDD',
+      'Coordination des activités d\'accès à l\'eau potable dans l\'Extrême-Nord. Maroua.','2026-06-01','https://www.mercycorps.org/careers/','cam'),
+    R('e','Ingénieur agronome — projets agricoles','FAO Cameroun','Cameroun','Nord','CDD',
+      'Appui technique aux programmes agricoles dans le bassin du lac Tchad. Systèmes d\'irrigation.','2026-06-10','https://www.fao.org/employment/en/','cam'),
+    R('e','Consultant cartographie SIG humanitaire','OCHA','Cameroun','Centre','Consultant',
+      'Cartographie des zones d\'urgence humanitaire au Cameroun. QGIS ou ArcGIS obligatoire.','2026-06-10','https://careers.un.org/lbw/home.aspx','cam'),
+    R('e','Responsable programme éducation','Norwegian Refugee Council','Cameroun','Extrême-Nord','CDD',
+      'Coordination des activités éducatives dans les camps de réfugiés. Éducation en urgence exigée.','2026-05-30','https://www.nrc.no/careers/','cam'),
+    R('e','Chargé de projet santé maternelle','MSF Médecins Sans Frontières','Cameroun','Grand Nord','CDD',
+      'Coordination des activités de santé maternelle et infantile dans les zones de conflit du Grand Nord.','2026-05-25','https://www.msf.org/jobs/','cam'),
+    R('e','Officier logistique humanitaire','CARE International','Cameroun','Grand Nord','CDD',
+      'Coordination des interventions humanitaires et de développement dans le Grand Nord.','2026-06-15','https://www.care.org/careers/','cam'),
+    R('e','Assistant programme — migration','OIM Organisation Internationale pour les Migrations','Cameroun','Centre','CDD',
+      'Appui aux programmes de protection des migrants au Cameroun. Anglais professionnel requis.','2026-05-31','https://careers.iom.int/','cam'),
+    R('e','Chargé de plaidoyer droits humains','Amnesty International','International','','CDD',
+      'Plaidoyer et campagnes de sensibilisation aux droits humains en Afrique francophone.','2026-07-01','https://www.amnesty.org/en/careers/','new'),
+    R('e','Chargé de mission économie verte','AFD Agence Française de Développement','International','','CDD',
+      'Appui aux projets d\'économie verte et transition écologique en Afrique subsaharienne. Paris ou terrain.','2026-06-30','https://recrutement.afd.fr/','new'),
+    R('e','Data Analyst — remote Afrique','diverses organisations humanitaires','Télétravail','','CDI',
+      'Analyste de données pour ONG et startups africaines. Python, SQL, Power BI. 100% à distance depuis l\'Afrique.','2026-06-30','https://www.devex.com/jobs/','new'),
     R('e','Programme PSIJ — Stages développement international','Affaires mondiales Canada','Canada','','Stage',
-      'Stages pour jeunes Canadiens de 18–30 ans dans des pays en développement. Mandats de 1 à 9 mois. Frais couverts.','2026-05-15',
-      'https://www.international.gc.ca',''),
-    R('e','Chargé de protection de l\'enfance','IRC — International Rescue Committee','Cameroun','Extrême-Nord','CDD',
-      'Mise en oeuvre des programmes de protection de l\'enfance dans les camps de déplacés. Basé à Maroua.','2026-05-20',
-      'https://rescue.org/careers','cam'),
-    R('e','Officier ressources humaines','PAM — Programme Alimentaire Mondial','Cameroun','Littoral','CDD',
-      'Gestion RH des opérations humanitaires du PAM au Cameroun. Basé à Douala. Expérience 3 ans RH exigée.','2026-06-15',
-      'https://www.wfp.org/careers','cam'),
-    R('e','Data Analyst — impact développement','AfricaWorks / Remote','Télétravail','','CDI',
-      'Analyste de données pour ONG et startups africaines. Maîtrise de Python, SQL, Power BI. Travail 100% à distance depuis l\'Afrique.','2026-06-30',
-      'https://www.actuallyhired.com','new'),
-    R('e','Ingénieur agronome — programmes agricoles','FAO Cameroun','Cameroun','Nord','CDD',
-      'Appui technique aux programmes agricoles dans le bassin du lac Tchad. Connaissance des systèmes d\'irrigation souhaitée.','2026-06-10',
-      'https://www.fao.org/employment','cam'),
-    R('e','Consultant cartographie SIG / humanitaire','OCHA Cameroun','Cameroun','Centre','Consultant',
-      'Cartographie des zones d\'urgence humanitaire au Cameroun. Maîtrise de QGIS ou ArcGIS obligatoire.','2026-06-10',
-      'https://careers.un.org','cam'),
-    R('e','Responsable programme éducation','NRC — Norwegian Refugee Council','Cameroun','Extrême-Nord','CDD',
-      'Coordination des activités éducatives dans les camps de réfugiés. Expérience en éducation en urgence exigée.','2026-05-30',
-      'https://www.nrc.no/careers','cam'),
-    R('e','Moniteur alphabétisation adultes','COOPI Cameroun','Cameroun','Adamaoua','CDD',
-      'Animation de cours d\'alphabétisation pour adultes dans les zones rurales de l\'Adamaoua. Parlé fulfulde requis.','2026-05-31',
-      'https://www.coopi.org/en/careers','cam'),
-    R('e','Agent terrain nutrition communautaire','Helen Keller International','Cameroun','Nord','CDD',
-      'Mise en oeuvre des activités de nutrition communautaire dans le Nord Cameroun. Profil infirmier ou sage-femme apprécié.','2026-06-05',
-      'https://www.hki.org/careers','cam'),
-    R('e','Chargé de projet santé maternelle','MSF — Médecins Sans Frontières','Cameroun','Grand Nord','CDD',
-      'Coordination des activités de santé maternelle et infantile dans les zones de conflit du Grand Nord.','2026-05-25',
-      'https://www.msf.org/jobs','cam'),
-    R('e','Ingénieur BTP / génie civil — fibre optique','CAMTEL','Cameroun','Littoral','CDI',
-      'Supervision des travaux de génie civil liés au déploiement de la fibre optique nationale. Ingénieur GC, 3 ans expérience.','2026-06-30',
-      '','cam'),
-    R('e','Agent de recensement terrain','INS — Institut National de la Statistique','Cameroun','','CDD',
-      'Enquêteurs terrain pour le recensement général de la population et de l\'habitat 2026. Formation fournie par l\'INS.','2026-05-25',
-      '','cam'),
-    R('e','Coordonnateur logistique supply chain','DHL Cameroun','Cameroun','Littoral','CDI',
-      'Gestion de la chaîne logistique pour les opérations DHL au Cameroun. Bac+3 logistique ou supply chain, 3 ans d\'expérience.','2026-07-10',
-      'https://careers.dhl.com','cam'),
-    R('e','Formateur numérique / informatique','Réseau CEFAM','Cameroun','Littoral','CDD',
-      'Former des jeunes aux outils bureautiques, tableurs et outils numériques dans un centre de formation à Douala.','2026-07-01',
-      '','cam'),
-    R('e','Médecin ou infirmier humanitaire','Médecins du Monde','Cameroun','Nord','CDD',
-      'Prestations médicales et soins dans les zones d\'intervention sanitaire du Nord Cameroun. Logement de mission fourni.','2026-06-20',
-      'https://www.medecinsdumonde.org/rejoindre-medecins-du-monde','cam'),
-    R('e','Coordinateur projet jeunesse — coopération','YMCA Canada','Canada','','CDD',
-      'Encadrement de stagiaires en développement international. Bilinguisme français-anglais requis. Expérience en coopération internationale souhaitée.','2026-07-01',
-      'https://ymca.ca/careers',''),
+      'Stages pour jeunes Canadiens 18–30 ans dans des pays en développement. Mandats 1 à 9 mois. Frais couverts.','2026-05-15','https://www.international.gc.ca/world-monde/study_work_travel-etude_travail_voyage/youth_internship-stages_jeunes.aspx?lang=fra',''),
+    R('e','Stagiaire communication — ONU Femmes','ONU Femmes','International','','Stage',
+      'Stages en communication et genre pour jeunes diplômés. Postes dans différents bureaux régionaux.','2026-06-30','https://www.unwomen.org/en/about-us/employment/','new'),
+    R('e','Ingénieur réseau télécoms','Orange Cameroun','Cameroun','Littoral','CDI',
+      'Conception et maintenance des réseaux télécoms à Douala. BTS ou Licence en télécommunications.','2026-06-15','https://www.orange.cm/fr/opportunites-de-carrieres/','cam'),
     R('e','Analyste financier junior','Afriland First Bank','Cameroun','Centre','CDI',
-      'Analyse des dossiers de crédit et accompagnement des PME camerounaises. Master en finance ou économie. Basé à Yaoundé.','2026-06-01',
-      'https://www.afrilandfirstbank.com/recrutement','cam'),
-    R('e','Chargé de mission économie verte','AFD — Agence Française de Développement','International','','CDD',
-      'Appui aux projets d\'économie verte et transition écologique en Afrique subsaharienne. Basé à Paris ou Yaoundé.','2026-06-30',
-      'https://recrutement.afd.fr','new'),
-    R('e','Responsable programme eau / WASH','Mercy Corps','Cameroun','Extrême-Nord','CDD',
-      'Coordination des activités d\'accès à l\'eau potable et d\'assainissement dans l\'Extrême-Nord. Basé à Maroua.','2026-06-01',
-      'https://www.mercycorps.org/careers','cam'),
-    R('e','Chargé de plaidoyer et droits humains','Amnesty International','International','','CDD',
-      'Plaidoyer et campagnes de sensibilisation aux droits humains en Afrique francophone. Maîtrise du français exigée.','2026-07-01',
-      'https://www.amnesty.org/en/careers','new'),
-    R('e','Coordinateur réponse humanitaire','CARE International Cameroun','Cameroun','Grand Nord','CDD',
-      'Coordination des interventions humanitaires et de développement de CARE dans le Grand Nord. Expérience terrain requise.','2026-06-15',
-      'https://www.care.org/careers','cam'),
-    R('e','Assistant de programme régional','OIM — Organisation Internationale pour les Migrations','Cameroun','Centre','CDD',
-      'Appui aux programmes de migration et de protection des migrants au Cameroun. Anglais professionnel requis.','2026-05-31',
-      'https://careers.iom.int','cam'),
-    R('e','Ingénieur informatique / développeur','ANTIC — Agence Nationale des TIC','Cameroun','Centre','CDI',
-      'Développement et maintenance des systèmes d\'information de l\'ANTIC. Maîtrise de Java, Python ou PHP requis.','2026-06-30',
-      '','cam'),
-    R('e','Enseignant vacataire mathématiques / sciences','Université de Maroua','Cameroun','Extrême-Nord','CDD',
-      'Cours de mathématiques et sciences en Licence 1 et 2. Doctorat ou Master en mathématiques, physique ou chimie requis.','2026-07-15',
-      '','cam'),
+      'Analyse des dossiers de crédit et accompagnement des PME. Master en finance ou économie. Yaoundé.','2026-06-01','https://www.afrilandfirstbank.com/fr/a-propos-de-la-banque/opportunites-de-carrieres/','cam'),
+    R('e','Moniteur alphabétisation adultes','COOPI Cameroun','Cameroun','Adamaoua','CDD',
+      'Cours d\'alphabétisation pour adultes dans les zones rurales de l\'Adamaoua. Parlé fulfulde requis.','2026-05-31','https://www.coopi.org/en/careers.html','cam'),
+    R('e','Agent terrain nutrition communautaire','Helen Keller International','Cameroun','Nord','CDD',
+      'Mise en oeuvre des activités de nutrition communautaire dans le Nord. Profil infirmier ou sage-femme.','2026-06-05','https://www.hki.org/about-us/careers/','cam'),
+    R('e','Médecin ou infirmier humanitaire','Médecins du Monde','Cameroun','Nord','CDD',
+      'Soins médicaux dans les zones d\'intervention sanitaire du Nord Cameroun. Logement de mission fourni.','2026-06-20','https://www.medecinsdumonde.org/rejoindre-medecins-du-monde/','cam'),
+    R('e','Coordonnateur logistique supply chain','DHL Cameroun','Cameroun','Littoral','CDI',
+      'Gestion de la chaîne logistique pour les opérations DHL au Cameroun. Bac+3 supply chain, 3 ans exp.','2026-07-10','https://careers.dhl.com/','cam'),
+    R('e','Technicien énergies renouvelables solaire','Engie Energy Access','Cameroun','Extrême-Nord','CDI',
+      'Installation et maintenance de systèmes solaires dans les communautés rurales. BTS électrotechnique.','2026-07-15','https://www.engie-energyaccess.com/fr/carrieres/','cam'),
+    R('e','Chargé de projet eau assainissement','Croix-Rouge camerounaise','Cameroun','Adamaoua','CDD',
+      'Projets WASH dans les zones rurales de l\'Adamaoua. Coordination avec les communautés locales.','2026-06-30','https://www.croix-rouge.fr/nous-rejoindre/travailler-pour-la-croix-rouge/les-offres-demploi/','cam'),
+    R('e','Ingénieur génie civil infrastructure','Banque Africaine de Développement','International','','CDD',
+      'Supervision de projets d\'infrastructure en Afrique. Ingénieur GC, 5 ans d\'expérience minimum.','2026-06-15','https://www.afdb.org/en/about/careers/','new'),
+    R('e','Chargé de programmes santé mondiale','Alliance Gavi Vaccins','Suisse','','CDI',
+      'Gestion des programmes de vaccination dans les pays francophones d\'Afrique. Genève ou terrain.','2026-07-01','https://www.gavi.org/jobs/','new'),
+    R('e','Coordonnateur programme jeunesse','UNESCO Cameroun','Cameroun','Centre','CDD',
+      'Mise en oeuvre des programmes éducatifs et culturels UNESCO au Cameroun. Yaoundé.','2026-06-15','https://careers.unesco.org/','cam'),
+    R('e','Analyste politiques économiques','Banque Centrale BEAC','Cameroun','Centre','CDI',
+      'Analyse des politiques monétaires et économiques en zone CEMAC. Master en économie requis.','2026-07-31','https://www.beac.int/recrutement/','cam'),
+    R('e','Chargé de projet développement rural','FIDA / IFAD','International','','CDD',
+      'Gestion de projets de développement rural et agricole en Afrique subsaharienne. Mission terrain.','2026-06-30','https://www.ifad.org/fr/work-for-ifad/','new'),
+    R('e','Responsable formation professionnelle','GIZ International','Allemagne','','CDI',
+      'Conception et mise en oeuvre de programmes de formation professionnelle dans les pays partenaires.','2026-07-15','https://jobs.giz.de/','new'),
+    R('e','Chargé de communication institutionnelle','Union Africaine','International','','CDD',
+      'Communication institutionnelle et relations publiques pour l\'Union Africaine. Addis-Abeba ou télétravail.','2026-06-30','https://au.int/en/jobs/','new'),
+    R('e','Expert inclusion financière','MFI Microfinance Afrique','International','','Consultant',
+      'Appui aux institutions de microfinance africaines. Renforcement de capacités et digitalisation.','2026-07-30','https://www.findev.ca/careers/','new'),
+    R('e','Ingénieur eau et assainissement','Agence de l\'Eau du Cameroun','Cameroun','Centre','CDI',
+      'Études hydrauliques et supervision de travaux d\'assainissement urbain au Cameroun.','2026-08-01','https://www.minee.cm/','cam'),
+    R('e','Professeur de mathématiques lycée','Coopération France-Cameroun','Cameroun','Adamaoua','CDI',
+      'Enseignement des mathématiques en lycée dans le cadre de la coopération éducative France-Cameroun.','2026-07-15','https://www.aefe.fr/emploi/','cam'),
+    R('e','Chargé de programmes nutrition','Action Contre la Faim — Siège','France','','CDD',
+      'Appui aux programmes nutrition en Afrique subsaharienne. Paris. Missions terrain régulières.','2026-06-01','https://www.actioncontrelafaim.org/rejoindre-acf/offres-demploi/',''),
+    R('e','Journaliste / Reporter web francophone','RFI Radio France Internationale','France','','CDD',
+      'Journaliste web spécialisé Afrique. Rédaction d\'articles, podcasts et contenus numériques. Paris.','2026-05-31','https://www.rfi.fr/fr/rfi-recrutement/','new'),
+    R('e','Chef de mission humanitaire','Solidarités International','International','','CDD',
+      'Direction des opérations humanitaires dans des zones de crise. Expérience chef de mission exigée.','2026-06-30','https://www.solidarites.org/rejoindre-solidarites-international/','new'),
   ];
 
-  /* ====================================================
-     CONCOURS
-  ==================================================== */
-  db.c=[
+  // ════════════════════════════════════════════════
+  // CONCOURS
+  // ════════════════════════════════════════════════
+  db.c = [
     R('c','Concours ENA — Magistrature','École Nationale d\'Administration (ENAM)','Cameroun','','Fonction publique',
-      'Filière magistrature. Niveau Bac+4 en droit minimum. Dossier à déposer au secrétariat général à Yaoundé. Renseignements sur enam.cm.','2026-05-31',
-      '','urgent'),
-    R('c','Concours ENA — Administration générale et finances','École Nationale d\'Administration (ENAM)','Cameroun','','Fonction publique',
-      'Filières administration générale, finances et comptabilité. Ouvert aux bacheliers et diplômés universitaires. Voir enam.cm pour les dossiers.','2026-05-31',
-      '','urgent'),
-    R('c','Concours CAMRAIL / IMEFAC — Métiers ferroviaires','CAMRAIL / IMEFAC','Cameroun','','Professionnel',
-      '80 postes : 40 aides-conducteurs et 40 agents manœuvres. Conditions : 20–25 ans, Bac scientifique ou technique. Inscription sur camrail.net.','2026-04-26',
-      'https://www.camrail.net','urgent'),
+      'Filière magistrature. Bac+4 en droit minimum. Dossier au secrétariat général de l\'ENAM à Yaoundé.','2026-05-31','https://www.enam.cm/','urgent'),
+    R('c','Concours ENA — Administration et finances','ENAM Cameroun','Cameroun','','Fonction publique',
+      'Filières administration générale, finances et comptabilité. Ouvert aux bacheliers et diplômés.','2026-05-31','https://www.enam.cm/','urgent'),
+    R('c','Concours CAMRAIL — Métiers ferroviaires','CAMRAIL','Cameroun','','Professionnel',
+      '80 postes : 40 aides-conducteurs et 40 agents manœuvres. 20–25 ans, Bac scientifique ou technique.','2026-04-26','https://www.camrail.net/','urgent'),
     R('c','Concours ENSP — Commissaires et inspecteurs de police','École Nationale Supérieure de Police','Cameroun','','Fonction publique',
-      'Recrutement de commissaires et inspecteurs dans toutes les régions du Cameroun. Bac+3 requis. Aptitude physique exigée.','2026-06-15',
-      '','cam'),
-    R('c','Concours Faculté de Médecine — Université de Ngaoundéré','Université de Ngaoundéré','Cameroun','Adamaoua','Académique',
-      'Concours d\'entrée en 1ère année de médecine. Baccalauréat série C ou D obligatoire. Formulaires sur univ-ndere.cm.','2026-07-15',
-      '','cam'),
-    R('c','Concours DIPES II — Grand Nord (sciences et lettres)','École Normale Supérieure de Yaoundé','Cameroun','Grand Nord','Fonction publique',
-      'DIPES II pour l\'enseignement dans les disciplines scientifiques et littéraires. Postes spécifiques ouverts pour le Grand Nord.','2026-05-25',
-      '','cam'),
-    R('c','Concours douanes — Inspecteurs et agents','Direction Générale des Douanes du Cameroun','Cameroun','','Fonction publique',
-      'Recrutement d\'inspecteurs et agents des douanes. Niveau Bac+2 minimum. Rigueur, intégrité et aptitude physique exigées.','2026-05-20',
-      '','cam'),
-    R('c','Concours IRIC — Diplomatie et commerce international','Institut des Relations Internationales du Cameroun','Cameroun','','Académique',
-      'Filières diplomatie, commerce international et droit des affaires. Formation de 5 ans avec stages diplomatiques.','2026-06-01',
-      '','cam'),
-    R('c','Concours CUSS — Sciences de la santé','Centre Universitaire de Santé — Université de Maroua','Cameroun','Extrême-Nord','Académique',
-      'Entrée en médecine et infirmerie à l\'Université de Maroua. Bac C ou D requis. Renseignements sur univ-maroua.cm.','2026-07-01',
-      '','cam'),
-    R('c','Concours officiers — Armée camerounaise','Ministère de la Défense du Cameroun','Cameroun','Grand Nord','Fonction publique',
-      'Recrutement d\'officiers. Priorité aux ressortissants du Grand Nord. Niveau Bac+2 minimum. Aptitude physique exigée.','2026-06-30',
-      '','cam'),
-    R('c','Concours agents de santé communautaire','Ministère de la Santé Publique du Cameroun','Cameroun','Nord','Fonction publique',
-      'Recrutement d\'agents de santé communautaire pour les zones rurales du Nord Cameroun. Renforcement du système de santé primaire.','2026-06-01',
-      '','cam'),
+      'Recrutement de commissaires et inspecteurs dans toutes les régions. Bac+3 requis, aptitude physique.','2026-06-15','https://www.ensp.cm/','cam'),
+    R('c','Concours Faculté de médecine — Ngaoundéré','Université de Ngaoundéré','Cameroun','Adamaoua','Académique',
+      'Entrée en 1ère année de médecine. Bac série C ou D obligatoire. Formulaires sur le site universitaire.','2026-07-15','https://www.univ-ndere.cm/','cam'),
+    R('c','Concours DIPES II — Grand Nord','École Normale Supérieure de Yaoundé','Cameroun','Grand Nord','Fonction publique',
+      'DIPES II pour enseignement en sciences et lettres. Postes spécifiques pour le Grand Nord.','2026-05-25','https://www.ens.cm/','cam'),
+    R('c','Concours Douanes — Inspecteurs et agents','Direction Générale des Douanes','Cameroun','','Fonction publique',
+      'Inspecteurs et agents des douanes. Bac+2 minimum. Rigueur, intégrité et aptitude physique.','2026-05-20','https://www.douanescameroun.com/','cam'),
+    R('c','Concours IRIC — Diplomatie et relations internationales','Institut des Relations Internationales du Cameroun','Cameroun','','Académique',
+      'Filières diplomatie, commerce international, droit des affaires. Formation de 5 ans avec stages.','2026-06-01','https://www.iric.cm/','cam'),
+    R('c','Concours CUSS — Sciences de la santé Maroua','Centre Universitaire des Sciences de la Santé','Cameroun','Extrême-Nord','Académique',
+      'Médecine et infirmerie à l\'Université de Maroua. Bac C ou D requis.','2026-07-01','https://www.univ-maroua.cm/','cam'),
+    R('c','Concours officiers — Armée camerounaise','Ministère de la Défense','Cameroun','Grand Nord','Fonction publique',
+      'Recrutement d\'officiers. Priorité aux ressortissants du Grand Nord. Bac+2 minimum.','2026-06-30','https://www.defense.cm/','cam'),
+    R('c','Concours agents de santé communautaire','Ministère de la Santé Publique','Cameroun','Nord','Fonction publique',
+      'Agents de santé communautaire pour les zones rurales du Nord. Renforcement système de santé primaire.','2026-06-01','https://www.minsante.cm/','cam'),
     R('c','Concours FALSH — Lettres et sciences humaines','Université de Maroua','Cameroun','Extrême-Nord','Académique',
-      'Entrée à la Faculté des Arts, Lettres et Sciences Humaines. Filières histoire, géographie, langues et lettres modernes.','2026-07-10',
-      '','cam'),
-    R('c','Concours IUT — Génie industriel et informatique','IUT de Ngaoundéré','Cameroun','Adamaoua','Académique',
-      'Entrée à l\'IUT de l\'Université de Ngaoundéré : filières génie industriel, électrique et informatique. Bac C ou D requis.','2026-07-20',
-      '','cam'),
-    R('c','Concours FIF — Femmes entrepreneures du Grand Nord','Ministère de la Promotion de la Femme et de la Famille','Cameroun','Grand Nord','Innovation',
-      'Projets entrepreneuriaux féminins du Grand Nord. Financement jusqu\'à 3 millions FCFA pour les lauréates. Agriculture, artisanat, services.','2026-07-31',
-      '','cam'),
+      'Faculté des Arts, Lettres et Sciences Humaines. Filières histoire, géographie, langues modernes.','2026-07-10','https://www.univ-maroua.cm/','cam'),
+    R('c','Concours IUT Ngaoundéré — Génie industriel','IUT de l\'Université de Ngaoundéré','Cameroun','Adamaoua','Académique',
+      'Génie industriel, électrique et informatique à l\'IUT. Bac C ou D requis.','2026-07-20','https://www.univ-ndere.cm/','cam'),
+    R('c','Concours FIF — Femmes entrepreneures du Grand Nord','Ministère de la Promotion de la Femme','Cameroun','Grand Nord','Innovation',
+      'Projets entrepreneuriaux féminins. Financement jusqu\'à 3 millions FCFA pour les lauréates.','2026-07-31','https://www.minproff.cm/','cam'),
     R('c','Concours ESSEC Douala — Bachelor et MBA','ESSEC Business School Douala','Cameroun','Littoral','Académique',
-      'Admission directe en Bachelor et MBA. Filières management, comptabilité, commerce international et ressources humaines.','2026-07-05',
-      '','cam'),
-    R('c','Concours EAMAU — Architecture et urbanisme','École Africaine des Métiers de l\'Architecture et de l\'Urbanisme','International','','Académique',
-      'Concours régional pour Camerounais et ressortissants d\'Afrique centrale. Bac C ou D requis. Architecture, urbanisme et design.','2026-06-20',
-      'https://www.eamau.org',''),
-    R('c','Concours CFPA — Personnel pénitentiaire','Centre de Formation du Personnel de l\'Administration Pénitentiaire','Cameroun','','Fonction publique',
-      'Recrutement d\'agents de surveillance pour les établissements pénitentiaires du Cameroun. BEPC ou Brevet minimum.','2026-06-30',
-      '','cam'),
-    R('c','Concours CENAJES — Animateurs de jeunesse','Ministère de la Jeunesse et de l\'Éducation Civique','Cameroun','','Fonction publique',
-      'Recrutement d\'animateurs pour les maisons de la jeunesse dans tout le Cameroun. Licence en sciences humaines ou sociales requise.','2026-05-31',
-      '','cam'),
-    R('c','Concours ISSEA — Statistique et démographie','Institut Sous-régional de Statistique et d\'Économie Appliquée','Cameroun','','Académique',
-      'Entrée à l\'ISSEA pour les filières statistiques, démographie et économie appliquée. Bac C ou D. Formation de 3 ans à Yaoundé.','2026-07-01',
-      '','cam'),
-    R('c','Concours ENSPT — Télécommunications et réseaux','École Nationale Supérieure des Postes et Télécommunications','Cameroun','','Académique',
-      'Filières télécommunications, informatique et réseaux à l\'ENSPT Yaoundé. Niveau Bac+2 requis. Formation d\'ingénieur en 3 ans.','2026-06-30',
-      '','cam'),
-    R('c','Concours ENAM — Contrôle financier et audit public','École Nationale d\'Administration (ENAM)','Cameroun','','Fonction publique',
-      'Filière contrôle financier et audit public. Bac+3 en comptabilité, finances ou droit des affaires requis. Sessions à Yaoundé.','2026-05-31',
-      '','cam'),
-    R('c','Concours FPA — Formation professionnelle technique','Ministère de l\'Emploi et de la Formation Professionnelle','Cameroun','','Professionnel',
-      'Entrée aux centres de formation professionnelle subventionnés au Cameroun. Filières techniques et artisanales. Bac ou BEPC requis.','2026-06-15',
-      '','cam'),
-    R('c','Hackathon IA pour l\'Afrique 2026','Banque Africaine de Développement (BAD)','International','','Innovation',
-      'Concours d\'innovation technologique pour jeunes développeurs africains. Thème : Intelligence Artificielle et agriculture. Prix total 50 000 USD.','2026-06-15',
-      'https://www.afdb.org/fr/emplois','new'),
-    R('c','Hackathon numérique jeunesse africaine','Union Africaine','International','','Innovation',
-      'Challenge technologique pour développeurs africains de 18–35 ans. Thème 2026 : Solutions numériques pour la santé en Afrique. Prix 30 000 USD.','2026-08-01',
-      'https://au.int/fr/youth','new'),
+      'Admission directe en Bachelor et MBA. Management, comptabilité, commerce international.','2026-07-05','https://www.essec.cm/','cam'),
+    R('c','Concours EAMAU — Architecture et urbanisme','École Africaine des Métiers de l\'Architecture','International','','Académique',
+      'Concours régional ouvert aux Camerounais et ressortissants d\'Afrique centrale. Bac C ou D.','2026-06-20','https://www.eamau.org/',''),
+    R('c','Concours ISSEA — Statistique et démographie','Institut Sous-régional de Statistique et d\'Économie','Cameroun','','Académique',
+      'Statistiques, démographie et économie appliquée à l\'ISSEA Yaoundé. Bac C ou D. Formation 3 ans.','2026-07-01','https://www.issea-cemac.org/','cam'),
+    R('c','Concours ENSPT — Télécommunications','École Nationale Supérieure des Postes et Télécommunications','Cameroun','','Académique',
+      'Télécommunications, informatique et réseaux à l\'ENSPT Yaoundé. Bac+2 requis. Ingénieur en 3 ans.','2026-06-30','https://www.enspt.cm/','cam'),
+    R('c','Concours ENAM — Contrôle financier et audit','ENAM Cameroun','Cameroun','','Fonction publique',
+      'Filière contrôle financier et audit public. Bac+3 en comptabilité, finances ou droit des affaires.','2026-05-31','https://www.enam.cm/','cam'),
+    R('c','Concours CENAJES — Animateurs de jeunesse','Ministère de la Jeunesse','Cameroun','','Fonction publique',
+      'Animateurs pour les maisons de la jeunesse dans tout le Cameroun. Licence en sciences humaines.','2026-05-31','https://www.minjec.cm/','cam'),
+    R('c','Concours CFPA — Personnel pénitentiaire','Ministère de la Justice','Cameroun','','Fonction publique',
+      'Agents de surveillance pour établissements pénitentiaires. BEPC ou Brevet minimum.','2026-06-30','https://www.minjustice.cm/','cam'),
+    R('c','Hackathon IA pour l\'Afrique 2026','Banque Africaine de Développement','International','','Innovation',
+      'Concours d\'innovation pour développeurs africains. Thème : IA et agriculture. Prix total 50 000 USD.','2026-06-15','https://www.afdb.org/en/about/careers/','new'),
     R('c','Prix Senghor de la Francophonie 2026','Organisation Internationale de la Francophonie','International','','Artistique',
-      'Prix récompensant la meilleure nouvelle francophone d\'un auteur de moins de 40 ans résidant dans l\'espace francophone.','2026-09-30',
-      'https://www.francophonie.org','new'),
-    R('c','Grand Prix Presse Africaine Francophone 2026','UPF — Union de la Presse Francophone','International','','Artistique',
-      'Récompense les meilleurs reportages de journalistes africains francophones. Catégories : presse écrite, radio, web. Prix en espèces.','2026-08-31',
-      'https://www.upf.org','new'),
-    R('c','Prix Innovation Agricole jeunes entrepreneurs','FIDA — Fonds International de Développement Agricole','International','','Innovation',
-      'Concours pour jeunes entrepreneurs agricoles africains. 3 prix de 10 000 USD chacun pour les meilleurs projets d\'innovation agroalimentaire.','2026-09-01',
-      'https://www.ifad.org/fr/youth','new'),
+      'Meilleure nouvelle francophone d\'un auteur de moins de 40 ans. Prix en espèces et distinctions.','2026-09-30','https://www.francophonie.org/','new'),
+    R('c','Grand Prix de la Presse Africaine Francophone','Union de la Presse Francophone','International','','Artistique',
+      'Meilleurs reportages de journalistes africains francophones. Presse écrite, radio, web. Prix en espèces.','2026-08-31','https://www.upf.org/','new'),
+    R('c','Prix Innovation Agricole — FIDA','Fonds International de Développement Agricole','International','','Innovation',
+      '3 prix de 10 000 USD pour jeunes entrepreneurs agricoles africains. Innovation agroalimentaire.','2026-09-01','https://www.ifad.org/fr/youth/','new'),
     R('c','Concours Officiers — Forces Armées Canadiennes','Forces armées du Canada','Canada','','Fonction publique',
-      'Programme de formation des officiers. Baccalauréat dans n\'importe quelle discipline requis. Salaire d\'officier dès le début de la formation.','2026-06-30',
-      'https://forces.ca/fr/carrieres',''),
-    R('c','Concours fonction publique québécoise 2026','Secrétariat du Conseil du Trésor du Québec','Canada','','Fonction publique',
-      'Postes ouverts : analyste, agent de communication, technicien, conseiller en ressources humaines. Diplôme universitaire requis.','2026-05-30',
-      'https://www.carrieres.gouv.qc.ca',''),
+      'Programme de formation des officiers. Baccalauréat requis dans toute discipline. Salaire dès formation.','2026-06-30','https://forces.ca/fr/carrieres/options-de-carriere/',''),
+    R('c','Concours fonction publique québécoise 2026','Gouvernement du Québec','Canada','','Fonction publique',
+      'Postes : analyste, agent de communication, technicien, conseiller RH. Diplôme universitaire requis.','2026-05-30','https://www.carrieres.gouv.qc.ca/candidates/listJobs.xhtml',''),
     R('c','Concours rédaction — Union Africaine jeunesse','Union Africaine','International','','Académique',
-      'Ouvert aux jeunes de 18–30 ans. Thème 2026 : L\'Afrique que nous voulons. Rédaction en français. Prix en espèces et distinctions.','2026-07-15',
-      'https://au.int/fr/youth',''),
+      'Rédaction pour jeunes 18–30 ans. Thème 2026 : L\'Afrique que nous voulons. Prix en espèces.','2026-07-15','https://au.int/fr/youth/',''),
+    R('c','Concours FPA — Formation professionnelle technique','Ministère de l\'Emploi et Formation Professionnelle','Cameroun','','Professionnel',
+      'Centres de formation professionnelle subventionnés. Filières techniques et artisanales.','2026-06-15','https://www.minefop.cm/','cam'),
     R('c','Concours ENEO — Techniciens électriciens','ENEO Cameroun','Cameroun','','Professionnel',
-      'Recrutement de techniciens en électricité pour le réseau de distribution d\'énergie du Cameroun. BTS électrotechnique ou génie électrique.','2026-06-01',
-      '','cam'),
+      'Techniciens en électricité pour le réseau de distribution d\'énergie du Cameroun. BTS électrotechnique.','2026-06-01','https://www.eneo.cm/','cam'),
+    R('c','Concours national de plaidoirie — Droit','Barreau du Cameroun','Cameroun','','Professionnel',
+      'Ouvert aux étudiants en droit des universités camerounaises. Thème 2026 : Les droits numériques.','2026-06-15','https://www.barreaucameroun.cm/','cam'),
+    R('c','Concours IPG — Institut de Planification et Gestion','ISPM Cameroun','Cameroun','Centre','Académique',
+      'Entrée à l\'Institut de Planification et de Gestion. Filières management public et gestion de projets.','2026-07-15','https://www.minesup.gov.cm/','cam'),
+    R('c','Challenge Innovation ONU Femmes 2026','ONU Femmes','International','','Innovation',
+      'Concours pour projets innovants sur l\'égalité de genre et l\'autonomisation économique des femmes.','2026-07-31','https://www.unwomen.org/en/','new'),
+    R('c','Concours policier fédéral — GRC Canada','Gendarmerie Royale du Canada','Canada','','Fonction publique',
+      'Recrutement de membres réguliers de la GRC. Programme de formation complet. Anglais et/ou français.','2026-07-01','https://www.rcmp-grc.gc.ca/fr/carrieres/',''),
+    R('c','Prix de l\'Innovation Sociale CEMAC','Commission de la CEMAC','International','','Innovation',
+      'Concours pour projets d\'innovation sociale dans les 6 pays de la CEMAC. Dotation de 15 000 USD.','2026-08-15','https://www.cemac.int/',''),
   ];
 
-  /* ====================================================
-     BOURSES D'ÉTUDES & FINANCEMENTS ÉCONOMIQUES
-     (Économie fusionnée ici avec tag 'eco')
-  ==================================================== */
-  db.b=[
+  // ════════════════════════════════════════════════
+  // BOURSES D'ÉTUDES & FINANCEMENTS ÉCONOMIQUES
+  // ════════════════════════════════════════════════
+  db.b = [
     // ── BOURSES D'ÉTUDES ──
     R('b','Bourse L3 Mathématiques au féminin — 11 000 €','Institut Polytechnique de Paris / Paris-Saclay','France','','Licence',
-      '10 bourses pour entrer en Licence 3 Mathématiques. Filières : Mathématiques, Physique, Informatique, Économie. Aucune procédure Campus France requise.','2026-04-30',
-      'https://www.ip-paris.fr/education/bourses','urgent'),
+      '10 bourses pour Licence 3 Mathématiques (Math, Physique, Informatique, Économie). Aucune procédure Campus France requise.','2026-04-30','https://www.ip-paris.fr/education/bourses/','urgent'),
     R('b','Bourse Graduate Lille — 8 500 €','Université de Lille','France','','Master',
-      '21 graduate schools concernées : Psychologie, Management, Énergie, Chimie, Droit, Journalisme, Biologie, Informatique, Cybersécurité, etc. Sans Campus France.','2026-04-30',
-      'https://www.univ-lille.fr/formation/bourses-et-aides','urgent'),
+      '21 graduate schools : Psychologie, Management, Énergie, Chimie, Droit, Journalisme, Biologie, Informatique, Cybersécurité... Sans Campus France.','2026-04-30','https://www.univ-lille.fr/etudes/bourses-et-aides-financieres/','urgent'),
     R('b','Bourse TIGER — Santé publique — 10 000 €','Université de Paris / EHESP','France','','Master',
-      'Master Méthodes quantitatives pour la recherche en Santé et Master Santé publique, sociétés et développements. Sans Campus France.','2026-05-11',
-      'https://www.ehesp.fr/formation/masters','urgent'),
+      'Master Méthodes quantitatives en Santé et Master Santé publique, sociétés et développements. Sans Campus France.','2026-05-11','https://www.ehesp.fr/en/programs/masters/','urgent'),
     R('b','Bourse PRAIRIE — Intelligence Artificielle — 12 000 €','Université PSL Paris','France','','Master',
-      'Master en intelligence artificielle et domaines associés à l\'Université PSL Paris. Sans procédure Campus France. Très compétitif.','2026-06-08',
-      'https://prairie-institute.fr/prairie-master-scholarships','new'),
+      'Master en intelligence artificielle et domaines associés à l\'Université PSL Paris. Sans Campus France.','2026-06-08','https://prairie-institute.fr/prairie-master-scholarships/','new'),
     R('b','Bourse FMJHCare — Mathématiques — 11 000 €','Paris-Saclay / Institut Polytechnique de Paris','France','','Master',
-      'Licence et Master en mathématique fondamentale ou appliquée à Paris-Saclay ou l\'Institut polytechnique de Paris. Sans Campus France.','2026-06-14',
-      'https://www.fondation-hadamard.fr/fr/bourses','new'),
-    R('b','Bourse Fulbright — Master et Doctorat aux USA','Programme Fulbright','États-Unis','','Master',
-      'Financement complet pour Master et Doctorat aux États-Unis dans tous les domaines. Couvre scolarité, vol, assurance, allocation mensuelle.','2026-09-30',
-      'https://foreign.fulbrightonline.org/applicants','new'),
-    R('b','Bourse MEXT — Gouvernement japonais (tous niveaux)','Gouvernement japonais','Japon','','Tous niveaux',
-      'Licence, Master et Doctorat au Japon dans tous les domaines. Financement complet : scolarité, logement, allocation mensuelle. Candidature via ambassade.','2026-12-31',
-      'https://www.studyinjapan.go.jp/en/smap-stopj-applications-government',''),
-    R('b','Bourse Excellence Eiffel — Master et Doctorat','Campus France — Gouvernement français','France','','Master',
-      'Programme phare pour étudiants étrangers de haut niveau. Couvre inscription, logement et allocation mensuelle. Procédure Campus France requise.','2026-05-10',
-      'https://www.campusfrance.org/fr/eiffel-excellence-scholarship-programme',''),
-    R('b','Bourse Commonwealth 2026 / 2027','Commonwealth Scholarship Commission','Royaume-Uni','','Master',
-      'Financement complet pour Master ou Doctorat au Royaume-Uni. Ouverte aux ressortissants du Commonwealth dont le Cameroun.','2026-07-31',
-      'https://cscuk.fcdo.gov.uk/apply',''),
-    R('b','Bourse DAAD — Master en Allemagne','DAAD','Allemagne','','Master',
-      'Bourses pour étudiants africains francophones. Master dans des universités allemandes de rang mondial. Cours préparatoires en allemand inclus.','2026-06-30',
-      'https://www.daad.de/en/find-a-programme/scholarship-database',''),
+      'Licence et Master en mathématiques fondamentales ou appliquées. Sans procédure Campus France.','2026-06-14','https://www.fondation-hadamard.fr/fr/bourses/','new'),
+    R('b','Bourse Excellence Eiffel — Master et Doctorat','Campus France / Gouvernement français','France','','Master',
+      'Programme phare pour étudiants étrangers de haut niveau. Couvre inscription, logement et allocation mensuelle.','2026-05-10','https://www.campusfrance.org/fr/eiffel-excellence-scholarship-programme',''),
+    R('b','Bourse Fulbright — Master et Doctorat USA','Programme Fulbright','États-Unis','','Master',
+      'Financement complet aux USA : scolarité, vol, assurance, allocation mensuelle. Tous domaines. Candidature via ambassade US.','2026-09-30','https://foreign.fulbrightonline.org/applicants/','new'),
+    R('b','Bourse MEXT — Gouvernement japonais','Gouvernement japonais','Japon','','Tous niveaux',
+      'Licence, Master et Doctorat au Japon. Financement complet : scolarité, logement, allocation. Candidature via ambassade du Japon.','2026-12-31','https://www.studyinjapan.go.jp/en/smap-stopj-applications-government.html',''),
+    R('b','Bourse Commonwealth 2026/2027','Commonwealth Scholarship Commission','Royaume-Uni','','Master',
+      'Financement complet pour Master ou Doctorat au Royaume-Uni. Ouverte aux ressortissants du Commonwealth dont le Cameroun.','2026-07-31','https://cscuk.fcdo.gov.uk/apply/',''),
+    R('b','Bourse DAAD Leadership for Africa — Cameroun','DAAD Allemagne','Allemagne','','Master',
+      'Master tuition-free en Allemagne pour diplômés du Cameroun, Sénégal et Togo. Programme officiel DAAD. Couverture complète.','2026-07-31','https://www.daad.de/en/the-daad/intersecting-dimensions-topics/sustainable-development/funding-programmes/funding-programmes-for-students-a-z/leadership-for-africa/scholarship-west-and-central-africa/','new'),
     R('b','Bourse WASCAL — Changement climatique','WASCAL / Gouvernement allemand','Allemagne','','Master',
-      'Master et Doctorat en changement climatique pour étudiants d\'Afrique de l\'Ouest et Centrale. Financement complet BMBF (gouvernement allemand).','2026-04-30',
-      'https://wascal.org/scholarships','urgent'),
-    R('b','Bourse Banque Mondiale WBGSP','Banque Mondiale','International','','Master',
-      'Financement complet pour Masters liés au développement dans 24 universités mondiales partenaires. Couvre scolarité, allocation et billet d\'avion.','2026-05-29',
-      'https://www.worldbank.org/en/programs/scholarships',''),
+      'Master et Doctorat en changement climatique pour étudiants d\'Afrique de l\'Ouest et Centrale. Financement complet BMBF.','2026-04-30','https://wascal.org/scholarships/','urgent'),
+    R('b','Bourse Banque Mondiale WBGSP — fenêtre 2','Banque Mondiale','International','','Master',
+      'Fenêtre 2 : 30 mars–29 mai 2026. Masters liés au développement dans 24 universités mondiales. Scolarité, allocation, vol.','2026-05-29','https://www.worldbank.org/en/programs/scholarships/jj-wbgsp',''),
     R('b','Bourse Mastercard Foundation Scholars Program','Mastercard Foundation','International','','Master',
-      'Programme destiné aux jeunes leaders africains à fort potentiel. Partenariats avec universités africaines et mondiales. Couverture intégrale.','2026-06-01',
-      'https://mastercardfdn.org/scholars-program',''),
+      'Programme pour jeunes leaders africains. Candidature via les universités partenaires (dont universités africaines).','2026-06-01','https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/',''),
     R('b','Swiss Government Excellence Scholarships','Confédération suisse','Suisse','','Postdoc',
-      'Bourses pour jeunes chercheurs (Master ou PhD) de plus de 180 pays. Couverture complète : scolarité, logement, assurance, billet retour.','2026-08-15',
-      'https://www.sbfi.admin.ch/sbfi/fr/home/bildung/scholarships.html',''),
-    R('b','Bourse PAU — Pan African University (Union Africaine)','Union Africaine','International','','Master',
-      'Master et Doctorat pour étudiants africains dans 5 hubs thématiques : eau, énergie, espace, gouvernance, sciences de la vie.','2026-05-15',
-      'https://pau.ac.ug/admissions/how-to-apply',''),
-    R('b','Bourse MINESUP — Études supérieures à l\'étranger','Ministère de l\'Enseignement Supérieur Cameroun','Cameroun','','Doctorat',
-      'Bourses nationales camerounaises pour Master ou Doctorat dans des universités partenaires. Disciplines scientifiques et techniques prioritaires.','2026-05-20',
-      '','cam'),
-    R('b','Bourse MINRESI — Recherche scientifique nationale','Ministère de la Recherche Scientifique Cameroun','Cameroun','','Doctorat',
-      'Bourses de Doctorat pour chercheurs camerounais dans les domaines prioritaires : agriculture, santé, énergies renouvelables, industrie.','2026-05-31',
-      '','cam'),
-    R('b','Bourse Institut Pasteur — Recherche biomédicale','Centre Pasteur du Cameroun','Cameroun','','Doctorat',
-      'Bourses de thèse pour chercheurs camerounais en maladies infectieuses et virologie. Cotutelle avec universités européennes possible.','2026-05-15',
-      '','cam'),
-    R('b','Bourse CETIC — IA et cybersécurité','Centre d\'Excellence en TIC — Yaoundé','Cameroun','','Master',
-      'Master en Intelligence Artificielle, cybersécurité et développement logiciel au CETIC de Yaoundé. Financement Banque mondiale.','2026-08-01',
-      '','cam'),
+      'Bourses pour jeunes chercheurs (Master ou PhD) de 180+ pays. Couverture complète : scolarité, logement, assurance.','2026-08-15','https://www.sbfi.admin.ch/sbfi/fr/home/bildung/scholarships.html',''),
+    R('b','Bourse PAU — Pan African University','Union Africaine','International','','Master',
+      'Master et Doctorat pour étudiants africains dans 5 hubs : eau, énergie, espace, gouvernance, sciences de la vie.','2026-05-15','https://pau.ac.ug/admissions/how-to-apply',''),
     R('b','Bourse Erasmus+ — Mobilité Afrique-Europe','Union Européenne / Erasmus+','International','','Master',
-      'Financement de mobilités académiques entre universités africaines et européennes. Couvre frais de voyage et allocation mensuelle.','2026-06-30',
-      'https://erasmus-plus.ec.europa.eu/opportunities/individuals/students','new'),
+      'Financement de mobilités académiques entre universités africaines et européennes. Allocation mensuelle et voyage inclus.','2026-06-30','https://erasmus-plus.ec.europa.eu/opportunities/individuals/students','new'),
     R('b','Bourse Émile Boutmy — Sciences Po Paris','Sciences Po Paris','France','','Master',
-      'Bourse pour étudiants non européens ayant les meilleurs dossiers académiques. Jusqu\'à 12 000 € par an. Dépôt de candidature en ligne.','2026-05-15',
-      'https://www.sciencespo.fr/admissions/fr/bourses.html',''),
+      'Pour étudiants non européens au meilleur dossier académique. Jusqu\'à 12 000 € par an. Dépôt en ligne.','2026-05-15','https://www.sciencespo.fr/admissions/fr/bourses.html',''),
     R('b','Bourse AUF — Francophonie numérique','Agence Universitaire de la Francophonie','International','','Formation',
-      'Formations en ligne et présentiel dans les domaines du numérique, management et développement durable. Ouverte aux universitaires francophones.','2026-06-15',
-      'https://www.auf.org/nos-actions/bourses-et-formations','new'),
+      'Formations en ligne et présentiel dans les domaines du numérique, management et développement durable.','2026-06-15','https://www.auf.org/nos-actions/bourses-et-formations/','new'),
     R('b','Bourse IHE Delft — Eau et ingénierie','IHE Delft Institute for Water Education','Pays-Bas','','Master',
-      'Master en ressources en eau, gestion des bassins versants et assainissement. Bourse NFP destinée aux pays en développement.','2026-05-31',
-      'https://www.un-ihe.org/nfp-scholarships',''),
-    R('b','Bourse Wageningen — Sécurité alimentaire et agriculture','Université de Wageningen','Pays-Bas','','Master',
-      'Bourse complète pour Master en sciences de l\'alimentation, agriculture durable et environnement. Référence mondiale en agroécologie.','2026-05-01',
-      'https://www.wur.nl/en/education-programmes/master/scholarships.htm',''),
+      'Master en ressources en eau et assainissement. Bourse NFP pour pays en développement.','2026-05-31','https://www.un-ihe.org/nfp-scholarships',''),
+    R('b','Bourse Wageningen — Sécurité alimentaire','Université de Wageningen','Pays-Bas','','Master',
+      'Master en sciences de l\'alimentation, agriculture durable et environnement. Référence mondiale en agronomie.','2026-05-01','https://www.wur.nl/en/education-programmes/master/scholarships.htm',''),
     R('b','Bourse NOHA — Action humanitaire internationale','Université catholique de Louvain','Belgique','','Master',
-      'Master européen en action humanitaire internationale. Financement partiel pour étudiants africains. Double diplôme avec partenaires.','2026-06-15',
-      'https://nohamaster.eu/apply',''),
-    R('b','Bourse ACBF — Politiques publiques et développement','Africa Capacity Building Foundation','International','','Master',
-      'Masters pour Africains en politiques publiques, économie et gestion du développement dans des universités partenaires.','2026-06-01',
-      'https://www.acbf-pact.org',''),
+      'Master européen en action humanitaire internationale. Financement partiel pour étudiants africains.','2026-06-15','https://nohamaster.eu/apply',''),
+    R('b','Bourse MINESUP — Études supérieures à l\'étranger','Ministère de l\'Enseignement Supérieur du Cameroun','Cameroun','','Doctorat',
+      'Bourses nationales pour Master ou Doctorat à l\'étranger. Disciplines scientifiques prioritaires.','2026-05-20','https://www.minesup.gov.cm/','cam'),
+    R('b','Bourse MINRESI — Recherche scientifique','Ministère de la Recherche Scientifique','Cameroun','','Doctorat',
+      'Bourses de Doctorat pour chercheurs camerounais : agriculture, santé, énergies renouvelables.','2026-05-31','https://www.minresi.cm/','cam'),
+    R('b','Bourse Institut Pasteur — Recherche biomédicale','Centre Pasteur du Cameroun','Cameroun','','Doctorat',
+      'Bourses de thèse en maladies infectieuses et virologie. Cotutelle avec universités européennes possible.','2026-05-15','https://www.pasteur-yaounde.org/','cam'),
+    R('b','Bourse CETIC — IA et cybersécurité','Centre d\'Excellence en TIC Yaoundé','Cameroun','','Master',
+      'Master en IA, cybersécurité et développement logiciel. Financement Banque mondiale. Yaoundé.','2026-08-01','https://www.cetic.cm/','cam'),
+    R('b','Bourse OFID — Étudiants pays en développement','OPEC Fund for International Development','International','','Master',
+      'Master dans des universités partenaires pour étudiants de pays en développement. Couverture partielle ou complète.','2026-06-30','https://www.ofid.org/OFID-Scholarship-Award',''),
     R('b','Bourse Kofi Annan — Leaders africains','Fondation Kofi Annan','International','','Master',
-      'Programme pour futurs leaders africains dans les domaines de la gouvernance, droits humains et développement durable.','2026-07-01',
-      'https://www.kofiannanfoundation.org',''),
-    R('b','Bourse FMSB — Faculté de Médecine — Ngaoundéré','Université de Ngaoundéré','Cameroun','Adamaoua','Licence',
-      'Bourses d\'excellence pour les meilleurs bacheliers de l\'Adamaoua intégrant la Faculté de Médecine et Sciences Biomédicales.','2026-07-30',
-      '','cam'),
-
-    // ── FINANCEMENTS ÉCONOMIQUES (fusionnés dans Bourses) ──
-    R('b','Tony Elumelu Foundation — Entrepreneuriat Afrique','Fondation Tony Elumelu','International','','Financement PME',
-      '5 000 jeunes entrepreneurs africains sélectionnés chaque année. 5 000 USD de capital de démarrage + 6 mois de formation intensive et mentorat.','2026-05-31',
-      'https://www.tonyelumelufoundation.org/teep','new'),
-    R('b','Programme Boost Africa — Proparco / AFD','Proparco / AFD','International','','Financement PME',
-      'Financement de startups et PME africaines innovantes. Tickets d\'investissement de 500 000 à 2 millions €. Impact social et environnemental prioritaire.','2026-09-30',
-      'https://www.proparco.fr/fr/enjeux/boost-africa','new'),
+      'Programme pour futurs leaders africains dans la gouvernance, les droits humains et le développement.','2026-07-01','https://www.kofiannanfoundation.org/',''),
+    R('b','Bourse ACBF — Politiques publiques','Africa Capacity Building Foundation','International','','Master',
+      'Masters en politiques publiques, économie et gestion du développement dans des universités partenaires.','2026-06-01','https://www.acbf-pact.org/',''),
+    R('b','Bourse AFD — Développement durable','Agence Française de Développement','France','','Master',
+      'Masters en développement durable et transition écologique dans des universités françaises.','2026-06-30','https://www.afd.fr/fr/la-afd/open-data/appels-a-projets',''),
+    R('b','Bourse Banque Africaine de Développement — ADB','Banque Africaine de Développement','International','','Master',
+      'Bourses pour Africains admis dans des programmes de Master dans des universités partenaires.','2026-07-31','https://www.afdb.org/en/about/careers/','new'),
+    R('b','Bourse FMSB — Faculté de Médecine Ngaoundéré','Université de Ngaoundéré','Cameroun','Adamaoua','Licence',
+      'Bourses d\'excellence pour meilleurs bacheliers de l\'Adamaoua entrant en Médecine et Sciences Biomédicales.','2026-07-30','https://www.univ-ndere.cm/','cam'),
+    // ── FINANCEMENTS ÉCONOMIQUES (fusionnés ici) ──
+    R('b','Tony Elumelu Foundation — 5 000 USD entrepreneurs africains','Fondation Tony Elumelu','International','','Financement PME',
+      '5 000 jeunes entrepreneurs africains sélectionnés. 5 000 USD de capital + 6 mois de formation intensive et mentorat.','2026-05-31','https://www.tonyelumelufoundation.org/teep/','new'),
     R('b','Young Africa Works — Mastercard Foundation','Mastercard Foundation / MEDA','International','','Programme',
-      'Accompagnement de 30 millions de jeunes africains vers un emploi décent d\'ici 2030. Formation, financement et mise en réseau. Agroalimentaire et numérique.','2026-06-15',
-      'https://mastercardfdn.org/what-we-do/young-africa-works','new'),
-    R('b','Appel à projets PME — BIT / OIT 2026','Bureau International du Travail (OIT)','International','','Financement PME',
-      'Financement jusqu\'à 50 000 USD pour PME africaines développant des solutions d\'emploi décent. Thèmes : agriculture, artisanat, services, numérique.','2026-06-30',
-      'https://www.ilo.org/employment','new'),
-    R('b','Programme FINECODEV — Microfinance Cameroun','Fonds de l\'Investissement Économique Cameroun','Cameroun','','Financement PME',
-      'Microcrédits de 100 000 à 5 millions FCFA pour petits entrepreneurs camerounais. Taux préférentiel. Aucune garantie physique requise pour les petits montants.','2026-06-15',
-      '','cam'),
-    R('b','Subvention entrepreneuriat féminin — FEICOM','Fonds Spécial d\'Équipement et d\'Intervention Communale','Cameroun','','Subvention',
-      'Subventions de 500 000 à 3 millions FCFA pour femmes entrepreneuses dans les communes rurales. Agriculture, transformation, commerce, artisanat.','2026-07-01',
-      '','cam'),
-    R('b','Appel à projets Économie verte — AFD','Agence Française de Développement','International','','Subvention',
-      'Financement de projets d\'économie verte en Afrique subsaharienne. Montants : 50 000 à 500 000 €. Énergie renouvelable, agriculture, gestion des déchets.','2026-06-30',
-      'https://www.afd.fr/fr/la-afd/open-data/appels-a-projets','new'),
+      'Accompagnement de 30 millions jeunes africains vers un emploi décent. Formation, financement et mise en réseau.','2026-06-15','https://mastercardfdn.org/en/what-we-do/young-africa-works/','new'),
+    R('b','Boost Africa — Proparco / AFD — startups africaines','Proparco / AFD','International','','Financement PME',
+      'Financement startups et PME africaines innovantes. Tickets 500 000 à 2 millions €. Impact social prioritaire.','2026-09-30','https://www.proparco.fr/fr/enjeux/boost-africa','new'),
+    R('b','Appel à projets PME — OIT/BIT 2026','Bureau International du Travail','International','','Financement PME',
+      'Financement jusqu\'à 50 000 USD pour PME africaines développant des solutions d\'emploi décent.','2026-06-30','https://www.ilo.org/global/about-the-ilo/how-the-ilo-works/departments-and-offices/program/enterprise/lang--fr/index.htm','new'),
+    R('b','Appel à projets Économie verte — AFD Afrique','AFD Agence Française de Développement','International','','Subvention',
+      'Financement de projets d\'économie verte en Afrique subsaharienne. 50 000 à 500 000 €. Énergie, agriculture, déchets.','2026-06-30','https://www.afd.fr/fr/la-afd/open-data/appels-a-projets','new'),
     R('b','Fonds Francophonie Économique 2026','Organisation Internationale de la Francophonie','International','','Programme',
-      'Appel à projets pour entreprises francophones innovantes. Thèmes : transition numérique, économie verte, industrie culturelle et créative.','2026-07-15',
-      'https://www.francophonie.org/economie','new'),
-    R('b','Incubateur MSME — Banque Mondiale / IFC','Banque Mondiale / IFC','International','','Programme',
-      'Programme d\'accélération pour TPE/PME africaines. Accès au financement, coaching, mise en réseau avec investisseurs et marchés internationaux.','2026-08-15',
-      'https://www.ifc.org/wps/wcm/connect/region__ext_content/ifc_external_corporate_site/sub-saharan+africa','cam'),
+      'Appel à projets pour entreprises francophones innovantes. Transition numérique, économie verte, industries créatives.','2026-07-15','https://www.francophonie.org/','new'),
     R('b','Programme StartUp Africa 2026 — Union Africaine','Union Africaine — Agenda 2063','International','','Programme',
-      'Compétition panafricaine pour startups technologiques. 10 lauréats reçoivent 30 000 USD chacun + accompagnement dans 5 pays africains.','2026-06-30',
-      'https://au.int/fr/agenda2063','new'),
+      'Compétition panafricaine pour startups technologiques. 10 lauréats reçoivent 30 000 USD chacun.','2026-06-30','https://au.int/fr/agenda2063/','new'),
     R('b','Prix Innovation Sociale — Banque Africaine de Développement','Banque Africaine de Développement','International','','Programme',
-      'Récompense les meilleurs projets d\'innovation sociale en Afrique. Dotation de 25 000 USD. Thèmes : santé, eau, éducation, alimentation.','2026-07-31',
-      'https://www.afdb.org/fr/emplois','new'),
-    R('b','Fonds de garantie PME — GICAM','Groupement Inter-patronal du Cameroun','Cameroun','','Financement PME',
-      'Accès facilité aux crédits bancaires pour PME membres du GICAM via un fonds de garantie. Couverture jusqu\'à 70% du risque crédit.','2026-12-31',
-      '','cam'),
-    R('b','Programme Agri-Jeunes 2026 — FAO / FIDA','FAO / FIDA Cameroun','Cameroun','','Programme',
-      'Accompagnement de 500 jeunes agriculteurs camerounais dans la création et modernisation de leurs exploitations. Financement et formation.','2026-08-01',
-      'https://www.ifad.org/fr','cam'),
-    R('b','Appel à projets AgriTech — MINADER','Ministère de l\'Agriculture du Cameroun','Cameroun','','Programme',
-      'Financement de projets technologiques dans l\'agriculture camerounaise. PME et coopératives invitées à soumettre leurs solutions numériques.','2026-06-30',
-      '','cam'),
-    R('b','Programme MADE IN CAMEROUN 2026','Chambre de Commerce et d\'Industrie du Cameroun','Cameroun','Littoral','Programme',
-      'Accompagnement de 200 PME camerounaises vers la certification, la labellisation et l\'exportation. Formation, accès aux marchés internationaux.','2026-07-01',
-      '','cam'),
-    R('b','Crédit agricole bonifié — MINADER / CAC','Crédit Agricole du Cameroun','Cameroun','','Financement PME',
-      'Crédits agricoles à taux bonifiés pour coopératives et exploitants. Cultures vivrières prioritaires. Durée de remboursement adaptée aux cycles agricoles.','2026-09-30',
-      '','cam'),
-    R('b','GrowthAfrica — Leadership entrepreneurial','GrowthAfrica','International','','Formation',
-      'Programme de formation pour entrepreneurs africains à fort potentiel. Accès à des réseaux d\'investisseurs et à des marchés de croissance.','2026-06-30',
-      'https://growthafrica.com/programs','new'),
-    R('b','Subvention artisanat local — MINPMEESA','Ministère des PME et Artisanat du Cameroun','Cameroun','','Subvention',
-      'Aide financière pour artisans souhaitant moderniser leurs outils et équipements. Subvention jusqu\'à 1,5 million FCFA selon dossier.','2026-07-31',
-      '','cam'),
-    R('b','Appel à projets économie circulaire — MINEPDED','Ministère de l\'Environnement du Cameroun','Cameroun','','Programme',
-      'Projets de recyclage, valorisation des déchets et économie circulaire au Cameroun. Financement de 2 à 10 millions FCFA pour projets sélectionnés.','2026-08-15',
-      '','cam'),
+      'Meilleurs projets d\'innovation sociale en Afrique. Dotation 25 000 USD. Santé, eau, éducation, alimentation.','2026-07-31','https://www.afdb.org/en/about/careers/','new'),
+    R('b','GrowthAfrica — Leadership entrepreneurial Afrique','GrowthAfrica','International','','Formation',
+      'Programme de formation pour entrepreneurs africains à fort potentiel. Accès à réseaux d\'investisseurs et marchés.','2026-06-30','https://growthafrica.com/programs/','new'),
+    R('b','Programme Agri-Jeunes — FAO / FIDA Cameroun','FAO / FIDA Cameroun','Cameroun','','Programme',
+      'Accompagnement de 500 jeunes agriculteurs camerounais. Création et modernisation d\'exploitations. Financement et formation.','2026-08-01','https://www.ifad.org/fr/','cam'),
+    R('b','Subvention entrepreneuriat féminin — FEICOM','Fonds Spécial d\'Équipement et d\'Intervention','Cameroun','','Subvention',
+      'Subventions 500 000 à 3 millions FCFA pour femmes entrepreneuses dans communes rurales. Agriculture, artisanat.','2026-07-01','https://www.feicom.cm/','cam'),
     R('b','Programme PADL — Développement local Adamaoua','PNUD / Union Européenne','Cameroun','Adamaoua','Programme',
-      'Soutien aux micro-projets de développement local dans l\'Adamaoua : agriculture, eau, artisanat, santé communautaire. Formulaires au bureau PNUD.','2026-08-01',
-      'https://www.cm.undp.org','cam'),
-    R('b','Appel d\'offres BTP électrification rurale','ENEO Cameroun','Cameroun','Grand Nord','Programme',
-      'Travaux d\'électrification de 30 villages du Grand Nord. Appel d\'offres ouvert aux entreprises locales certifiées. Retrait dossiers sur eneo.cm.','2026-06-01',
-      '','cam'),
+      'Micro-projets de développement local en Adamaoua : agriculture, eau, artisanat, santé communautaire.','2026-08-01','https://jobs.undp.org/cj_view_jobs.cfm','cam'),
+    R('b','Crédit agricole bonifié — Cameroun','Crédit Agricole du Cameroun','Cameroun','','Financement PME',
+      'Crédits agricoles à taux bonifiés pour coopératives et exploitants. Cultures vivrières prioritaires.','2026-09-30','https://www.minader.cm/','cam'),
+    R('b','Incubateur MSME — Banque Mondiale / IFC','IFC International Finance Corporation','International','','Programme',
+      'Accélération pour TPE/PME africaines. Accès au financement, coaching, mise en réseau avec investisseurs.','2026-08-15','https://www.ifc.org/en/industries/financial-institutions/msme-finance','new'),
+    R('b','Appel à projets AgriTech — MINADER Cameroun','Ministère de l\'Agriculture du Cameroun','Cameroun','','Programme',
+      'Financement de projets technologiques dans l\'agriculture camerounaise. PME et coopératives invitées.','2026-06-30','https://www.minader.cm/','cam'),
+    R('b','Programme MADE IN CAMEROUN 2026 — CCIMA','Chambre de Commerce et d\'Industrie','Cameroun','Littoral','Programme',
+      'Accompagnement de 200 PME vers la certification et l\'exportation. Formation, labellisation, accès marchés.','2026-07-01','https://www.ccima.cm/','cam'),
+    R('b','Fonds de garantie PME — GICAM','Groupement Inter-patronal du Cameroun','Cameroun','','Financement PME',
+      'Accès facilité aux crédits bancaires pour PME. Couverture jusqu\'à 70% du risque crédit.','2026-12-31','https://www.legicam.cm/','cam'),
+    R('b','Appel d\'offres électrification rurale — ENEO','ENEO Cameroun','Cameroun','Grand Nord','Programme',
+      'Électrification de 30 villages du Grand Nord. Appel d\'offres ouvert aux entreprises locales certifiées.','2026-06-01','https://www.eneo.cm/','cam'),
     R('b','Subvention pêche et aquaculture — MINEPIA','Ministère de l\'Élevage et des Pêches','Cameroun','Littoral','Subvention',
-      'Subventions pour équipements de pêche et aquaculture pour coopératives du Littoral. Financement à 60% par l\'État, 40% apport personnel.','2026-07-15',
-      '','cam'),
+      'Équipements de pêche et aquaculture pour coopératives du Littoral. Financement 60% État, 40% apport.','2026-07-15','https://www.minepia.cm/','cam'),
+    R('b','Appel à projets économie circulaire — MINEPDED','Ministère de l\'Environnement du Cameroun','Cameroun','','Programme',
+      'Projets de recyclage et valorisation des déchets. Financement 2 à 10 millions FCFA par projet sélectionné.','2026-08-15','https://www.minepded.cm/','cam'),
   ];
 }
 
 // ── RENDER ──
-const TL={e:'Emploi & Stage',c:'Concours',b:"Bourse / Financement"};
-const TC={e:'var(--ce)',c:'var(--cc)',b:'var(--cb)'};
-const CB={e:'cbe',c:'cbc',b:'cbb'};
+const TL = {e:'Emploi & Stage', c:'Concours', b:'Bourse / Financement'};
+const TC = {e:'var(--ce)', c:'var(--cc)', b:'var(--cb)'};
+const CB = {e:'cbe', c:'cbc', b:'cbb'};
 
 function load(){
   seed();
-  try{
-    const s=JSON.parse(localStorage.getItem(SK)||'{}');
+  try {
+    const s = JSON.parse(localStorage.getItem(SK)||'{}');
     ['e','c','b'].forEach(t=>{
       if(s[t]&&s[t].length){
-        const ids=new Set(db[t].map(i=>i.id));
-        db[t]=[...s[t].filter(i=>!ids.has(i.id)),...db[t]];
+        const ids = new Set(db[t].map(i=>i.id));
+        db[t] = [...s[t].filter(i=>!ids.has(i.id)), ...db[t]];
       }
     });
-  }catch(e){}
+  } catch(e){}
 }
 function save(){
-  try{
-    const out={e:db.e.filter(i=>!i._s),c:db.c.filter(i=>!i._s),b:db.b.filter(i=>!i._s)};
-    localStorage.setItem(SK,JSON.stringify(out));
-  }catch(e){}
+  try {
+    const out = {e:db.e.filter(i=>!i._s), c:db.c.filter(i=>!i._s), b:db.b.filter(i=>!i._s)};
+    localStorage.setItem(SK, JSON.stringify(out));
+  } catch(e){}
 }
 
-function renderAll(){['e','c','b'].forEach(t=>renderGrid(t));updKPI()}
+function renderAll(){ ['e','c','b'].forEach(t=>renderGrid(t)); updKPI(); }
 function renderGrid(t){
-  const g=document.getElementById('g'+t);
-  const s=FS[t].toLowerCase(),ty=FT[t],py=FP[t];
-  const items=db[t].filter(i=>{
-    const tm=!s||[i.titre,i.org,i.pays,i.region,i.desc,i.cat,i.tag].some(v=>v&&v.toLowerCase().includes(s));
-    return tm&&(!ty||i.cat===ty)&&(!py||i.pays===py);
+  const g = document.getElementById('g'+t);
+  const s=FS[t].toLowerCase(), ty=FT[t], py=FP[t];
+  const items = db[t].filter(i=>{
+    const tm = !s || [i.titre,i.org,i.pays,i.region,i.desc,i.cat,i.tag].some(v=>v&&v.toLowerCase().includes(s));
+    return tm && (!ty||i.cat===ty) && (!py||i.pays===py);
   });
   if(!items.length){
-    g.innerHTML=`<div class="empty"><h3>Aucune opportunité trouvée</h3><p>Modifiez vos filtres ou revenez bientôt.</p></div>`;
+    g.innerHTML = `<div class="empty"><h3>Aucune opportunité trouvée</h3><p>Modifiez vos filtres ou revenez bientôt.</p></div>`;
     return;
   }
-  g.innerHTML=items.map(i=>card(t,i)).join('');
+  g.innerHTML = items.map(i=>card(t,i)).join('');
 }
 
 function card(t,i){
-  const dl=daysUntil(i.date);
-  const expired=dl!==null&&dl<0;
-  const closing=dl!==null&&dl>=0&&dl<=5;
+  const dl = daysUntil(i.date);
+  const expired  = dl !== null && dl < 0;
+  const closing  = dl !== null && dl >= 0 && dl <= 5;
 
-  let dlTxt='',dlCls='cdl';
+  // ── Deadline label ──
+  let dlTxt='', dlCls='cdl';
   if(i.date){
-    if(expired){dlTxt='⛔ Terminé — '+fmtD(i.date);dlCls='cdl expired';}
-    else if(dl===0){dlTxt='⚠️ Clôture AUJOURD\'HUI !';dlCls='cdl closing';}
-    else if(dl===1){dlTxt='⏰ Dernier jour ! Clôture : '+fmtD(i.date);dlCls='cdl closing';}
-    else if(closing){dlTxt=`⏰ Plus que ${dl} jours ! Clôture : ${fmtD(i.date)}`;dlCls='cdl closing';}
-    else{dlTxt='Clôture : '+fmtD(i.date);dlCls='cdl';}
+    if(expired){
+      dlTxt = '⛔ Terminé — ' + fmtD(i.date);
+      dlCls = 'cdl exp-dl';
+    } else if(dl===0){
+      dlTxt = '⚠️ Clôture AUJOURD\'HUI !';
+      dlCls = 'cdl close-dl';
+    } else if(dl===1){
+      dlTxt = '⏰ Dernier jour ! Clôture : ' + fmtD(i.date);
+      dlCls = 'cdl close-dl';
+    } else if(closing){
+      dlTxt = `⏰ Plus que ${dl} jours ! Clôture : ${fmtD(i.date)}`;
+      dlCls = 'cdl close-dl';
+    } else {
+      dlTxt = 'Clôture : ' + fmtD(i.date);
+    }
   }
 
-  let tagBadge='';
-  if(expired) tagBadge='<span class="tag t-expired">Terminé</span>';
-  else if(closing||i.tag==='urgent') tagBadge='<span class="tag t-urgent">Urgent</span>';
-  else if(i.tag==='new') tagBadge='<span class="tag t-new">Nouveau</span>';
-  else if(i.tag==='cam') tagBadge='<span class="tag t-cam">Cameroun</span>';
-  else if(i.tag==='eco') tagBadge='<span class="tag t-eco">Économie</span>';
+  // ── Tag badge ──
+  let tb = '';
+  if(expired)              tb = '<span class="tag t-expired">Terminé</span>';
+  else if(closing||i.tag==='urgent') tb = '<span class="tag t-closing">⏰ Urgent</span>';
+  else if(i.tag==='new')   tb = '<span class="tag t-new">✨ Nouveau</span>';
+  else if(i.tag==='cam')   tb = '<span class="tag t-cam">🇨🇲 Cameroun</span>';
+  else if(i.tag==='eco')   tb = '<span class="tag t-eco">💼 Économie</span>';
 
-  const rb=i.region?`<span class="creg">${i.region}</span>`:'';
+  const rb = i.region ? `<span class="creg">${i.region}</span>` : '';
 
-  // Bouton Postuler: seulement si lien valide ET offre non expirée
-  let postBtn='';
-  const lien=robustLink(i.lien);
-  if(lien){
+  // ── Postuler button ──
+  // Règle : lien direct vers page officielle de candidature.
+  // Si lien vide (sites gouvernementaux instables) → inviter via WhatsApp avec tous les détails.
+  let postBtn = '';
+  if(i.lien && (i.lien.startsWith('http')||i.lien.startsWith('mailto:'))){
     if(expired){
-      postBtn=`<span class="cbtn-exp">Terminé</span>`;
+      postBtn = `<span class="btn-exp">Terminé</span>`;
     } else {
-      const label=lien.startsWith('mailto:')?"Envoyer candidature →":"Postuler →";
-      postBtn=`<a class="cbtn-post" style="background:${TC[t]}" href="${lien}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      const label = i.lien.startsWith('mailto:') ? '📧 Candidature' : '➜ Postuler';
+      postBtn = `<a class="btn-post" style="background:${TC[t]}" href="${i.lien}" target="_blank" rel="noopener noreferrer">${label}</a>`;
     }
   } else if(!expired){
-    // Pas de lien: inviter à se renseigner via WhatsApp ou site officiel
-    postBtn=`<a class="cbtn cbtn-wa" href="${waMsg(i)}" target="_blank" rel="noopener">Info via WhatsApp</a>`;
+    // Pas de lien direct → WhatsApp avec tous les détails de l'offre
+    postBtn = `<a class="cbtn cbtn-wa" href="${waInfoMsg(i)}" target="_blank" rel="noopener">📲 Info &amp; Postuler</a>`;
   }
 
   return `<article class="card${expired?' expired':''}">
@@ -933,7 +835,7 @@ function card(t,i){
       <button class="cadm-btn cadm-d" onclick="delEntry('${t}','${i.id}')">Suppr.</button>
     </div>
     <div class="cbody">
-      <div class="ctags">${i.cat?`<span class="tag t-type">${i.cat}</span>`:''}${tagBadge}</div>
+      <div class="ctags">${i.cat?`<span class="tag t-type">${i.cat}</span>`:''}${tb}</div>
       <div class="ctitle">${i.titre}</div>
       <div class="corg">${i.org}${i.pays?' — '+i.pays:''}${rb}</div>
       ${i.desc?`<div class="cdesc">${i.desc}</div>`:''}
@@ -948,23 +850,29 @@ function card(t,i){
   </article>`;
 }
 
-function waMsg(i){
-  const lien=robustLink(i.lien)||(i.lien&&i.lien.startsWith('mailto:')?i.lien:SITE);
-  const dl=i.date?`\n📅 Clôture : ${fmtD(i.date)}`:'';
-  const txt=`📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${dl}\n🔗 ${lien.startsWith('mailto:')?SITE:lien}\n\n📡 Plus d'opportunités :\n${SITE}`;
+// Message WhatsApp avec détails complets de l'offre + lien portail
+function waShareMsg(i){
+  const lien = (i.lien&&i.lien.startsWith('http')) ? i.lien : SITE;
+  const dl   = i.date ? `\n📅 Clôture : ${fmtD(i.date)}` : '';
+  return `📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${dl}\n\n${i.desc||''}\n\n🔗 Postuler ici :\n${lien}\n\n📡 Plus d'opportunités :\n${SITE}`;
+}
+// Pour les offres sans lien → WhatsApp avec instructions détaillées
+function waInfoMsg(i){
+  const dl = i.date ? `\n📅 Clôture : ${fmtD(i.date)}` : '';
+  const txt = `📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${i.region?' ('+i.region+')':''}${dl}\n\n${i.desc||''}\n\n💬 Pour postuler, contactez directement *${i.org}* ou renseignez-vous sur leur site officiel.\n\n📡 Portail Actualités Internationales :\n${SITE}`;
   return `https://wa.me/?text=${encodeURIComponent(txt)}`;
 }
-function fmtD(d){return new Date(d).toLocaleDateString('fr-CA',{day:'2-digit',month:'long',year:'numeric'})}
+function fmtD(d){ return new Date(d).toLocaleDateString('fr-CA',{day:'2-digit',month:'long',year:'numeric'}); }
 
 function updKPI(){
   ['e','c','b'].forEach(t=>{
-    document.getElementById('c'+t).textContent=db[t].length;
-    animN('k'+t,db[t].length);
+    document.getElementById('c'+t).textContent = db[t].length;
+    animN('k'+t, db[t].length);
   });
 }
 function animN(id,n){
-  const el=document.getElementById(id);if(!el)return;
-  let v=0,inc=Math.max(1,Math.ceil(n/40));
+  const el=document.getElementById(id); if(!el)return;
+  let v=0, inc=Math.max(1,Math.ceil(n/40));
   const ti=setInterval(()=>{v=Math.min(v+inc,n);el.textContent=v;if(v>=n)clearInterval(ti)},25);
 }
 
@@ -977,35 +885,33 @@ document.querySelectorAll('.tab').forEach(b=>{
     document.getElementById('p'+b.dataset.t).classList.add('active');
   });
 });
+function applyS(t,v){ FS[t]=v; renderGrid(t); }
+function applyT(t,v){ FT[t]=v; renderGrid(t); }
+function applyP(t,v){ FP[t]=v; renderGrid(t); }
 
-function applyS(t,v){FS[t]=v;renderGrid(t)}
-function applyT(t,v){FT[t]=v;renderGrid(t)}
-function applyP(t,v){FP[t]=v;renderGrid(t)}
-
-const MH={
-  e:{add:"Nouvelle offre d'emploi ou de stage",edit:"Modifier l'offre"},
+// FORM
+const MH = {
+  e:{add:"Nouvelle offre d'emploi / stage",edit:"Modifier l'offre"},
   c:{add:'Nouveau concours',edit:'Modifier le concours'},
-  b:{add:"Nouvelle bourse ou opportunité de financement",edit:"Modifier l'opportunité"}
+  b:{add:"Nouvelle bourse / financement",edit:"Modifier l'opportunité"}
 };
 function openAdd(t){
   if(!document.body.classList.contains('admin'))return;
-  CUR=t;EID=null;
-  document.getElementById('mh-t').textContent=MH[t].add;
-  document.getElementById('bsave').style.background=`var(--c${t})`;
-  clearF();openOv('ov-form');
+  CUR=t; EID=null;
+  document.getElementById('mh-t').textContent = MH[t].add;
+  document.getElementById('bsave').style.background = `var(--c${t})`;
+  clearF(); openOv('ov-form');
   setTimeout(()=>document.getElementById('fi-titre').focus(),80);
 }
 function openEdit(t,id){
-  const item=db[t].find(i=>i.id===id);if(!item)return;
-  CUR=t;EID=id;
-  document.getElementById('mh-t').textContent=MH[t].edit;
-  document.getElementById('bsave').style.background=`var(--c${t})`;
-  document.getElementById('fi-id').value=id;
-  ['titre','org','pays','cat','date','desc','lien'].forEach(k=>{
-    document.getElementById('fi-'+k).value=item[k]||'';
-  });
-  document.getElementById('fi-reg').value=item.region||'';
-  document.getElementById('fi-tag').value=item.tag||'';
+  const item=db[t].find(i=>i.id===id); if(!item)return;
+  CUR=t; EID=id;
+  document.getElementById('mh-t').textContent = MH[t].edit;
+  document.getElementById('bsave').style.background = `var(--c${t})`;
+  document.getElementById('fi-id').value = id;
+  ['titre','org','pays','cat','date','desc','lien'].forEach(k=>{ document.getElementById('fi-'+k).value=item[k]||''; });
+  document.getElementById('fi-reg').value = item.region||'';
+  document.getElementById('fi-tag').value = item.tag||'';
   openOv('ov-form');
 }
 function clearF(){
@@ -1018,109 +924,161 @@ function clearF(){
 async function saveEntry(){
   const titre=document.getElementById('fi-titre').value.trim();
   const org=document.getElementById('fi-org').value.trim();
-  if(!titre||!org){showToast('Titre et organisation requis.','err');return}
+  if(!titre||!org){ showToast('Titre et organisation requis.','err'); return; }
   const entry={
-    id:EID||uid(),titre,org,
+    id:EID||uid(), titre, org,
     pays:document.getElementById('fi-pays').value,
     region:document.getElementById('fi-reg').value,
     cat:document.getElementById('fi-cat').value.trim(),
     date:document.getElementById('fi-date').value,
     desc:document.getElementById('fi-desc').value.trim(),
     lien:document.getElementById('fi-lien').value.trim(),
-    tag:document.getElementById('fi-tag').value,_s:false
+    tag:document.getElementById('fi-tag').value,
+    _s:false
   };
-  if(EID){const idx=db[CUR].findIndex(i=>i.id===EID);if(idx>-1)db[CUR][idx]=entry}
+  if(EID){ const idx=db[CUR].findIndex(i=>i.id===EID); if(idx>-1)db[CUR][idx]=entry; }
   else db[CUR].unshift(entry);
-  save();renderAll();closeOv('ov-form');
-  showToast(EID?'Entrée mise à jour.':'Opportunité publiée avec succès.','ok');
-  if(!EID)notifAdmin(CUR,entry);
+  save(); renderAll(); closeOv('ov-form');
+  showToast(EID?'Entrée mise à jour.':'Opportunité publiée !','ok');
+  if(!EID) notifAdmin(CUR,entry);
 }
 function delEntry(t,id){
   if(!confirm('Supprimer cette entrée ?'))return;
-  db[t]=db[t].filter(i=>i.id!==id);save();renderAll();showToast('Entrée supprimée.');
+  db[t]=db[t].filter(i=>i.id!==id); save(); renderAll(); showToast('Entrée supprimée.');
 }
 async function notifAdmin(t,e){
-  try{
-    await emailjs.send(EJS_SVC,EJS_TPL,{
-      from_name:'Portail ActuInter',reply_to:ADMIN_MAIL,to_email:ADMIN_MAIL,
-      subject:'[ActuInter] Nouvelle : '+e.titre,
-      message:'Type : '+TL[t]+'\nTitre : '+e.titre+'\nOrg : '+e.org+'\nPays : '+(e.pays||'-')+'\nDate : '+(e.date?fmtD(e.date):'-')+'\nLien : '+(e.lien||'-')+'\n\nDesc :\n'+(e.desc||'-')
+  try {
+    await emailjs.send(EJS_SVC, EJS_TPL, {
+      from_name:'Portail ActuInter', reply_to:ADMIN_MAIL, to_email:ADMIN_MAIL,
+      subject:'[ActuInter] Nouvelle opportunité : '+e.titre,
+      message:`Type : ${TL[t]}\nTitre : ${e.titre}\nOrganisation : ${e.org}\nPays : ${e.pays||'-'}\nDate limite : ${e.date?fmtD(e.date):'-'}\nLien : ${e.lien||'-'}\n\nDescription :\n${e.desc||'-'}`
     });
-  }catch(err){console.warn('Email admin:',err)}
+  } catch(err){ console.warn('Email admin:',err); }
 }
 
+// ── ABONNEMENT : email à l'admin ET à l'abonné ──
 async function doSub(){
-  const email=document.getElementById('sub-email').value.trim();
-  const nom=document.getElementById('sub-nom').value.trim();
-  const msgEl=document.getElementById('sub-msg');
+  const email = document.getElementById('sub-email').value.trim();
+  const nom   = document.getElementById('sub-nom').value.trim();
+  const msgEl = document.getElementById('sub-msg');
   msgEl.className='';
-  if(!email||!/\S+@\S+\.\S+/.test(email)){msgEl.textContent='Email invalide.';msgEl.className='err';return}
+  if(!email||!/\S+@\S+\.\S+/.test(email)){
+    msgEl.textContent='Veuillez saisir une adresse email valide.'; msgEl.className='err'; return;
+  }
   const cats=[];
-  if(document.getElementById('sc-e').checked)cats.push('Emploi et Stages');
-  if(document.getElementById('sc-c').checked)cats.push('Concours');
-  if(document.getElementById('sc-b').checked)cats.push('Bourses & Financements');
-  if(!cats.length){msgEl.textContent='Choisissez au moins une catégorie.';msgEl.className='err';return}
-  const subs=JSON.parse(localStorage.getItem('ai_subs')||'[]');
-  if(subs.find(s=>s.email===email)){msgEl.textContent='Cet email est déjà inscrit.';msgEl.className='err';return}
+  if(document.getElementById('sc-e').checked) cats.push('Emploi et Stages');
+  if(document.getElementById('sc-c').checked) cats.push('Concours');
+  if(document.getElementById('sc-b').checked) cats.push('Bourses & Financements');
+  if(!cats.length){ msgEl.textContent='Choisissez au moins une catégorie.'; msgEl.className='err'; return; }
+
+  const subs = JSON.parse(localStorage.getItem('ai_subs')||'[]');
+  if(subs.find(s=>s.email===email)){ msgEl.textContent='Cet email est déjà inscrit.'; msgEl.className='err'; return; }
   subs.push({email,nom,cats,date:new Date().toISOString()});
-  localStorage.setItem('ai_subs',JSON.stringify(subs));
-  msgEl.textContent='Abonnement confirmé ! Bienvenue sur le portail ActuInter.';msgEl.className='ok';
-  const msgA=`NOUVEL ABONNÉ\n\nNom : ${nom||'Non renseigné'}\nEmail : ${email}\nCatégories : ${cats.join(', ')}\nDate : ${new Date().toLocaleString('fr-CA')}\nTotal abonnés : ${subs.length}\nWhatsApp : ${WA_GROUP}`;
-  const msgU=`Bonjour ${nom||''},\n\nVotre abonnement au Portail Opportunités d'Actualités Internationales est confirmé.\n\nVous recevrez les nouvelles pour : ${cats.join(', ')}.\n\nPortail : ${SITE}\nGroupe WhatsApp : ${WA_GROUP}\n\nActualités Internationales`;
-  try{await emailjs.send(EJS_SVC,EJS_TPL,{from_name:'Portail ActuInter',reply_to:email,to_email:ADMIN_MAIL,subject:'Nouvel abonné : '+(nom||email),message:msgA})}catch(e){console.warn(e)}
-  try{await emailjs.send(EJS_SVC,EJS_TPL,{from_name:'Actualités Internationales',reply_to:ADMIN_MAIL,to_email:email,subject:'Bienvenue — Portail Opportunités ActuInter',message:msgU})}catch(e){console.warn(e)}
-  setTimeout(()=>closeOv('ov-sub'),3500);
+  localStorage.setItem('ai_subs', JSON.stringify(subs));
+  msgEl.textContent='✅ Abonnement confirmé ! Vérifiez votre boîte email.'; msgEl.className='ok';
+
+  // 1. Email de notification à l'administrateur
+  const msgAdmin =
+    `🔔 NOUVEL ABONNÉ AU PORTAIL\n\n`+
+    `Nom : ${nom||'Non renseigné'}\n`+
+    `Email : ${email}\n`+
+    `Catégories : ${cats.join(', ')}\n`+
+    `Date : ${new Date().toLocaleString('fr-CA')}\n`+
+    `Total abonnés : ${subs.length}\n\n`+
+    `Portail : ${SITE}\n`+
+    `WhatsApp : ${WA_GROUP}`;
+
+  // 2. Email de confirmation à l'abonné
+  const msgUser =
+    `Bonjour ${nom||''},\n\n`+
+    `✅ Votre abonnement au Portail Opportunités d'Actualités Internationales est confirmé !\n\n`+
+    `Vous recevrez les alertes pour :\n${cats.map(c=>'• '+c).join('\n')}\n\n`+
+    `🌐 Portail : ${SITE}\n`+
+    `💬 Groupe WhatsApp : ${WA_GROUP}\n\n`+
+    `━━━━━━━━━━━━━━━\n`+
+    `Actualités Internationales\n`+
+    `Fondé par Jacques Djonfabe\n`+
+    `jacquesdjonfabe58@gmail.com\n`+
+    `━━━━━━━━━━━━━━━\n`+
+    `Pour vous désabonner, répondez à cet email avec "DÉSABONNEMENT".`;
+
+  try {
+    // Notif admin
+    await emailjs.send(EJS_SVC, EJS_TPL, {
+      from_name:'Portail ActuInter',
+      reply_to:email,
+      to_email:ADMIN_MAIL,
+      subject:`🔔 Nouvel abonné : ${nom||email}`,
+      message:msgAdmin
+    });
+    // Confirmation abonné
+    await emailjs.send(EJS_SVC, EJS_TPL, {
+      from_name:'Actualités Internationales',
+      reply_to:ADMIN_MAIL,
+      to_email:email,
+      subject:'✅ Abonnement confirmé — Portail Opportunités ActuInter',
+      message:msgUser
+    });
+  } catch(e){ console.warn('Email sub:', e); }
+
+  setTimeout(()=>closeOv('ov-sub'), 4000);
 }
 
+// SHARE
 function openShare(t,id){
-  const item=db[t].find(i=>i.id===id);if(!item)return;
+  const item=db[t].find(i=>i.id===id); if(!item)return;
   SHARE={t,item};
-  const postLien=robustLink(item.lien)&&!item.lien.startsWith('mailto:')?item.lien:SITE;
-  const dl=item.date?`\n📅 Clôture : ${fmtD(item.date)}`:'';
-  const txt=`📢 *${item.titre}*\n🏢 ${item.org}${item.pays?' | '+item.pays:''}${dl}\n🔗 ${postLien}\n\n📡 Plus d'opportunités sur :\n${SITE}`;
-  document.getElementById('sh-wa').href=`https://wa.me/?text=${encodeURIComponent(txt)}`;
-  document.getElementById('sh-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE)}&quote=${encodeURIComponent(item.titre+' — '+item.org)}`;
-  document.getElementById('sh-tw').href=`https://twitter.com/intent/tweet?text=${encodeURIComponent(item.titre+' — '+item.org)}&url=${encodeURIComponent(SITE)}`;
-  document.getElementById('sh-t').textContent=item.titre;
-  SHARE._link=postLien;
+  const postLien = (item.lien&&item.lien.startsWith('http')) ? item.lien : SITE;
+  const txt = waShareMsg(item);
+  document.getElementById('sh-wa').href = `https://wa.me/?text=${encodeURIComponent(txt)}`;
+  document.getElementById('sh-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postLien)}&quote=${encodeURIComponent(item.titre+' — '+item.org)}`;
+  document.getElementById('sh-tw').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(item.titre+' — '+item.org+' | Via Actualités Internationales')}&url=${encodeURIComponent(SITE)}`;
+  document.getElementById('sh-t').textContent = item.titre;
+  SHARE._link = postLien;
   openOv('ov-share');
 }
 function copyLink(){
-  const url=SHARE?._link||SITE;
-  navigator.clipboard.writeText(url).then(()=>{showToast('Lien copié !','ok');closeOv('ov-share')}).catch(()=>{showToast('Copie impossible.','err')});
+  const url = SHARE?._link || SITE;
+  navigator.clipboard.writeText(url)
+    .then(()=>{ showToast('Lien copié !','ok'); closeOv('ov-share'); })
+    .catch(()=>{ showToast('Copie impossible.','err'); });
 }
 
-function openOv(id){document.getElementById(id).classList.add('open')}
-function closeOv(id){document.getElementById(id).classList.remove('open')}
+// OVERLAYS
+function openOv(id){ document.getElementById(id).classList.add('open'); }
+function closeOv(id){ document.getElementById(id).classList.remove('open'); }
 ['ov-about','ov-form','ov-sub','ov-share'].forEach(id=>{
-  document.getElementById(id).addEventListener('click',e=>{if(e.target===e.currentTarget)closeOv(id)});
+  document.getElementById(id).addEventListener('click',e=>{ if(e.target===e.currentTarget)closeOv(id); });
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape')['ov-about','ov-form','ov-sub','ov-share'].forEach(closeOv)});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') ['ov-about','ov-form','ov-sub','ov-share'].forEach(closeOv); });
 
+// TOAST
 let tT;
 function showToast(msg,type=''){
   const el=document.getElementById('toast');
-  el.textContent=msg;el.className='toast show'+(type?' '+type:'');
-  clearTimeout(tT);tT=setTimeout(()=>el.className='toast',4000);
+  el.textContent=msg; el.className='toast show'+(type?' '+type:'');
+  clearTimeout(tT); tT=setTimeout(()=>el.className='toast',4000);
 }
 
+// ADMIN
 let adminOn=false;
 function toggleAdmin(){
   if(adminOn){
-    adminOn=false;document.body.classList.remove('admin');
+    adminOn=false; document.body.classList.remove('admin');
     document.getElementById('alock').style.color='rgba(255,255,255,.3)';
     showToast('Mode administrateur désactivé.');
   } else {
     const p=prompt('Mot de passe administrateur :');
     if(p===PWD){
-      adminOn=true;document.body.classList.add('admin');
+      adminOn=true; document.body.classList.add('admin');
       document.getElementById('alock').style.color='#f0c060';
       showToast('Mode administrateur activé.','ok');
-    } else if(p!==null){showToast('Mot de passe incorrect.','err')}
+    } else if(p!==null){ showToast('Mot de passe incorrect.','err'); }
   }
 }
 
-initPays();load();renderAll();
+// INIT
+initPays(); load(); renderAll();
 </script>
 </body>
 </html>

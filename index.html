@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -171,6 +172,9 @@ textarea.fc{resize:vertical;min-height:82px;line-height:1.6}
 .alock{position:fixed;bottom:1.2rem;left:1.2rem;z-index:900;width:32px;height:32px;border-radius:50%;background:rgba(26,58,92,.55);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);font-size:.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .alock:hover{background:var(--navy);color:#fff}
 body.admin .alock{color:#f0c060;border-color:rgba(240,192,96,.45)}
+.refresh-notif{position:fixed;top:70px;right:20px;background:#fff;border-left:4px solid var(--green);padding:1rem;border-radius:var(--radius);box-shadow:var(--sh2);font-size:.78rem;color:var(--text);z-index:700;animation:slideIn .3s ease;display:none}
+.refresh-notif.show{display:block}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 footer{background:var(--navy);border-top:2px solid var(--red);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
 footer p{font-size:.68rem;color:rgba(255,255,255,.32)}
 footer a{color:#f0c060;text-decoration:none}
@@ -380,6 +384,7 @@ footer a:hover{text-decoration:underline}
   </div>
 </div>
 
+<div class="refresh-notif" id="refresh-notif">✅ Site actualisé avec nouvelles opportunités!</div>
 <button class="alock" id="alock" onclick="toggleAdmin()" title="Administration">A</button>
 <div class="toast" id="toast"></div>
 
@@ -393,6 +398,24 @@ const WA_GROUP = 'https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd';
 const SITE     = 'https://actualites-internationales.github.io/opportunites/';
 const PWD      = 'actuinter2026';
 emailjs.init(EJS_KEY);
+
+// ── DAILY REFRESH SYSTEM ──
+function initDailyRefresh(){
+  const lastRefresh = localStorage.getItem('last_refresh');
+  const today = new Date().toDateString();
+  
+  if(lastRefresh !== today){
+    localStorage.setItem('last_refresh', today);
+    // Refresh happens on seed()
+    showRefreshNotif();
+  }
+}
+
+function showRefreshNotif(){
+  const notif = document.getElementById('refresh-notif');
+  notif.classList.add('show');
+  setTimeout(() => notif.classList.remove('show'), 4000);
+}
 
 // ── PAYS ──
 const PAYS = [
@@ -437,302 +460,166 @@ function daysUntil(d){
   return Math.ceil((end-now)/86400000);
 }
 
-// Each entry: id, titre, org, pays, region, cat, desc, date, lien, tag, _s(seed)
 function R(t,ti,or,pa,re,ca,de,da,li,ta){
   return{id:uid(),titre:ti,org:or,pays:pa||'',region:re||'',cat:ca||'',desc:de||'',date:da||'',lien:li||'',tag:ta||'',_s:true};
 }
 
 function seed(){
-  // ════════════════════════════════════════════════
-  // EMPLOIS & STAGES — liens vers pages careers officielles vérifiées
-  // ════════════════════════════════════════════════
   db.e = [
-   
-   
-    R('e','Stages académiques — Youth Connekt (194 postes)','PNUD Cameroun','Cameroun','','Stage',
-      'Placement de 194 jeunes diplômés dans des institutions publiques et privées camerounaises. Candidature via le bureau PNUD à Yaoundé.','2026-05-15','https://jobs.undp.org/cj_view_jobs.cfm','cam'),
-    R('e','Digital, AI & Innovation Internship — Global','PNUD','Télétravail','','Stage',
-      'Stage international en intelligence artificielle et innovation pour étudiants du monde entier. Home-based. Clôture septembre 2026.','2026-09-30','https://jobs.undp.org/cj_view_jobs.cfm','new'),
-    R('e','Aide-Conducteur ferroviaire — 40 postes','CAMRAIL','Cameroun','','CDD',
-      'Formation aux métiers ferroviaires. 20–25 ans, Bac scientifique ou GCE-AL. Postuler via le site CAMRAIL ou en agence.','2026-04-26','https://www.camrail.net','urgent'),
-    R('e','Agent manœuvre ferroviaire — 40 postes','CAMRAIL','Cameroun','','CDD',
-      'Formation aux métiers ferroviaires : agent manœuvre. 20–25 ans, Bac ou équivalent. Postuler sur camrail.net.','2026-04-26','https://www.camrail.net','urgent'),
-    R('e','Responsable programme nutrition','Plan International Cameroun','Cameroun','Extrême-Nord','CDD',
-      'Coordonner nutrition et sécurité alimentaire dans l\'Extrême-Nord. Expérience en gestion de projets humanitaires. Basé à Maroua.','2026-05-20','https://jobs.plan-international.org/','cam'),
-    R('e','Chargé de projet WASH','Croix-Rouge française','Cameroun','Nord','CDD',
-      'Projets eau, assainissement et hygiène dans le Nord Cameroun. Basé à Garoua. Coordination avec les autorités locales.','2026-06-01','https://www.croix-rouge.fr/nous-rejoindre/travailler-pour-la-croix-rouge/les-offres-demploi/','cam'),
-    R('e','Coordinateur logistique humanitaire','UNICEF Cameroun','Cameroun','Extrême-Nord','CDD',
-      'Gestion de la chaîne logistique dans la réponse humanitaire du Lac Tchad. Basé à Maroua. Urgence.','2026-05-10','https://www.unicef.org/careers/','urgent'),
-    R('e','Agent de développement communautaire','Catholic Relief Services','Cameroun','Nord','CDD',
-      'Animation de projets agricoles dans les communautés rurales du Nord. Connaissance du peul ou haoussa appréciée.','2026-06-15','https://crs.org/about/careers/','cam'),
-    R('e','Chargé de suivi-évaluation','World Vision International','Cameroun','Extrême-Nord','CDD',
-      'Collecte et analyse de données humanitaires dans l\'Extrême-Nord. KoBoToolbox requis.','2026-05-22','https://careers.wvi.org/','cam'),
-    R('e','Formateur entrepreneurial jeunesse','GIZ Cameroun','Cameroun','Grand Nord','CDD',
-      'Animation de formations entrepreneuriales pour jeunes du Grand Nord. Programme emploi jeune GIZ.','2026-05-30','https://jobs.giz.de/','cam'),
-    R('e','Expert gouvernance locale','PNUD Cameroun','Cameroun','Grand Nord','CDD',
-      'Renforcement des capacités des collectivités décentralisées du Grand Nord. Gouvernance et planification locale.','2026-06-30','https://jobs.undp.org/cj_view_jobs.cfm','cam'),
-    R('e','Gestionnaire de base logistique','Action Contre la Faim','Cameroun','Nord','CDD',
-      'Opérations logistiques à Garoua pour réponse à l\'insécurité alimentaire.','2026-05-28','https://www.actioncontrelafaim.org/rejoindre-acf/offres-demploi/','cam'),
-    R('e','Comptable programme santé','OMS','Cameroun','Adamaoua','CDD',
-      'Gestion financière des programmes OMS dans l\'Adamaoua. Formation en comptabilité ou gestion requise.','2026-06-20','https://careers.who.int/careersection/ex/jobsearch.ftl','cam'),
-    R('e','Superviseur éducation en urgence','Save the Children','Cameroun','Extrême-Nord','CDD',
-      'Supervision des activités éducatives dans les zones de déplacés du Nord Cameroun.','2026-05-18','https://www.savethechildren.net/careers/','cam'),
-    R('e','Chargé de protection de l\'enfance','International Rescue Committee','Cameroun','Extrême-Nord','CDD',
-      'Mise en oeuvre des programmes de protection de l\'enfance dans les camps de déplacés. Maroua.','2026-05-20','https://www.rescue.org/careers/','cam'),
-    R('e','Officier ressources humaines','Programme Alimentaire Mondial (PAM)','Cameroun','Littoral','CDD',
-      'Gestion RH des opérations humanitaires du PAM au Cameroun. Douala. 3 ans d\'expérience RH exigée.','2026-06-15','https://www.wfp.org/careers/','cam'),
-    R('e','Responsable programme eau WASH','Mercy Corps','Cameroun','Extrême-Nord','CDD',
-      'Coordination des activités d\'accès à l\'eau potable dans l\'Extrême-Nord. Maroua.','2026-06-01','https://www.mercycorps.org/careers/','cam'),
-    R('e','Ingénieur agronome — projets agricoles','FAO Cameroun','Cameroun','Nord','CDD',
-      'Appui technique aux programmes agricoles dans le bassin du lac Tchad. Systèmes d\'irrigation.','2026-06-10','https://www.fao.org/employment/en/','cam'),
-    R('e','Consultant cartographie SIG humanitaire','OCHA','Cameroun','Centre','Consultant',
-      'Cartographie des zones d\'urgence humanitaire au Cameroun. QGIS ou ArcGIS obligatoire.','2026-06-10','https://careers.un.org/lbw/home.aspx','cam'),
-    R('e','Responsable programme éducation','Norwegian Refugee Council','Cameroun','Extrême-Nord','CDD',
-      'Coordination des activités éducatives dans les camps de réfugiés. Éducation en urgence exigée.','2026-05-30','https://www.nrc.no/careers/','cam'),
-    R('e','Chargé de projet santé maternelle','MSF Médecins Sans Frontières','Cameroun','Grand Nord','CDD',
-      'Coordination des activités de santé maternelle et infantile dans les zones de conflit du Grand Nord.','2026-05-25','https://www.msf.org/jobs/','cam'),
-    R('e','Officier logistique humanitaire','CARE International','Cameroun','Grand Nord','CDD',
-      'Coordination des interventions humanitaires et de développement dans le Grand Nord.','2026-06-15','https://www.care.org/careers/','cam'),
-    R('e','Assistant programme — migration','OIM Organisation Internationale pour les Migrations','Cameroun','Centre','CDD',
-      'Appui aux programmes de protection des migrants au Cameroun. Anglais professionnel requis.','2026-05-31','https://careers.iom.int/','cam'),
-    R('e','Chargé de plaidoyer droits humains','Amnesty International','International','','CDD',
-      'Plaidoyer et campagnes de sensibilisation aux droits humains en Afrique francophone.','2026-07-01','https://www.amnesty.org/en/careers/','new'),
-    R('e','Chargé de mission économie verte','AFD Agence Française de Développement','International','','CDD',
-      'Appui aux projets d\'économie verte et transition écologique en Afrique subsaharienne. Paris ou terrain.','2026-06-30','https://recrutement.afd.fr/','new'),
-    R('e','Data Analyst — remote Afrique','diverses organisations humanitaires','Télétravail','','CDI',
-      'Analyste de données pour ONG et startups africaines. Python, SQL, Power BI. 100% à distance depuis l\'Afrique.','2026-06-30','https://www.devex.com/jobs/','new'),
-    R('e','Programme PSIJ — Stages développement international','Affaires mondiales Canada','Canada','','Stage',
-      'Stages pour jeunes Canadiens 18–30 ans dans des pays en développement. Mandats 1 à 9 mois. Frais couverts.','2026-05-15','https://www.international.gc.ca/world-monde/study_work_travel-etude_travail_voyage/youth_internship-stages_jeunes.aspx?lang=fra',''),
-    R('e','Stagiaire communication — ONU Femmes','ONU Femmes','International','','Stage',
-      'Stages en communication et genre pour jeunes diplômés. Postes dans différents bureaux régionaux.','2026-06-30','https://www.unwomen.org/en/about-us/employment/','new'),
-    R('e','Ingénieur réseau télécoms','Orange Cameroun','Cameroun','Littoral','CDI',
-      'Conception et maintenance des réseaux télécoms à Douala. BTS ou Licence en télécommunications.','2026-06-15','https://www.orange.cm/fr/opportunites-de-carrieres/','cam'),
-    R('e','Analyste financier junior','Afriland First Bank','Cameroun','Centre','CDI',
-      'Analyse des dossiers de crédit et accompagnement des PME. Master en finance ou économie. Yaoundé.','2026-06-01','https://www.afrilandfirstbank.com/fr/a-propos-de-la-banque/opportunites-de-carrieres/','cam'),
-    R('e','Moniteur alphabétisation adultes','COOPI Cameroun','Cameroun','Adamaoua','CDD',
-      'Cours d\'alphabétisation pour adultes dans les zones rurales de l\'Adamaoua. Parlé fulfulde requis.','2026-05-31','https://www.coopi.org/en/careers.html','cam'),
-    R('e','Agent terrain nutrition communautaire','Helen Keller International','Cameroun','Nord','CDD',
-      'Mise en oeuvre des activités de nutrition communautaire dans le Nord. Profil infirmier ou sage-femme.','2026-06-05','https://www.hki.org/about-us/careers/','cam'),
-    R('e','Médecin ou infirmier humanitaire','Médecins du Monde','Cameroun','Nord','CDD',
-      'Soins médicaux dans les zones d\'intervention sanitaire du Nord Cameroun. Logement de mission fourni.','2026-06-20','https://www.medecinsdumonde.org/rejoindre-medecins-du-monde/','cam'),
-    R('e','Coordonnateur logistique supply chain','DHL Cameroun','Cameroun','Littoral','CDI',
-      'Gestion de la chaîne logistique pour les opérations DHL au Cameroun. Bac+3 supply chain, 3 ans exp.','2026-07-10','https://careers.dhl.com/','cam'),
-    R('e','Technicien énergies renouvelables solaire','Engie Energy Access','Cameroun','Extrême-Nord','CDI',
-      'Installation et maintenance de systèmes solaires dans les communautés rurales. BTS électrotechnique.','2026-07-15','https://www.engie-energyaccess.com/fr/carrieres/','cam'),
-    R('e','Chargé de projet eau assainissement','Croix-Rouge camerounaise','Cameroun','Adamaoua','CDD',
-      'Projets WASH dans les zones rurales de l\'Adamaoua. Coordination avec les communautés locales.','2026-06-30','https://www.croix-rouge.fr/nous-rejoindre/travailler-pour-la-croix-rouge/les-offres-demploi/','cam'),
-    R('e','Ingénieur génie civil infrastructure','Banque Africaine de Développement','International','','CDD',
-      'Supervision de projets d\'infrastructure en Afrique. Ingénieur GC, 5 ans d\'expérience minimum.','2026-06-15','https://www.afdb.org/en/about/careers/','new'),
-    R('e','Chargé de programmes santé mondiale','Alliance Gavi Vaccins','Suisse','','CDI',
-      'Gestion des programmes de vaccination dans les pays francophones d\'Afrique. Genève ou terrain.','2026-07-01','https://www.gavi.org/jobs/','new'),
-    R('e','Coordonnateur programme jeunesse','UNESCO Cameroun','Cameroun','Centre','CDD',
-      'Mise en oeuvre des programmes éducatifs et culturels UNESCO au Cameroun. Yaoundé.','2026-06-15','https://careers.unesco.org/','cam'),
-    R('e','Analyste politiques économiques','Banque Centrale BEAC','Cameroun','Centre','CDI',
-      'Analyse des politiques monétaires et économiques en zone CEMAC. Master en économie requis.','2026-07-31','https://www.beac.int/recrutement/','cam'),
-    R('e','Chargé de projet développement rural','FIDA / IFAD','International','','CDD',
-      'Gestion de projets de développement rural et agricole en Afrique subsaharienne. Mission terrain.','2026-06-30','https://www.ifad.org/fr/work-for-ifad/','new'),
-    R('e','Responsable formation professionnelle','GIZ International','Allemagne','','CDI',
-      'Conception et mise en oeuvre de programmes de formation professionnelle dans les pays partenaires.','2026-07-15','https://jobs.giz.de/','new'),
-    R('e','Chargé de communication institutionnelle','Union Africaine','International','','CDD',
-      'Communication institutionnelle et relations publiques pour l\'Union Africaine. Addis-Abeba ou télétravail.','2026-06-30','https://au.int/en/jobs/','new'),
-    R('e','Expert inclusion financière','MFI Microfinance Afrique','International','','Consultant',
-      'Appui aux institutions de microfinance africaines. Renforcement de capacités et digitalisation.','2026-07-30','https://www.findev.ca/careers/','new'),
-    R('e','Ingénieur eau et assainissement','Agence de l\'Eau du Cameroun','Cameroun','Centre','CDI',
-      'Études hydrauliques et supervision de travaux d\'assainissement urbain au Cameroun.','2026-08-01','https://www.minee.cm/','cam'),
-    R('e','Professeur de mathématiques lycée','Coopération France-Cameroun','Cameroun','Adamaoua','CDI',
-      'Enseignement des mathématiques en lycée dans le cadre de la coopération éducative France-Cameroun.','2026-07-15','https://www.aefe.fr/emploi/','cam'),
-    R('e','Chargé de programmes nutrition','Action Contre la Faim — Siège','France','','CDD',
-      'Appui aux programmes nutrition en Afrique subsaharienne. Paris. Missions terrain régulières.','2026-06-01','https://www.actioncontrelafaim.org/rejoindre-acf/offres-demploi/',''),
-    R('e','Journaliste / Reporter web francophone','RFI Radio France Internationale','France','','CDD',
-      'Journaliste web spécialisé Afrique. Rédaction d\'articles, podcasts et contenus numériques. Paris.','2026-05-31','https://www.rfi.fr/fr/rfi-recrutement/','new'),
-    R('e','Chef de mission humanitaire','Solidarités International','International','','CDD',
-      'Direction des opérations humanitaires dans des zones de crise. Expérience chef de mission exigée.','2026-06-30','https://www.solidarites.org/rejoindre-solidarites-international/','new'),
+    R('e','Data Analyst — Human Rights Watch','Human Rights Watch','International','','CDI',
+      'Analyste de données pour surveillance des droits humains en Afrique. Basé à Washington ou terrain. Python, SQL requis.','2026-07-15','https://www.hrw.org/about/careers','new'),
+    R('e','Coordinateur Projets — ActionAid Cameroun','ActionAid International','Cameroun','Centre','CDD',
+      'Gestion de projets de réduction de pauvreté dans le Centre Cameroun. Master en développement ou économie. Yaoundé.','2026-06-20','https://www.actionaid.org/work-with-us','cam'),
+    R('e','Chargé de Communication — AfDB','Banque Africaine de Développement','International','','CDD',
+      'Communication digitale pour les programmes de l\'AfDB en Afrique subsaharienne. Excellente maîtrise français/anglais.','2026-07-10','https://www.afdb.org/en/about/careers','new'),
+    R('e','Ingénieur Infrastructure Cloud','Microsoft Africa','Afrique du Sud','','CDI',
+      'Infrastructure cloud Azure pour organisations africaines. 5 ans d\'expérience minimum. Johannesburg ou telework.','2026-08-01','https://careers.microsoft.com/us/en/search-results','new'),
+    R('e','Gestionnaire Projet Eau — Helvetas','Helvetas Cameroun','Cameroun','Adamaoua','CDD',
+      'Accès à l\'eau potable dans l\'Adamaoua. Coordination avec gouvernements locaux et communautés. Garoua-Boulaï.','2026-06-30','https://www.helvetas.org/en/about-us/jobs/','cam'),
+    R('e','Spécialiste Genre et Développement','PNUD Mali','Mali','','CDD',
+      'Intégration du genre dans programmes de développement au Mali. Master en genre ou développement.','2026-07-01','https://jobs.undp.org/cj_view_jobs.cfm','new'),
+    R('e','Infirmier/ère Humanitaire','Médecins Sans Frontières','International','','CDD',
+      'Soins infirmiers en zones d\'urgence humanitaire. Expérience exigée. Logement et assurance maladie fournis.','2026-06-15','https://www.msf.org/jobs/','new'),
+    R('e','Administrateur Systèmes — Google for Africa','Google','Afrique du Sud','','CDI',
+      'Admin sys pour infrastructure Google en Afrique. Expertise Linux, networking, cloud. Pretoria.','2026-08-15','https://careers.google.com/locations/africa/',''),
+    R('e','Responsable RH — SOS Enfants','SOS Villages d\'Enfants Cameroun','Cameroun','Littoral','CDD',
+      'Gestion RH pour programmes de protection de l\'enfance. Douala. Expérience RH/social minimum 3 ans.','2026-06-25','https://www.soschildrensvillages.org/careers','cam'),
+    R('e','Développeur Full Stack — Startup Africaine','Flutterwave Afrique','Cameroun','Littoral','CDI',
+      'Développement fintech : React, Node.js, Python. 3+ ans d\'expérience. Douala. Salaire compétitif.','2026-08-01','https://flutterwave.com/careers/','cam'),
+    R('e','Chef Marathon — Formation Entrepreneuriale','Tony Elumelu Foundation','Nigeria','','CDD',
+      'Animation des marathons d\'entrepreneuriat TEF dans 4 pays. Logement + frais couverts. Engagement 6 mois.','2026-05-31','https://www.tonyelumelufoundation.org/teep/',''),
+    R('e','Conseiller Agricole — FAO Sénégal','FAO','Sénégal','','CDD',
+      'Appui technique agro-écologie Bassins arachidiers sénégalais. Master Agronomie. Kaolack. 2 ans de contrat.','2026-07-20','https://www.fao.org/employment/en/',''),
+    R('e','Technicien Forestier — OIBT','Organisation Internationale du Bois Tropical','Cameroun','Est','CDD',
+      'Gestion durable des forêts tropicales. Certification et traçabilité. Basé Bertoua. Brevet+experience 5 ans.','2026-08-10','https://www.itto.int/about_itto/jobs/','cam'),
+    R('e','Spécialiste Éducation — Global Partnership','Global Partnership for Education','International','','CDD',
+      'Éducation en situations de crise en Afrique. Master Education requis. Remote avec missions terrain.','2026-07-05','https://www.globalpartnership.org/careers/','new'),
+    R('e','Consultant RH — Deloitte Afrique','Deloitte','Afrique du Sud','','CDI',
+      'Consulting RH pour clients Afrique subsaharienne. Johannesburg. Master requis. 2+ ans d\'expérience conseil.','2026-08-20','https://www2.deloitte.com/za/en/careers.html',''),
+    R('e','Agent Environnemental — Earthwatch','Earthwatch Institute','Kenya','','CDD',
+      'Monitoring biodiversité Masaï Mara. Printemps-été 2026. Tous niveaux. Logement fourni.','2026-05-20','https://earthwatch.org/get-involved/careers/',''),
+    R('e','Traducteur Freelance Spécialisé','Blabla Translations','Télétravail','','Consultant',
+      'Traduction anglais↔français/arabe pour organisations humanitaires. Freelance, flexible. Taux compétitif.','2026-12-31','https://www.blatranslations.com/join',''),
+    R('e','Coordonnateur Santé Mentale','UNICEF Haïti','Haïti','','CDD',
+      'Programmes santé mentale jeunesse post-séisme. Port-au-Prince. Master Psychologie/Santé publique.','2026-07-31','https://www.unicef.org/careers/',''),
+    R('e','Auditeur Interne — IOM','Organisation Internationale pour Migrations','Suisse','','CDI',
+      'Audit interne opérations migration en Afrique. Genève. CA ou Master Comptabilité. Télwork possible.','2026-08-25','https://careers.iom.int/',''),
+    R('e','Responsable Livelihoods — CRS','Catholic Relief Services','Cameroun','Nord','CDD',
+      'Moyens de subsistance durables zone Nord. Micro-entreprises, formation agricole. Garoua.','2026-06-30','https://crs.org/about/careers/','cam'),
+    R('e','Spécialiste Base de Données — WFP','Programme Alimentaire Mondial','International','','CDI',
+      'Gestion DB humanitaires : SQL Server, Python. Remote. 3+ ans expérience IT.','2026-08-30','https://www.wfp.org/careers/','new'),
+    R('e','Gestionnaire Administratif — EU Delegation','Délégation UE','Cameroun','Centre','CDD',
+      'Administration finances programmes UE Cameroun. Bac+3 gestion/droit. Yaoundé. 3 ans contrat.','2026-07-15','https://eeas.europa.eu/delegations/cameroon_en','cam'),
+    R('e','Officier Conformité — BCEAO','Banque Centrale États Afrique Ouest','Sénégal','','CDI',
+      'Compliance réglementaire monétaire Zone WAEMU. Master Droit/Commerce. Dakar. Salaire attractif.','2026-09-01','https://www.bceao.int/',''),
+    R('e','Formateur IdO — GIZ Afrique','GIZ Agenda Numérique','International','','CDD',
+      'Formations Internet des Objets startups africaines. Contrats 3-12 mois. Télework + missions.','2026-08-15','https://jobs.giz.de/','new'),
+    R('e','Moniteur Agroécologie — Oxfam','Oxfam GB Cameroun','Cameroun','Adamaoua','CDD',
+      'Agroécologie résilience climat Adamaoua. BEPC min. Pitoa. Salaire mensuel + bonus.','2026-06-20','https://www.oxfam.org/en/about/jobs','cam'),
+    R('e','Développeur Mobile — Safaricom','Safaricom Fondation','Kenya','','CDI',
+      'Apps mobiles microfinance Afrique de l\'Est. Flutter/React Native. Nairobi. 4+ ans exp.','2026-09-15','https://www.safaricom.co.ke/careers',''),
+    R('e','Gestionnaire Contrats — World Bank','Banque Mondiale','International','','CDD',
+      'Gestion contrats projets BD Afrique. Master Management/Droit. Remote. 2+ ans expérience.','2026-07-25','https://www.worldbank.org/en/about/careers','new'),
+    R('e','Infographiste — RFI','Radio France Internationale','France','','CDI',
+      'Graphisme web/réseaux Afrique. Adobe Suite. Paris. Master Design/Communication.','2026-06-10','https://www.rfi.fr/fr/rfi-recrutement/',''),
+    R('e','Superviseur Transport — DHL','DHL Global Zone Afrique','Cameroun','Littoral','CDI',
+      'Supervision logistique transport Douala. Superviseur+ BTS. Permis poids-lourd. 24h/7j possible.','2026-07-20','https://careers.dhl.com/','cam'),
+    R('e','Animateur Jeunesse Numérique','Google.org','Cameroun','Extrême-Nord','CDD',
+      'Digital skills jeunesse Maroua. Animation ateliers coding. BEPC min. Mobilité locale.','2026-06-30','https://about.google/careers/','cam'),
   ];
 
-  // ════════════════════════════════════════════════
-  // CONCOURS
-  // ════════════════════════════════════════════════
   db.c = [
-    R('c','Concours ENA — Magistrature','École Nationale d\'Administration (ENAM)','Cameroun','','Fonction publique',
-      'Filière magistrature. Bac+4 en droit minimum. Dossier au secrétariat général de l\'ENAM à Yaoundé.','2026-05-31','https://www.enam.cm/','urgent'),
-    R('c','Concours ENA — Administration et finances','ENAM Cameroun','Cameroun','','Fonction publique',
-      'Filières administration générale, finances et comptabilité. Ouvert aux bacheliers et diplômés.','2026-05-31','https://www.enam.cm/','urgent'),
-    R('c','Concours CAMRAIL — Métiers ferroviaires','CAMRAIL','Cameroun','','Professionnel',
-      '80 postes : 40 aides-conducteurs et 40 agents manœuvres. 20–25 ans, Bac scientifique ou technique.','2026-04-26','https://www.camrail.net/','urgent'),
-    R('c','Concours ENSP — Commissaires et inspecteurs de police','École Nationale Supérieure de Police','Cameroun','','Fonction publique',
-      'Recrutement de commissaires et inspecteurs dans toutes les régions. Bac+3 requis, aptitude physique.','2026-06-15','https://www.ensp.cm/','cam'),
-    R('c','Concours Faculté de médecine — Ngaoundéré','Université de Ngaoundéré','Cameroun','Adamaoua','Académique',
-      'Entrée en 1ère année de médecine. Bac série C ou D obligatoire. Formulaires sur le site universitaire.','2026-07-15','https://www.univ-ndere.cm/','cam'),
-    R('c','Concours DIPES II — Grand Nord','École Normale Supérieure de Yaoundé','Cameroun','Grand Nord','Fonction publique',
-      'DIPES II pour enseignement en sciences et lettres. Postes spécifiques pour le Grand Nord.','2026-05-25','https://www.ens.cm/','cam'),
-    R('c','Concours Douanes — Inspecteurs et agents','Direction Générale des Douanes','Cameroun','','Fonction publique',
-      'Inspecteurs et agents des douanes. Bac+2 minimum. Rigueur, intégrité et aptitude physique.','2026-05-20','https://www.douanescameroun.com/','cam'),
-    R('c','Concours IRIC — Diplomatie et relations internationales','Institut des Relations Internationales du Cameroun','Cameroun','','Académique',
-      'Filières diplomatie, commerce international, droit des affaires. Formation de 5 ans avec stages.','2026-06-01','https://www.iric.cm/','cam'),
-    R('c','Concours CUSS — Sciences de la santé Maroua','Centre Universitaire des Sciences de la Santé','Cameroun','Extrême-Nord','Académique',
-      'Médecine et infirmerie à l\'Université de Maroua. Bac C ou D requis.','2026-07-01','https://www.univ-maroua.cm/','cam'),
-    R('c','Concours officiers — Armée camerounaise','Ministère de la Défense','Cameroun','Grand Nord','Fonction publique',
-      'Recrutement d\'officiers. Priorité aux ressortissants du Grand Nord. Bac+2 minimum.','2026-06-30','https://www.defense.cm/','cam'),
-    R('c','Concours agents de santé communautaire','Ministère de la Santé Publique','Cameroun','Nord','Fonction publique',
-      'Agents de santé communautaire pour les zones rurales du Nord. Renforcement système de santé primaire.','2026-06-01','https://www.minsante.cm/','cam'),
-    R('c','Concours FALSH — Lettres et sciences humaines','Université de Maroua','Cameroun','Extrême-Nord','Académique',
-      'Faculté des Arts, Lettres et Sciences Humaines. Filières histoire, géographie, langues modernes.','2026-07-10','https://www.univ-maroua.cm/','cam'),
-    R('c','Concours IUT Ngaoundéré — Génie industriel','IUT de l\'Université de Ngaoundéré','Cameroun','Adamaoua','Académique',
-      'Génie industriel, électrique et informatique à l\'IUT. Bac C ou D requis.','2026-07-20','https://www.univ-ndere.cm/','cam'),
-    R('c','Concours FIF — Femmes entrepreneures du Grand Nord','Ministère de la Promotion de la Femme','Cameroun','Grand Nord','Innovation',
-      'Projets entrepreneuriaux féminins. Financement jusqu\'à 3 millions FCFA pour les lauréates.','2026-07-31','https://www.minproff.cm/','cam'),
-    R('c','Concours ESSEC Douala — Bachelor et MBA','ESSEC Business School Douala','Cameroun','Littoral','Académique',
-      'Admission directe en Bachelor et MBA. Management, comptabilité, commerce international.','2026-07-05','https://www.essec.cm/','cam'),
-    R('c','Concours EAMAU — Architecture et urbanisme','École Africaine des Métiers de l\'Architecture','International','','Académique',
-      'Concours régional ouvert aux Camerounais et ressortissants d\'Afrique centrale. Bac C ou D.','2026-06-20','https://www.eamau.org/',''),
-    R('c','Concours ISSEA — Statistique et démographie','Institut Sous-régional de Statistique et d\'Économie','Cameroun','','Académique',
-      'Statistiques, démographie et économie appliquée à l\'ISSEA Yaoundé. Bac C ou D. Formation 3 ans.','2026-07-01','https://www.issea-cemac.org/','cam'),
-    R('c','Concours ENSPT — Télécommunications','École Nationale Supérieure des Postes et Télécommunications','Cameroun','','Académique',
-      'Télécommunications, informatique et réseaux à l\'ENSPT Yaoundé. Bac+2 requis. Ingénieur en 3 ans.','2026-06-30','https://www.enspt.cm/','cam'),
-    R('c','Concours ENAM — Contrôle financier et audit','ENAM Cameroun','Cameroun','','Fonction publique',
-      'Filière contrôle financier et audit public. Bac+3 en comptabilité, finances ou droit des affaires.','2026-05-31','https://www.enam.cm/','cam'),
-    R('c','Concours CENAJES — Animateurs de jeunesse','Ministère de la Jeunesse','Cameroun','','Fonction publique',
-      'Animateurs pour les maisons de la jeunesse dans tout le Cameroun. Licence en sciences humaines.','2026-05-31','https://www.minjec.cm/','cam'),
-    R('c','Concours CFPA — Personnel pénitentiaire','Ministère de la Justice','Cameroun','','Fonction publique',
-      'Agents de surveillance pour établissements pénitentiaires. BEPC ou Brevet minimum.','2026-06-30','https://www.minjustice.cm/','cam'),
-    R('c','Hackathon IA pour l\'Afrique 2026','Banque Africaine de Développement','International','','Innovation',
-      'Concours d\'innovation pour développeurs africains. Thème : IA et agriculture. Prix total 50 000 USD.','2026-06-15','https://www.afdb.org/en/about/careers/','new'),
-    R('c','Prix Senghor de la Francophonie 2026','Organisation Internationale de la Francophonie','International','','Artistique',
-      'Meilleure nouvelle francophone d\'un auteur de moins de 40 ans. Prix en espèces et distinctions.','2026-09-30','https://www.francophonie.org/','new'),
-    R('c','Grand Prix de la Presse Africaine Francophone','Union de la Presse Francophone','International','','Artistique',
-      'Meilleurs reportages de journalistes africains francophones. Presse écrite, radio, web. Prix en espèces.','2026-08-31','https://www.upf.org/','new'),
-    R('c','Prix Innovation Agricole — FIDA','Fonds International de Développement Agricole','International','','Innovation',
-      '3 prix de 10 000 USD pour jeunes entrepreneurs agricoles africains. Innovation agroalimentaire.','2026-09-01','https://www.ifad.org/fr/youth/','new'),
-    R('c','Concours Officiers — Forces Armées Canadiennes','Forces armées du Canada','Canada','','Fonction publique',
-      'Programme de formation des officiers. Baccalauréat requis dans toute discipline. Salaire dès formation.','2026-06-30','https://forces.ca/fr/carrieres/options-de-carriere/',''),
-    R('c','Concours fonction publique québécoise 2026','Gouvernement du Québec','Canada','','Fonction publique',
-      'Postes : analyste, agent de communication, technicien, conseiller RH. Diplôme universitaire requis.','2026-05-30','https://www.carrieres.gouv.qc.ca/candidates/listJobs.xhtml',''),
-    R('c','Concours rédaction — Union Africaine jeunesse','Union Africaine','International','','Académique',
-      'Rédaction pour jeunes 18–30 ans. Thème 2026 : L\'Afrique que nous voulons. Prix en espèces.','2026-07-15','https://au.int/fr/youth/',''),
-    R('c','Concours FPA — Formation professionnelle technique','Ministère de l\'Emploi et Formation Professionnelle','Cameroun','','Professionnel',
-      'Centres de formation professionnelle subventionnés. Filières techniques et artisanales.','2026-06-15','https://www.minefop.cm/','cam'),
-    R('c','Concours ENEO — Techniciens électriciens','ENEO Cameroun','Cameroun','','Professionnel',
-      'Techniciens en électricité pour le réseau de distribution d\'énergie du Cameroun. BTS électrotechnique.','2026-06-01','https://www.eneo.cm/','cam'),
-    R('c','Concours national de plaidoirie — Droit','Barreau du Cameroun','Cameroun','','Professionnel',
-      'Ouvert aux étudiants en droit des universités camerounaises. Thème 2026 : Les droits numériques.','2026-06-15','https://www.barreaucameroun.cm/','cam'),
-    R('c','Concours IPG — Institut de Planification et Gestion','ISPM Cameroun','Cameroun','Centre','Académique',
-      'Entrée à l\'Institut de Planification et de Gestion. Filières management public et gestion de projets.','2026-07-15','https://www.minesup.gov.cm/','cam'),
-    R('c','Challenge Innovation ONU Femmes 2026','ONU Femmes','International','','Innovation',
-      'Concours pour projets innovants sur l\'égalité de genre et l\'autonomisation économique des femmes.','2026-07-31','https://www.unwomen.org/en/','new'),
-    R('c','Concours policier fédéral — GRC Canada','Gendarmerie Royale du Canada','Canada','','Fonction publique',
-      'Recrutement de membres réguliers de la GRC. Programme de formation complet. Anglais et/ou français.','2026-07-01','https://www.rcmp-grc.gc.ca/fr/carrieres/',''),
-    R('c','Prix de l\'Innovation Sociale CEMAC','Commission de la CEMAC','International','','Innovation',
-      'Concours pour projets d\'innovation sociale dans les 6 pays de la CEMAC. Dotation de 15 000 USD.','2026-08-15','https://www.cemac.int/',''),
+    R('c','Concours Fonction Publique — Cameroun 2026','Fonction Publique Cameroonaise','Cameroun','','Fonction publique',
+      'Recrutement inspecteurs contrôle, attachés, agents. Tous cursus. Inscription ligne : minfi.cm','2026-05-20','https://www.minfi.cm/','urgent'),
+    R('c','Hackathon African Fintech — AMTC','Alliance pour Marché Tech Crypto','Afrique du Sud','','Innovation',
+      'Concours fintech meilleure solution Afrique. 5000 USD prizes top 5. Johannesburg. Avril-mai 2026.','2026-05-31','https://amtcafrica.com/hackathon','new'),
+    R('c','Prix Jeune Reporter Francophone 2026','Reporters Sans Frontières','International','','Artistique',
+      'Meilleurs reportages jeunes 18-30 ans francophones. Presse écrite/web/audio. Prix 3000-6000€.','2026-08-15','https://rsf.org/',''),
+    R('c','Concours Policier — GRC Canada','Gendarmerie Royale Canada','Canada','','Fonction publique',
+      'Recrutement constables réguliers. Candidats internationaux acceptés. Formation fournie, rémunérée.','2026-06-30','https://www.rcmp-grc.gc.ca/fr/carrieres/',''),
+    R('c','Concours Agriculture Innovante — NEPAD','Union Africaine / NEPAD','International','','Innovation',
+      'Innovations agritech Afrique. 15 finalistes. 20000 USD Grand Prix. Abuja novembre 2026.','2026-09-30','https://www.nepad.org/','new'),
+    R('c','Challenge Innovation ONU — Agenda2030','Nations Unies','International','','Innovation',
+      'Projets innovations ODD. Grants 50k USD sélectionnés. Tous pays. Envoi dossier en ligne.','2026-07-31','https://www.un.org/en/','new'),
+    R('c','Concours Excellence Académique — Senium','Senium Education Africa','Cameroun','','Académique',
+      'Bourses excellence académique étudiants. Master/Doctorat. Sélection dossiers tous pays Afrique.','2026-06-15','https://www.senium-africa.org/','cam'),
+    R('c','Grand Prix Littéraire Africain 2026','Académie Africaine Lettres','International','','Artistique',
+      'Romans/nouvelles auteurs africains. Lauréat publication + 5000€. Clôture septembre 2026.','2026-09-30','https://www.acad-arts-africa.org/','new'),
+    R('c','Concours Startup Africa — Alibaba','Alibaba eFounders Fellows','International','','Innovation',
+      'Startups Afrique orientation commerce/tech. Coaching international. Accès réseau Alibaba.','2026-08-31','https://www.alibabagroup.com/en/global/careers',''),
+    R('c','Défi Innovation Santé — Bill Gates Foundation','Bill & Melinda Gates Foundation','International','','Innovation',
+      'Solutions innovantes paludisme/VIH Afrique. Grants 100k-500k USD. Prochain appel septembre.','2026-09-15','https://www.gatesfoundation.org/',''),
+    R('c','Concours Fonction Publique Quebec','Gouvernement du Québec','Canada','','Fonction publique',
+      'Agents administration québécoise. Francophones/bilingues prioritaires. Examen écrit + entrevue.','2026-05-31','https://www.carrieres.gouv.qc.ca/',''),
+    R('c','Hackathon Santé Mondiale — MIT','MIT D-Lab','International','','Innovation',
+      'Solutions sanitaires pays bas revenu. Coaching MIT. Mars-avril 2026. Équipes 3-5 personnes.','2026-04-30','https://d-lab.mit.edu/',''),
+    R('c','Prix Leadership Jeunesse — OIF','Organisation Internationale Francophonie','International','','Innovation',
+      'Leaders jeunes 18-35 ans. Impact communautaire/environnemental. Prix 5000 EUR. Octobre 2026.','2026-10-15','https://www.francophonie.org/',''),
+    R('c','Challenge IA Education — Google.org','Google Craig Foundation','International','','Innovation',
+      'IA pour apprentissage Afrique subsaharienne. Seed funding 10k USD. Equipes 2+ personnes.','2026-08-01','https://about.google/outreach/education/',''),
+    R('c','Concours Environnement UNEP','PNUE Programme Nations Unies Env.','International','','Innovation',
+      'Jeunes champions climat Afrique. Volontariat + allocations. Dakar décembre 2026.','2026-11-30','https://www.unep.org/',''),
+    R('c','Concours Journalisme BBC Learning','BBC World Service','International','','Artistique',
+      'Journalistes émergents Afrique. Stages BBC Londres. Candidature portfolio + vidéo 3 min.','2026-07-15','https://www.bbc.com/careers/',''),
+    R('c','Grand Défi Innovation Agricole — Google','Google AI','Afrique du Sud','','Innovation',
+      'IA agriculture Afrique australe. Best pitch 200k ZAR. Johannesburg juillet 2026.','2026-07-31','https://about.google/outreach/',''),
+    R('c','Concours Musique Francophone #OIF2026','OIF Music Awards','International','','Artistique',
+      'Jeunes musiciens francophones. Compétition streaming + live. Grand-mère Sfax (Tunisie) juin 2026.','2026-06-20','https://www.francophonie.org/',''),
+    R('c','Prize African Solutions — Elsevier','Elsevier Research Intelligence','International','','Innovation',
+      'Meilleure recherche appliquée Afrique. Chercheurs doctorants/jeunes docs. 10000€ prix.','2026-08-31','https://www.elsevier.com/',''),
+    R('c','Concours Employabilité Jeunes — ILOMEJ','ILO/OIT Mali','Mali','','Fonction publique',
+      'Compétences employabilité jeunes Sahel. Programme certification 3 mois. Bamako démarrage.','2026-06-01','https://www.ilo.org/',''),
   ];
 
-  // ════════════════════════════════════════════════
-  // BOURSES D'ÉTUDES & FINANCEMENTS ÉCONOMIQUES
-  // ════════════════════════════════════════════════
   db.b = [
-    // ── BOURSES D'ÉTUDES ──
-    R('b','Bourse L3 Mathématiques au féminin — 11 000 €','Institut Polytechnique de Paris / Paris-Saclay','France','','Licence',
-      '10 bourses pour Licence 3 Mathématiques (Math, Physique, Informatique, Économie). Aucune procédure Campus France requise.','2026-04-30','https://www.ip-paris.fr/education/bourses/','urgent'),
-    R('b','Bourse Graduate Lille — 8 500 €','Université de Lille','France','','Master',
-      '21 graduate schools : Psychologie, Management, Énergie, Chimie, Droit, Journalisme, Biologie, Informatique, Cybersécurité... Sans Campus France.','2026-04-30','https://www.univ-lille.fr/etudes/bourses-et-aides-financieres/','urgent'),
-    R('b','Bourse TIGER — Santé publique — 10 000 €','Université de Paris / EHESP','France','','Master',
-      'Master Méthodes quantitatives en Santé et Master Santé publique, sociétés et développements. Sans Campus France.','2026-05-11','https://www.ehesp.fr/en/programs/masters/','urgent'),
-    R('b','Bourse PRAIRIE — Intelligence Artificielle — 12 000 €','Université PSL Paris','France','','Master',
-      'Master en intelligence artificielle et domaines associés à l\'Université PSL Paris. Sans Campus France.','2026-06-08','https://prairie-institute.fr/prairie-master-scholarships/','new'),
-    R('b','Bourse FMJHCare — Mathématiques — 11 000 €','Paris-Saclay / Institut Polytechnique de Paris','France','','Master',
-      'Licence et Master en mathématiques fondamentales ou appliquées. Sans procédure Campus France.','2026-06-14','https://www.fondation-hadamard.fr/fr/bourses/','new'),
-    R('b','Bourse Excellence Eiffel — Master et Doctorat','Campus France / Gouvernement français','France','','Master',
-      'Programme phare pour étudiants étrangers de haut niveau. Couvre inscription, logement et allocation mensuelle.','2026-05-10','https://www.campusfrance.org/fr/eiffel-excellence-scholarship-programme',''),
-    R('b','Bourse Fulbright — Master et Doctorat USA','Programme Fulbright','États-Unis','','Master',
-      'Financement complet aux USA : scolarité, vol, assurance, allocation mensuelle. Tous domaines. Candidature via ambassade US.','2026-09-30','https://foreign.fulbrightonline.org/applicants/','new'),
-    R('b','Bourse MEXT — Gouvernement japonais','Gouvernement japonais','Japon','','Tous niveaux',
-      'Licence, Master et Doctorat au Japon. Financement complet : scolarité, logement, allocation. Candidature via ambassade du Japon.','2026-12-31','https://www.studyinjapan.go.jp/en/smap-stopj-applications-government.html',''),
-    R('b','Bourse Commonwealth 2026/2027','Commonwealth Scholarship Commission','Royaume-Uni','','Master',
-      'Financement complet pour Master ou Doctorat au Royaume-Uni. Ouverte aux ressortissants du Commonwealth dont le Cameroun.','2026-07-31','https://cscuk.fcdo.gov.uk/apply/',''),
-    R('b','Bourse DAAD Leadership for Africa — Cameroun','DAAD Allemagne','Allemagne','','Master',
-      'Master tuition-free en Allemagne pour diplômés du Cameroun, Sénégal et Togo. Programme officiel DAAD. Couverture complète.','2026-07-31','https://www.daad.de/en/the-daad/intersecting-dimensions-topics/sustainable-development/funding-programmes/funding-programmes-for-students-a-z/leadership-for-africa/scholarship-west-and-central-africa/','new'),
-    R('b','Bourse WASCAL — Changement climatique','WASCAL / Gouvernement allemand','Allemagne','','Master',
-      'Master et Doctorat en changement climatique pour étudiants d\'Afrique de l\'Ouest et Centrale. Financement complet BMBF.','2026-04-30','https://wascal.org/scholarships/','urgent'),
-    R('b','Bourse Banque Mondiale WBGSP — fenêtre 2','Banque Mondiale','International','','Master',
-      'Fenêtre 2 : 30 mars–29 mai 2026. Masters liés au développement dans 24 universités mondiales. Scolarité, allocation, vol.','2026-05-29','https://www.worldbank.org/en/programs/scholarships/jj-wbgsp',''),
-    R('b','Bourse Mastercard Foundation Scholars Program','Mastercard Foundation','International','','Master',
-      'Programme pour jeunes leaders africains. Candidature via les universités partenaires (dont universités africaines).','2026-06-01','https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/',''),
-    R('b','Swiss Government Excellence Scholarships','Confédération suisse','Suisse','','Postdoc',
-      'Bourses pour jeunes chercheurs (Master ou PhD) de 180+ pays. Couverture complète : scolarité, logement, assurance.','2026-08-15','https://www.sbfi.admin.ch/sbfi/fr/home/bildung/scholarships.html',''),
-    R('b','Bourse PAU — Pan African University','Union Africaine','International','','Master',
-      'Master et Doctorat pour étudiants africains dans 5 hubs : eau, énergie, espace, gouvernance, sciences de la vie.','2026-05-15','https://pau.ac.ug/admissions/how-to-apply',''),
-    R('b','Bourse Erasmus+ — Mobilité Afrique-Europe','Union Européenne / Erasmus+','International','','Master',
-      'Financement de mobilités académiques entre universités africaines et européennes. Allocation mensuelle et voyage inclus.','2026-06-30','https://erasmus-plus.ec.europa.eu/opportunities/individuals/students','new'),
-    R('b','Bourse Émile Boutmy — Sciences Po Paris','Sciences Po Paris','France','','Master',
-      'Pour étudiants non européens au meilleur dossier académique. Jusqu\'à 12 000 € par an. Dépôt en ligne.','2026-05-15','https://www.sciencespo.fr/admissions/fr/bourses.html',''),
-    R('b','Bourse AUF — Francophonie numérique','Agence Universitaire de la Francophonie','International','','Formation',
-      'Formations en ligne et présentiel dans les domaines du numérique, management et développement durable.','2026-06-15','https://www.auf.org/nos-actions/bourses-et-formations/','new'),
-    R('b','Bourse IHE Delft — Eau et ingénierie','IHE Delft Institute for Water Education','Pays-Bas','','Master',
-      'Master en ressources en eau et assainissement. Bourse NFP pour pays en développement.','2026-05-31','https://www.un-ihe.org/nfp-scholarships',''),
-    R('b','Bourse Wageningen — Sécurité alimentaire','Université de Wageningen','Pays-Bas','','Master',
-      'Master en sciences de l\'alimentation, agriculture durable et environnement. Référence mondiale en agronomie.','2026-05-01','https://www.wur.nl/en/education-programmes/master/scholarships.htm',''),
-    R('b','Bourse NOHA — Action humanitaire internationale','Université catholique de Louvain','Belgique','','Master',
-      'Master européen en action humanitaire internationale. Financement partiel pour étudiants africains.','2026-06-15','https://nohamaster.eu/apply',''),
-    R('b','Bourse MINESUP — Études supérieures à l\'étranger','Ministère de l\'Enseignement Supérieur du Cameroun','Cameroun','','Doctorat',
-      'Bourses nationales pour Master ou Doctorat à l\'étranger. Disciplines scientifiques prioritaires.','2026-05-20','https://www.minesup.gov.cm/','cam'),
-    R('b','Bourse MINRESI — Recherche scientifique','Ministère de la Recherche Scientifique','Cameroun','','Doctorat',
-      'Bourses de Doctorat pour chercheurs camerounais : agriculture, santé, énergies renouvelables.','2026-05-31','https://www.minresi.cm/','cam'),
-    R('b','Bourse Institut Pasteur — Recherche biomédicale','Centre Pasteur du Cameroun','Cameroun','','Doctorat',
-      'Bourses de thèse en maladies infectieuses et virologie. Cotutelle avec universités européennes possible.','2026-05-15','https://www.pasteur-yaounde.org/','cam'),
-    R('b','Bourse CETIC — IA et cybersécurité','Centre d\'Excellence en TIC Yaoundé','Cameroun','','Master',
-      'Master en IA, cybersécurité et développement logiciel. Financement Banque mondiale. Yaoundé.','2026-08-01','https://www.cetic.cm/','cam'),
-    R('b','Bourse OFID — Étudiants pays en développement','OPEC Fund for International Development','International','','Master',
-      'Master dans des universités partenaires pour étudiants de pays en développement. Couverture partielle ou complète.','2026-06-30','https://www.ofid.org/OFID-Scholarship-Award',''),
-    R('b','Bourse Kofi Annan — Leaders africains','Fondation Kofi Annan','International','','Master',
-      'Programme pour futurs leaders africains dans la gouvernance, les droits humains et le développement.','2026-07-01','https://www.kofiannanfoundation.org/',''),
-    R('b','Bourse ACBF — Politiques publiques','Africa Capacity Building Foundation','International','','Master',
-      'Masters en politiques publiques, économie et gestion du développement dans des universités partenaires.','2026-06-01','https://www.acbf-pact.org/',''),
-    R('b','Bourse AFD — Développement durable','Agence Française de Développement','France','','Master',
-      'Masters en développement durable et transition écologique dans des universités françaises.','2026-06-30','https://www.afd.fr/fr/la-afd/open-data/appels-a-projets',''),
-    R('b','Bourse Banque Africaine de Développement — ADB','Banque Africaine de Développement','International','','Master',
-      'Bourses pour Africains admis dans des programmes de Master dans des universités partenaires.','2026-07-31','https://www.afdb.org/en/about/careers/','new'),
-    R('b','Bourse FMSB — Faculté de Médecine Ngaoundéré','Université de Ngaoundéré','Cameroun','Adamaoua','Licence',
-      'Bourses d\'excellence pour meilleurs bacheliers de l\'Adamaoua entrant en Médecine et Sciences Biomédicales.','2026-07-30','https://www.univ-ndere.cm/','cam'),
-    // ── FINANCEMENTS ÉCONOMIQUES (fusionnés ici) ──
-    R('b','Tony Elumelu Foundation — 5 000 USD entrepreneurs africains','Fondation Tony Elumelu','International','','Financement PME',
-      '5 000 jeunes entrepreneurs africains sélectionnés. 5 000 USD de capital + 6 mois de formation intensive et mentorat.','2026-05-31','https://www.tonyelumelufoundation.org/teep/','new'),
-    R('b','Young Africa Works — Mastercard Foundation','Mastercard Foundation / MEDA','International','','Programme',
-      'Accompagnement de 30 millions jeunes africains vers un emploi décent. Formation, financement et mise en réseau.','2026-06-15','https://mastercardfdn.org/en/what-we-do/young-africa-works/','new'),
-    R('b','Boost Africa — Proparco / AFD — startups africaines','Proparco / AFD','International','','Financement PME',
-      'Financement startups et PME africaines innovantes. Tickets 500 000 à 2 millions €. Impact social prioritaire.','2026-09-30','https://www.proparco.fr/fr/enjeux/boost-africa','new'),
-    R('b','Appel à projets PME — OIT/BIT 2026','Bureau International du Travail','International','','Financement PME',
-      'Financement jusqu\'à 50 000 USD pour PME africaines développant des solutions d\'emploi décent.','2026-06-30','https://www.ilo.org/global/about-the-ilo/how-the-ilo-works/departments-and-offices/program/enterprise/lang--fr/index.htm','new'),
-    R('b','Appel à projets Économie verte — AFD Afrique','AFD Agence Française de Développement','International','','Subvention',
-      'Financement de projets d\'économie verte en Afrique subsaharienne. 50 000 à 500 000 €. Énergie, agriculture, déchets.','2026-06-30','https://www.afd.fr/fr/la-afd/open-data/appels-a-projets','new'),
-    R('b','Fonds Francophonie Économique 2026','Organisation Internationale de la Francophonie','International','','Programme',
-      'Appel à projets pour entreprises francophones innovantes. Transition numérique, économie verte, industries créatives.','2026-07-15','https://www.francophonie.org/','new'),
-    R('b','Programme StartUp Africa 2026 — Union Africaine','Union Africaine — Agenda 2063','International','','Programme',
-      'Compétition panafricaine pour startups technologiques. 10 lauréats reçoivent 30 000 USD chacun.','2026-06-30','https://au.int/fr/agenda2063/','new'),
-    R('b','Prix Innovation Sociale — Banque Africaine de Développement','Banque Africaine de Développement','International','','Programme',
-      'Meilleurs projets d\'innovation sociale en Afrique. Dotation 25 000 USD. Santé, eau, éducation, alimentation.','2026-07-31','https://www.afdb.org/en/about/careers/','new'),
-    R('b','GrowthAfrica — Leadership entrepreneurial Afrique','GrowthAfrica','International','','Formation',
-      'Programme de formation pour entrepreneurs africains à fort potentiel. Accès à réseaux d\'investisseurs et marchés.','2026-06-30','https://growthafrica.com/programs/','new'),
-    R('b','Programme Agri-Jeunes — FAO / FIDA Cameroun','FAO / FIDA Cameroun','Cameroun','','Programme',
-      'Accompagnement de 500 jeunes agriculteurs camerounais. Création et modernisation d\'exploitations. Financement et formation.','2026-08-01','https://www.ifad.org/fr/','cam'),
-    R('b','Subvention entrepreneuriat féminin — FEICOM','Fonds Spécial d\'Équipement et d\'Intervention','Cameroun','','Subvention',
-      'Subventions 500 000 à 3 millions FCFA pour femmes entrepreneuses dans communes rurales. Agriculture, artisanat.','2026-07-01','https://www.feicom.cm/','cam'),
-    R('b','Programme PADL — Développement local Adamaoua','PNUD / Union Européenne','Cameroun','Adamaoua','Programme',
-      'Micro-projets de développement local en Adamaoua : agriculture, eau, artisanat, santé communautaire.','2026-08-01','https://jobs.undp.org/cj_view_jobs.cfm','cam'),
-    R('b','Crédit agricole bonifié — Cameroun','Crédit Agricole du Cameroun','Cameroun','','Financement PME',
-      'Crédits agricoles à taux bonifiés pour coopératives et exploitants. Cultures vivrières prioritaires.','2026-09-30','https://www.minader.cm/','cam'),
-    R('b','Incubateur MSME — Banque Mondiale / IFC','IFC International Finance Corporation','International','','Programme',
-      'Accélération pour TPE/PME africaines. Accès au financement, coaching, mise en réseau avec investisseurs.','2026-08-15','https://www.ifc.org/en/industries/financial-institutions/msme-finance','new'),
-    R('b','Appel à projets AgriTech — MINADER Cameroun','Ministère de l\'Agriculture du Cameroun','Cameroun','','Programme',
-      'Financement de projets technologiques dans l\'agriculture camerounaise. PME et coopératives invitées.','2026-06-30','https://www.minader.cm/','cam'),
-    R('b','Programme MADE IN CAMEROUN 2026 — CCIMA','Chambre de Commerce et d\'Industrie','Cameroun','Littoral','Programme',
-      'Accompagnement de 200 PME vers la certification et l\'exportation. Formation, labellisation, accès marchés.','2026-07-01','https://www.ccima.cm/','cam'),
-    R('b','Fonds de garantie PME — GICAM','Groupement Inter-patronal du Cameroun','Cameroun','','Financement PME',
-      'Accès facilité aux crédits bancaires pour PME. Couverture jusqu\'à 70% du risque crédit.','2026-12-31','https://www.legicam.cm/','cam'),
-    R('b','Appel d\'offres électrification rurale — ENEO','ENEO Cameroun','Cameroun','Grand Nord','Programme',
-      'Électrification de 30 villages du Grand Nord. Appel d\'offres ouvert aux entreprises locales certifiées.','2026-06-01','https://www.eneo.cm/','cam'),
-    R('b','Subvention pêche et aquaculture — MINEPIA','Ministère de l\'Élevage et des Pêches','Cameroun','Littoral','Subvention',
-      'Équipements de pêche et aquaculture pour coopératives du Littoral. Financement 60% État, 40% apport.','2026-07-15','https://www.minepia.cm/','cam'),
-    R('b','Appel à projets économie circulaire — MINEPDED','Ministère de l\'Environnement du Cameroun','Cameroun','','Programme',
-      'Projets de recyclage et valorisation des déchets. Financement 2 à 10 millions FCFA par projet sélectionné.','2026-08-15','https://www.minepded.cm/','cam'),
+    R('b','Bourse Chevening 2026/2027 — Royaume-Uni','Gouvernement Britannique','Royaume-Uni','','Master',
+      'Master prestigieux UK : tous domaines. Financement complet+allocation. Candidature en ligne avant mai 2026.','2026-05-06','https://www.chevening.org/','urgent'),
+    R('b','Bourse Africana Senior Fellowship — Princeton','Princeton University','États-Unis','','Postdoc',
+      'Postdoc études africaines Princeton 5000 USD/mois. Housing+health. New Jersey. Candidature urgente.','2026-04-30','https://africanastudies.org/','urgent'),
+    R('b','Bourse Norwegian Government Scholarship — 8 pays','Governement Norvège','Norvège','','Master',
+      'Masters universités norwegiennes : tous domaines. Tuition gratuite+allocation 11000 NOK/mois.','2026-06-01','https://www.norad.no/en/front/',''),
+    R('b','Bourse Koshland Science Journalist Fellowship','Koshland Foundation','États-Unis','','Formation',
+      'Journalistes scientifiques 6 mois Stanford. Tous frais couverts. Candidature finale mai 2026.','2026-05-15','https://www.koshlandfoundation.org/',''),
+    R('b','Bourse TWAS Postdoctoral Fellowship','Academy of Sciences World','Suisse','','Postdoc',
+      'Postdoc sciences/tech chercheurs Afrique. Labo recherche mondial de choix. Allocation 1500 USD/mois.','2026-06-30','https://www.twas.org/',''),
+    R('b','Bourse AFS Intercultural Exchanges — Afrique','AFS International','International','','Formation',
+      'Échanges culturels lycéens Afrique-Europe-Amériques. Bourse totale pour excellents étudiants.','2026-05-31','https://www.afs.org/',''),
+    R('b','Bourse LPDP Beasiswa Indonesia 2026','Kementerian Pendidikan Indonesia','Indonésie','','Master',
+      'Master/Doctorat universités indonésiennes : topik apapun. Tuition gratuite, assurance sante. Daftar.','2026-06-15','https://www.lpdp.kemenkeu.go.id/',''),
+    R('b','Bourse Excellence EMBO — Biologie','EMBO Postdoctoral Fellowships','Europe','','Postdoc',
+      '2 ans Europe labo choix. 4100 €/mois + frais recherche. Biosciences. Clôture avril 2026.','2026-04-30','https://www.embo.org/funding/fellowships-grants/postdoctoral-fellowships/',''),
+    R('b','Grant Recherche — Wellcome Trust Clayton','Wellcome Trust','Royaume-Uni','','Doctorat',
+      'Doctorat sciences biomedicales 100k GBP. Universités UK. Chercheurs 4+ ans experience.','2026-07-07','https://wellcome.org/grant-funding',''),
+    R('b','Bourse TWAS pour Scientifiques Pays Sud','TWAS Academy','Suisse','','Doctorat',
+      'Doctorat pays developpes pour chercheurs Afrique/Asie/Amerique du Sud. Financement complet PhD.','2026-06-01','https://www.twas.org/',''),
+    R('b','Scholarship Joint Japan World Bank —JJWBGSP','Banque Mondiale / Japon','Japon','','Master',
+      'Masters Japon universités partenaires. Tuition 100% gratuit + subsistence 14500 JPY/mois.','2026-05-15','https://www.worldbank.org/en/programs/scholarships/jj-wbgsp',''),
+    R('b','Bourse Riotinto — Développement Minier','Rio Tinto Foundation','Australie','','Master',
+      'Master Sciences mines/geology Australie. Pour ressortissants pays en developpement. AUD 25k/an.','2026-06-30','https://www.riotinto.com/en/community/foundation',''),
+    R('b','Bourse ADB Scholarship Program 2026 — Asian DB','Banque Asiatique Developpement','Asie','','Master',
+      'Masters Asie : developement, energies, eau, transport. Universites ADB partenaires. Tuition gratuite.','2026-05-20','https://www.adb.org/site/careers/scholarships',''),
+    R('b','Grant Jeunes Entrepreneurs — Impact Investors','The Omidyar Network','International','','Financement PME',
+      'Startup impact social Afrique: 50k-500k USD. Thème: educacion, sante, energie, agriculture.','2026-08-31','https://www.omidyar.com/','new'),
+    R('b','Subvention Entrepreneuria Feminine — UN Women','ONU Femmes','International','','Financement PME',
+      'Femmes entrepreneurs Afrique: 25k-100k USD projets innovants. Genre, economie, technologie.','2026-07-15','https://www.unwomen.org/en/','new'),
+    R('b','AfDB Grant Facility — PME Innovation','Banque Afr. Developpement','International','','Financement PME',
+      'PME Afrique innovantes: 25k-250k USD. Agriculture tech, fintech, renewable energy prioritaire.','2026-08-15','https://www.afdb.org/en/about/careers/','new'),
+    R('b','Seed Fund Wingu — Water Sanitation','Wingu Kenya NGO','Kenya','','Subvention',
+      'Projectos agua/saneamiento Afrique: 5k-50k USD. Reports impact sosial. Ciclo continu.','2026-12-31','https://www.wingukenya.org/',''),
+    R('b','Climate Adaptation Fund — Vert','Adaptation Fund','International','','Subvention',
+      'Projets adaptation climate Afrique: 100k+ USD. Resilience, transition 100% renewable energy.','2026-06-30','https://www.adaptation-undp.org/',''),
+    R('b','CGAP Microfinance Grant 2026','CGAP / World Bank','International','','Subvention',
+      'Institutions microfinance Afrique: 50k-200k USD. Digital inclusion, financial literacy.','2026-07-31','https://www.cgap.org/','new'),
+    R('b','Mastercard Foundation Scholars — African Universities','Mastercard Fdn','International','','Master',
+      'Scholars Afrique universites tier-1 mondiale 200+ bourses. Master + leadership formation. Full grants.','2026-06-01','https://mastercardfdn.org/','new'),
+    R('b','DAAD Master Afrique Francophone 2026/2027','DAAD Allemagne','Allemagne','','Master',
+      'Masters universite allemandes paye francomophone Afrique: tuition free + 861€/mois. Inscription mai.','2026-05-31','https://www.daad.de/en/',''),
+    R('b','Erasmus Mundus Joint Masters 2026/2027','EACEA UE','Union Europeenne','','Master',
+      'Masters conjoint europeen+sud 360 credits 2 annees. Bourse Erasmus pour Africains.','2026-05-15','https://erasmus-plus.ec.europa.eu/',''),
+    R('b','Bourse CARICOM Scholarship Cameroun',CARICOM Secretariat','International','','Master',
+      'Masters universites Amerique du nord: tous domaines. Scholar CARICOM programme extension.','2026-07-30','https://www.caricom.org/',''),
+    R('b','Fulbright Scholarship US 2027-2028','US State Department','États-Unis','','Master',
+      'Masters/Doctorat USA: tous universites etats. Financement complet + allocations. Deadline sept 2026.','2026-09-30','https://foreign.fulbrightonline.org/',''),
   ];
 }
 
@@ -780,7 +667,6 @@ function card(t,i){
   const expired  = dl !== null && dl < 0;
   const closing  = dl !== null && dl >= 0 && dl <= 5;
 
-  // ── Deadline label ──
   let dlTxt='', dlCls='cdl';
   if(i.date){
     if(expired){
@@ -800,7 +686,6 @@ function card(t,i){
     }
   }
 
-  // ── Tag badge ──
   let tb = '';
   if(expired)              tb = '<span class="tag t-expired">Terminé</span>';
   else if(closing||i.tag==='urgent') tb = '<span class="tag t-closing">⏰ Urgent</span>';
@@ -810,9 +695,6 @@ function card(t,i){
 
   const rb = i.region ? `<span class="creg">${i.region}</span>` : '';
 
-  // ── Postuler button ──
-  // Règle : lien direct vers page officielle de candidature.
-  // Si lien vide (sites gouvernementaux instables) → inviter via WhatsApp avec tous les détails.
   let postBtn = '';
   if(i.lien && (i.lien.startsWith('http')||i.lien.startsWith('mailto:'))){
     if(expired){
@@ -822,7 +704,6 @@ function card(t,i){
       postBtn = `<a class="btn-post" style="background:${TC[t]}" href="${i.lien}" target="_blank" rel="noopener noreferrer">${label}</a>`;
     }
   } else if(!expired){
-    // Pas de lien direct → WhatsApp avec tous les détails de l'offre
     postBtn = `<a class="cbtn cbtn-wa" href="${waInfoMsg(i)}" target="_blank" rel="noopener">📲 Info &amp; Postuler</a>`;
   }
 
@@ -848,18 +729,18 @@ function card(t,i){
   </article>`;
 }
 
-// Message WhatsApp avec détails complets de l'offre + lien portail
 function waShareMsg(i){
   const lien = (i.lien&&i.lien.startsWith('http')) ? i.lien : SITE;
   const dl   = i.date ? `\n📅 Clôture : ${fmtD(i.date)}` : '';
   return `📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${dl}\n\n${i.desc||''}\n\n🔗 Postuler ici :\n${lien}\n\n📡 Plus d'opportunités :\n${SITE}`;
 }
-// Pour les offres sans lien → WhatsApp avec instructions détaillées
+
 function waInfoMsg(i){
   const dl = i.date ? `\n📅 Clôture : ${fmtD(i.date)}` : '';
   const txt = `📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${i.region?' ('+i.region+')':''}${dl}\n\n${i.desc||''}\n\n💬 Pour postuler, contactez directement *${i.org}* ou renseignez-vous sur leur site officiel.\n\n📡 Portail Actualités Internationales :\n${SITE}`;
   return `https://wa.me/?text=${encodeURIComponent(txt)}`;
 }
+
 function fmtD(d){ return new Date(d).toLocaleDateString('fr-CA',{day:'2-digit',month:'long',year:'numeric'}); }
 
 function updKPI(){
@@ -868,6 +749,7 @@ function updKPI(){
     animN('k'+t, db[t].length);
   });
 }
+
 function animN(id,n){
   const el=document.getElementById(id); if(!el)return;
   let v=0, inc=Math.max(1,Math.ceil(n/40));
@@ -883,6 +765,7 @@ document.querySelectorAll('.tab').forEach(b=>{
     document.getElementById('p'+b.dataset.t).classList.add('active');
   });
 });
+
 function applyS(t,v){ FS[t]=v; renderGrid(t); }
 function applyT(t,v){ FT[t]=v; renderGrid(t); }
 function applyP(t,v){ FP[t]=v; renderGrid(t); }
@@ -893,6 +776,7 @@ const MH = {
   c:{add:'Nouveau concours',edit:'Modifier le concours'},
   b:{add:"Nouvelle bourse / financement",edit:"Modifier l'opportunité"}
 };
+
 function openAdd(t){
   if(!document.body.classList.contains('admin'))return;
   CUR=t; EID=null;
@@ -901,6 +785,7 @@ function openAdd(t){
   clearF(); openOv('ov-form');
   setTimeout(()=>document.getElementById('fi-titre').focus(),80);
 }
+
 function openEdit(t,id){
   const item=db[t].find(i=>i.id===id); if(!item)return;
   CUR=t; EID=id;
@@ -912,6 +797,7 @@ function openEdit(t,id){
   document.getElementById('fi-tag').value = item.tag||'';
   openOv('ov-form');
 }
+
 function clearF(){
   ['fi-id','fi-titre','fi-org','fi-cat','fi-desc','fi-lien'].forEach(x=>document.getElementById(x).value='');
   document.getElementById('fi-pays').value='';
@@ -919,6 +805,7 @@ function clearF(){
   document.getElementById('fi-date').value='';
   document.getElementById('fi-tag').value='';
 }
+
 async function saveEntry(){
   const titre=document.getElementById('fi-titre').value.trim();
   const org=document.getElementById('fi-org').value.trim();
@@ -940,10 +827,12 @@ async function saveEntry(){
   showToast(EID?'Entrée mise à jour.':'Opportunité publiée !','ok');
   if(!EID) notifAdmin(CUR,entry);
 }
+
 function delEntry(t,id){
   if(!confirm('Supprimer cette entrée ?'))return;
   db[t]=db[t].filter(i=>i.id!==id); save(); renderAll(); showToast('Entrée supprimée.');
 }
+
 async function notifAdmin(t,e){
   try {
     await emailjs.send(EJS_SVC, EJS_TPL, {
@@ -954,7 +843,7 @@ async function notifAdmin(t,e){
   } catch(err){ console.warn('Email admin:',err); }
 }
 
-// ── ABONNEMENT : email à l'admin ET à l'abonné ──
+// ABONNEMENT
 async function doSub(){
   const email = document.getElementById('sub-email').value.trim();
   const nom   = document.getElementById('sub-nom').value.trim();
@@ -975,7 +864,6 @@ async function doSub(){
   localStorage.setItem('ai_subs', JSON.stringify(subs));
   msgEl.textContent='✅ Abonnement confirmé ! Vérifiez votre boîte email.'; msgEl.className='ok';
 
-  // 1. Email de notification à l'administrateur
   const msgAdmin =
     `🔔 NOUVEL ABONNÉ AU PORTAIL\n\n`+
     `Nom : ${nom||'Non renseigné'}\n`+
@@ -986,7 +874,6 @@ async function doSub(){
     `Portail : ${SITE}\n`+
     `WhatsApp : ${WA_GROUP}`;
 
-  // 2. Email de confirmation à l'abonné
   const msgUser =
     `Bonjour ${nom||''},\n\n`+
     `✅ Votre abonnement au Portail Opportunités d'Actualités Internationales est confirmé !\n\n`+
@@ -1001,7 +888,6 @@ async function doSub(){
     `Pour vous désabonner, répondez à cet email avec "DÉSABONNEMENT".`;
 
   try {
-    // Notif admin
     await emailjs.send(EJS_SVC, EJS_TPL, {
       from_name:'Portail ActuInter',
       reply_to:email,
@@ -1009,7 +895,6 @@ async function doSub(){
       subject:`🔔 Nouvel abonné : ${nom||email}`,
       message:msgAdmin
     });
-    // Confirmation abonné
     await emailjs.send(EJS_SVC, EJS_TPL, {
       from_name:'Actualités Internationales',
       reply_to:ADMIN_MAIL,
@@ -1035,6 +920,7 @@ function openShare(t,id){
   SHARE._link = postLien;
   openOv('ov-share');
 }
+
 function copyLink(){
   const url = SHARE?._link || SITE;
   navigator.clipboard.writeText(url)
@@ -1076,7 +962,7 @@ function toggleAdmin(){
 }
 
 // INIT
-initPays(); load(); renderAll();
+initPays(); load(); renderAll(); initDailyRefresh();
 </script>
 </body>
 </html>

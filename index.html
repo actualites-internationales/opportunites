@@ -1,968 +1,133 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portail Opportunités — Actualités Internationales</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<title>Portail Opportunités - Actualités Internationales</title>
 <style>
-:root{
-  --bg:#f0f4f8;--paper:#fff;--navy:#1a3a5c;--navy2:#2c5282;
-  --red:#c0392b;--red2:#e74c3c;--gold:#b7860b;--green:#1a6b47;
-  --border:#dce3ed;--muted:#6b7280;--text:#1e293b;--light:#eef2f7;
-  --radius:8px;--sh1:0 1px 4px rgba(26,58,92,.08);
-  --sh2:0 4px 18px rgba(26,58,92,.13);--sh3:0 12px 48px rgba(26,58,92,.18);
-  --ce:#1a3a5c;--cc:#c0392b;--cb:#1a6b47;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#c5d0de;border-radius:3px}
-.hdr{background:var(--navy);height:62px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:500;border-bottom:3px solid var(--red);box-shadow:0 2px 10px rgba(0,0,0,.18)}
-.logo{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:800;color:#fff;background:none;border:none;cursor:pointer;padding:0;transition:opacity .18s;letter-spacing:-.01em}
-.logo:hover{opacity:.85}.logo b{color:#e87c76}
-.hdr-r{display:flex;align-items:center;gap:.55rem}
-.pill{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f0c060;border:1px solid rgba(240,192,96,.45);padding:.22rem .65rem;border-radius:20px}
-.btn-sub{background:var(--red);color:#fff;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.4rem 1rem;border-radius:var(--radius);transition:background .18s;white-space:nowrap}
-.btn-sub:hover{background:var(--red2)}
-.hero{background:linear-gradient(160deg,#1a3a5c 0%,#2c5282 55%,#1a4a6c 100%);padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 70% at 15% 55%,rgba(192,57,43,.13) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 82% 40%,rgba(26,107,71,.1) 0%,transparent 60%)}
-.hero::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:44px 44px}
-.hero-sup{font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#f0c060;margin-bottom:1rem;position:relative;display:inline-flex;align-items:center;gap:.55rem}
-.hero-sup::before,.hero-sup::after{content:'';width:28px;height:1px;background:rgba(240,192,96,.5)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:.75rem;position:relative}
-.hero h1 em{font-style:italic;color:rgba(255,255,255,.52)}
-.hero-desc{font-size:.88rem;color:rgba(255,255,255,.52);max-width:540px;margin:0 auto 2rem;line-height:1.75;position:relative}
-.wa-btn{display:inline-flex;align-items:center;gap:.55rem;background:#25d366;color:#fff;padding:.65rem 1.5rem;border-radius:40px;font-size:.8rem;font-weight:700;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.32);transition:transform .18s,box-shadow .18s;margin-bottom:2.5rem;position:relative}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.48)}
-.wa-dot{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.kpis{display:inline-grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);overflow:hidden}
-.kpi{padding:.85rem 1.8rem;text-align:center}.kpi+.kpi{border-left:1px solid rgba(255,255,255,.1)}
-.kpi strong{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;display:block;line-height:1}
-.kpi small{font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);display:block;margin-top:.2rem}
-.ke{color:#8ab8d8}.kc{color:#e8a0a0}.kb{color:#82c4a4}
-.tabs-bar{position:sticky;top:62px;z-index:400;background:var(--paper);border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto}
-.tab{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:1rem .5rem;border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
-.cnt{font-size:.57rem;font-weight:700;padding:.1rem .38rem;border-radius:20px;background:var(--light);color:var(--muted);min-width:22px;text-align:center;transition:all .2s}
-.tab:hover:not(.on){background:var(--light);color:var(--text)}
-.tab[data-t="e"].on{color:var(--ce);border-bottom-color:var(--ce)}.tab[data-t="e"].on .cnt{background:var(--ce);color:#fff}
-.tab[data-t="c"].on{color:var(--cc);border-bottom-color:var(--cc)}.tab[data-t="c"].on .cnt{background:var(--cc);color:#fff}
-.tab[data-t="b"].on{color:var(--cb);border-bottom-color:var(--cb)}.tab[data-t="b"].on .cnt{background:var(--cb);color:#fff}
-.main{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 5rem}
-.panel{display:none;animation:pIn .26s ease}.panel.active{display:block}
-@keyframes pIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.ptop{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.3rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
-.ptitle{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700}
-.btn-add{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:var(--radius);border:none;cursor:pointer;color:#fff;box-shadow:var(--sh1);transition:filter .18s,transform .14s;display:none}
-.btn-add:hover{filter:brightness(1.1);transform:translateY(-1px)}
-body.admin .btn-add{display:inline-block}
-.fbar{display:flex;gap:.5rem;margin-bottom:1.4rem;flex-wrap:wrap}
-.fbar input,.fbar select{font-family:'Outfit',sans-serif;font-size:.82rem;padding:.6rem .9rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--paper);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
-.fbar input{flex:1;min-width:180px}
-.fbar input:focus,.fbar select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.07)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
-.card{background:var(--paper);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;position:relative}
-.card:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
-.card.expired{opacity:.62}
-.cbar{height:3px}
-.cbe{background:linear-gradient(90deg,#1a3a5c,#2a6496)}
-.cbc{background:linear-gradient(90deg,#c0392b,#e67e22)}
-.cbb{background:linear-gradient(90deg,#1a6b47,#27ae60)}
-.cbody{padding:1.1rem 1.2rem .85rem;flex:1}
-.ctags{display:flex;gap:.28rem;flex-wrap:wrap;margin-bottom:.6rem}
-.tag{font-size:.57rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.14rem .48rem;border-radius:3px}
-.t-type{background:var(--light);color:var(--muted)}
-.t-new{background:#e8f8ee;color:#145a32;border:1px solid #a9dfbf}
-.t-urgent{background:#fef0ed;color:#922b21;border:1px solid #f1948a}
-.t-cam{background:#fef9e7;color:#7d6608;border:1px solid #f9e79f}
-.t-eco{background:#f0ebff;color:#5a3e8a;border:1px solid #c4a8e8}
-.t-expired{background:#f1f1f1;color:#999;border:1px solid #ddd}
-.t-closing{background:#fff3cd;color:#856404;border:1px solid #ffc107;animation:pw 2s infinite}
-@keyframes pw{0%,100%{opacity:1}50%{opacity:.6}}
-.ctitle{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1.35;color:var(--text);margin-bottom:.38rem}
-.corg{font-size:.74rem;color:var(--muted);margin-bottom:.5rem}
-.creg{display:inline-block;font-size:.6rem;font-weight:600;color:var(--gold);background:rgba(183,134,11,.08);border:1px solid rgba(183,134,11,.28);padding:.1rem .42rem;border-radius:3px;margin-left:.3rem}
-.cdesc{font-size:.78rem;color:#4a5568;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.cfoot{padding:.7rem 1.2rem;border-top:1px solid #edf0f5;background:var(--light);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.35rem}
-.cdl{font-size:.67rem;font-weight:700;color:var(--cc)}
-.cdl.exp-dl{color:#999}.cdl.close-dl{color:#856404}
-.cbtns{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
-.cbtn{font-family:'Outfit',sans-serif;font-size:.66rem;font-weight:600;padding:.28rem .65rem;border-radius:5px;border:1px solid var(--border);background:var(--paper);color:var(--muted);cursor:pointer;transition:all .16s;white-space:nowrap;text-decoration:none;display:inline-block}
-.cbtn:hover{background:var(--light);color:var(--text)}
-.cbtn-wa{border-color:#c8f0d8;background:#f0fff6}
-.cbtn-wa:hover{background:#25d366;border-color:#25d366;color:#fff}
-.btn-post{font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;padding:.3rem .9rem;border-radius:5px;border:none;cursor:pointer;color:#fff;white-space:nowrap;text-decoration:none;display:inline-block;transition:filter .16s,transform .1s}
-.btn-post:hover{filter:brightness(1.12);transform:translateY(-1px)}
-.btn-exp{font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;padding:.3rem .9rem;border-radius:5px;border:none;background:#ccc;color:#fff;white-space:nowrap;display:inline-block;cursor:not-allowed}
-.cadm{position:absolute;top:.5rem;right:.5rem;display:none;gap:.25rem}
-body.admin .card:hover .cadm{display:flex}
-.cadm-btn{font-size:.58rem;font-weight:700;padding:.2rem .48rem;border-radius:4px;border:none;cursor:pointer}
-.cadm-e{background:#fef9c3;color:#854d0e}.cadm-d{background:#fee2e2;color:#991b1b}
-.empty{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--muted)}
-.empty h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:.4rem}
-.ov{display:none;position:fixed;inset:0;z-index:800;background:rgba(10,25,47,.72);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem}
-.ov.open{display:flex}
-.mbox{background:var(--paper);border-radius:12px;box-shadow:var(--sh3);animation:mIn .23s cubic-bezier(.34,1.5,.64,1)}
-@keyframes mIn{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.about-box{width:100%;max-width:490px;overflow:hidden}
-.abt-hdr{background:var(--navy);padding:1.8rem 2rem;position:relative}
-.abt-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#f0c060,var(--green))}
-.abt-hdr h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:#fff;margin-bottom:.22rem}
-.abt-hdr p{font-size:.73rem;color:rgba(255,255,255,.42);font-style:italic}
-.abt-body{padding:1.4rem 2rem}
-.abt-txt{font-size:.82rem;line-height:1.8;color:#4a5568;margin-bottom:1.1rem}
-.abt-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:1.1rem}
-.abt-stat{background:var(--light);border:1px solid var(--border);border-radius:var(--radius);padding:.65rem .9rem}
-.abt-stat strong{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;display:block;color:var(--navy)}
-.abt-stat small{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.abt-wa{display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25d366;color:#fff;padding:.68rem 1.4rem;border-radius:var(--radius);text-decoration:none;font-size:.78rem;font-weight:700;width:100%;border:none;cursor:pointer;transition:filter .18s}
-.abt-wa:hover{filter:brightness(1.08)}
-.abt-foot{padding:.85rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end}
-.form-box{width:100%;max-width:570px;max-height:93vh;overflow-y:auto}
-.mhd{padding:1.3rem 1.6rem .9rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--paper);z-index:2}
-.mhd h2{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700}
-.mclose{width:27px;height:27px;border-radius:50%;border:1px solid var(--border);background:var(--light);color:var(--muted);font-size:.83rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
-.mclose:hover{background:#e5eaf2}
-.mbdy{padding:1.2rem 1.6rem}
-.fg{margin-bottom:.9rem}
-.fg label{display:block;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:.28rem}
-.req{color:var(--red)}
-.fc{width:100%;padding:.6rem .88rem;border:1px solid var(--border);border-radius:var(--radius);font-family:'Outfit',sans-serif;font-size:.84rem;color:var(--text);background:var(--paper);outline:none;transition:border-color .2s,box-shadow .2s}
-.fc:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,92,.07)}
-textarea.fc{resize:vertical;min-height:82px;line-height:1.6}
-.f2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.mft{padding:.85rem 1.6rem 1.3rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:.6rem}
-.btn-cancel{padding:.55rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius);background:transparent;font-family:'Outfit',sans-serif;font-size:.78rem;cursor:pointer;color:var(--muted);transition:background .15s}
-.btn-cancel:hover{background:var(--light)}
-.btn-save{padding:.55rem 1.3rem;border:none;border-radius:var(--radius);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;color:#fff;transition:filter .18s}
-.btn-save:hover{filter:brightness(1.1)}
-.sub-box{width:100%;max-width:410px;overflow:hidden}
-.sub-hdr{background:var(--navy);padding:1.6rem 1.8rem;position:relative}
-.sub-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red)}
-.sub-hdr h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.2rem}
-.sub-hdr p{font-size:.72rem;color:rgba(255,255,255,.42)}
-.sub-bdy{padding:1.3rem 1.8rem 1.6rem}
-.sub-cats{display:flex;flex-direction:column;gap:.38rem;margin:.2rem 0 .7rem}
-.sub-cat{display:flex;align-items:center;gap:.5rem;font-size:.8rem;cursor:pointer;padding:.42rem .65rem;border-radius:var(--radius);border:1px solid var(--border);transition:background .15s}
-.sub-cat:hover{background:var(--light)}.sub-cat input{width:14px;height:14px;cursor:pointer;accent-color:var(--navy)}
-.sub-cta{width:100%;padding:.7rem;border:none;border-radius:var(--radius);font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;background:var(--navy);color:#fff;transition:filter .18s}
-.sub-cta:hover{filter:brightness(1.1)}
-.sub-note{font-size:.66rem;color:var(--muted);text-align:center;margin-top:.55rem}
-#sub-msg{font-size:.74rem;font-weight:500;padding:.42rem .75rem;border-radius:var(--radius);margin-top:.65rem;display:none}
-#sub-msg.ok{background:#e8f8ee;color:#145a32;border:1px solid #a9dfbf;display:block}
-#sub-msg.err{background:#fef0ed;color:#922b21;border:1px solid #f1948a;display:block}
-.share-box{width:100%;max-width:330px;padding:1.6rem;text-align:center}
-.share-box h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.25rem}
-.sh-sub{font-size:.74rem;color:var(--muted);margin-bottom:1.1rem;font-style:italic;display:block}
-.sh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
-.sh-btn{display:flex;flex-direction:column;align-items:center;gap:.28rem;padding:.6rem .35rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--light);cursor:pointer;text-decoration:none;transition:transform .14s,box-shadow .14s}
-.sh-btn:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
-.sh-ico{font-size:1.1rem;line-height:1;font-weight:700}
-.sh-lbl{font-size:.56rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.sh-wa{border-color:#25d366;background:#edfbf1}.sh-fb{border-color:#1877f2;background:#eef4ff}
-.sh-tw{border-color:#000;background:#f5f5f5}.sh-cp{border-color:var(--border)}
-.share-foot{display:flex;justify-content:flex-end;margin-top:1rem}
-.toast{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%) translateY(18px);opacity:0;background:var(--navy);color:#fff;padding:.72rem 1.3rem;border-radius:40px;font-size:.77rem;font-weight:600;z-index:9999;box-shadow:var(--sh3);max-width:320px;text-align:center;transition:opacity .26s,transform .26s;pointer-events:none}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.ok{background:var(--green)}.toast.err{background:var(--red)}
-.alock{position:fixed;bottom:1.2rem;left:1.2rem;z-index:900;width:32px;height:32px;border-radius:50%;background:rgba(26,58,92,.55);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);font-size:.75rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.alock:hover{background:var(--navy);color:#fff}
-body.admin .alock{color:#f0c060;border-color:rgba(240,192,96,.45)}
-.refresh-notif{position:fixed;top:70px;right:20px;background:#fff;border-left:4px solid var(--green);padding:1rem;border-radius:var(--radius);box-shadow:var(--sh2);font-size:.78rem;color:var(--text);z-index:700;animation:slideIn .3s ease;display:none}
-.refresh-notif.show{display:block}
-@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-footer{background:var(--navy);border-top:2px solid var(--red);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
-footer p{font-size:.68rem;color:rgba(255,255,255,.32)}
-footer a{color:#f0c060;text-decoration:none}
-footer a:hover{text-decoration:underline}
-.f-wa{font-size:.68rem;font-weight:600;color:#25d366;border:1px solid rgba(37,211,102,.3);padding:.26rem .65rem;border-radius:20px;text-decoration:none;transition:background .18s}
-.f-wa:hover{background:rgba(37,211,102,.1)}
-@media(max-width:640px){
-  .hdr{padding:0 1rem}.hero{padding:2.6rem 1.1rem 2.2rem}
-  .main{padding:1.6rem .9rem 4rem}.kpis{grid-template-columns:repeat(3,1fr)}
-  .kpi{padding:.7rem .7rem}.kpi strong{font-size:1.5rem}
-  .tab{font-size:.6rem;padding:.8rem .3rem}.f2{grid-template-columns:1fr}
-  .ptop{flex-direction:column;align-items:flex-start}.pill{display:none}
-  footer{flex-direction:column;text-align:center}.sh-grid{grid-template-columns:repeat(2,1fr)}
-  .abt-grid{grid-template-columns:1fr}
-}
+body {font-family: Arial; margin:0; background:#f0f4f8;}
+.hdr {background:#1a3a5c; color:#fff; padding:1.5rem; text-align:center;}
+.hero {background:linear-gradient(160deg,#1a3a5c,#2c5282); color:#fff; padding:3rem 1rem; text-align:center;}
+.kpis {display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; max-width:600px; margin:2rem auto;}
+.kpi {background:rgba(255,255,255,.1); padding:1rem; border-radius:8px;}
+.tabs {display:grid; grid-template-columns:repeat(3,1fr); margin:1rem; gap:0;}
+.tab {padding:1rem; cursor:pointer; border:1px solid #ddd; background:#fff;}
+.tab.on {background:#1a3a5c; color:#fff;}
+.main {max-width:1200px; margin:2rem auto; padding:0 1rem;}
+.grid {display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1rem;}
+.card {background:#fff; border:1px solid #ddd; border-radius:8px; padding:1.2rem; box-shadow:0 2px 4px rgba(0,0,0,.1);}
+.card h3 {margin:0 0 0.5rem 0; color:#1a3a5c;}
+.panel {display:none;}
+.panel.active {display:block;}
 </style>
 </head>
 <body>
-<header class="hdr">
-  <button class="logo" onclick="openOv('ov-about')">Actualités<b>Inter</b></button>
-  <div class="hdr-r">
-    <span class="pill">Portail Opportunités</span>
-    <button class="btn-sub" onclick="openOv('ov-sub')">S'abonner</button>
-  </div>
-</header>
-
+<header class="hdr"><h1>Actualités Inter — Portail Opportunités</h1></header>
 <section class="hero">
-  <div class="hero-sup">Info 24h/24 — Main dans la main</div>
-  <h1>Toutes vos<br><em>Opportunités</em></h1>
-  <p class="hero-desc">Emplois, stages, concours, bourses et financements — sélectionnés pour la communauté camerounaise, africaine et mondiale. Chaque lien vous redirige directement sur la page officielle de candidature.</p>
-  <a class="wa-btn" href="https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd" target="_blank" rel="noopener">
-    <span class="wa-dot"></span>Rejoindre notre groupe WhatsApp
-  </a>
+  <h2>Emplois • Concours • Bourses</h2>
   <div class="kpis">
-    <div class="kpi"><strong class="ke" id="ke">0</strong><small>Emplois &amp; Stages</small></div>
-    <div class="kpi"><strong class="kc" id="kc">0</strong><small>Concours</small></div>
-    <div class="kpi"><strong class="kb" id="kb">0</strong><small>Bourses</small></div>
+    <div class="kpi"><strong id="ke">0</strong><br>Emplois</div>
+    <div class="kpi"><strong id="kc">0</strong><br>Concours</div>
+    <div class="kpi"><strong id="kb">0</strong><br>Bourses</div>
   </div>
 </section>
 
-<nav class="tabs-bar">
-  <div class="tabs">
-    <button class="tab on" data-t="e">Emploi &amp; Stages <span class="cnt" id="ce">0</span></button>
-    <button class="tab" data-t="c">Concours <span class="cnt" id="cc">0</span></button>
-    <button class="tab" data-t="b">Bourses &amp; Financements <span class="cnt" id="cb">0</span></button>
-  </div>
-</nav>
+<div class="tabs">
+  <button class="tab on" data-t="e">Emploi (<span id="ce">0</span>)</button>
+  <button class="tab" data-t="c">Concours (<span id="cc">0</span>)</button>
+  <button class="tab" data-t="b">Bourses (<span id="cb">0</span>)</button>
+</div>
 
 <main class="main">
-  <div class="panel active" id="pe">
-    <div class="ptop">
-      <h2 class="ptitle">Emplois &amp; Stages</h2>
-      <button class="btn-add" style="background:var(--ce)" onclick="openAdd('e')">+ Ajouter</button>
-    </div>
-    <div class="fbar">
-      <input type="search" placeholder="Rechercher poste, organisation, pays, type..." oninput="applyS('e',this.value)">
-      <select onchange="applyT('e',this.value)">
-        <option value="">Tous les types</option>
-        <option>CDI</option><option>CDD</option><option>Stage</option>
-        <option>Bénévolat</option><option>Télétravail</option><option>Consultant</option>
-      </select>
-      <select onchange="applyP('e',this.value)" id="pse"></select>
-    </div>
-    <div class="grid" id="ge"></div>
-  </div>
-  <div class="panel" id="pc">
-    <div class="ptop">
-      <h2 class="ptitle">Concours</h2>
-      <button class="btn-add" style="background:var(--cc)" onclick="openAdd('c')">+ Ajouter</button>
-    </div>
-    <div class="fbar">
-      <input type="search" placeholder="Rechercher un concours, domaine, pays..." oninput="applyS('c',this.value)">
-      <select onchange="applyT('c',this.value)">
-        <option value="">Toutes catégories</option>
-        <option>Fonction publique</option><option>Académique</option>
-        <option>Professionnel</option><option>Artistique</option><option>Innovation</option>
-      </select>
-      <select onchange="applyP('c',this.value)" id="psc"></select>
-    </div>
-    <div class="grid" id="gc"></div>
-  </div>
-  <div class="panel" id="pb">
-    <div class="ptop">
-      <h2 class="ptitle">Bourses d'études &amp; Financements</h2>
-      <button class="btn-add" style="background:var(--cb)" onclick="openAdd('b')">+ Ajouter</button>
-    </div>
-    <div class="fbar">
-      <input type="search" placeholder="Rechercher bourse, financement, pays, niveau..." oninput="applyS('b',this.value)">
-      <select onchange="applyT('b',this.value)">
-        <option value="">Tous types</option>
-        <option>Licence</option><option>Master</option><option>Doctorat</option>
-        <option>Formation</option><option>Tous niveaux</option>
-        <option>Financement PME</option><option>Subvention</option><option>Programme</option>
-      </select>
-      <select onchange="applyP('b',this.value)" id="psb"></select>
-    </div>
-    <div class="grid" id="gb"></div>
-  </div>
+  <div class="panel active" id="pe"><div class="grid" id="ge"></div></div>
+  <div class="panel" id="pc"><div class="grid" id="gc"></div></div>
+  <div class="panel" id="pb"><div class="grid" id="gb"></div></div>
 </main>
 
-<footer>
-  <p>© 2026 <a href="https://actualites-internationales.github.io/opportunites/" target="_blank" rel="noopener">Actualités Internationales</a> — Fondé par <a href="mailto:jacquesdjonfabe58@gmail.com">Jacques Djonfabe</a></p>
-  <a class="f-wa" href="https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd" target="_blank" rel="noopener">Groupe WhatsApp</a>
-</footer>
-
-<!-- ABOUT -->
-<div class="ov" id="ov-about">
-  <div class="mbox about-box">
-    <div class="abt-hdr">
-      <h2>Actualités Internationales</h2>
-      <p>Au coeur de l'actualité, avec la force de l'unité</p>
-    </div>
-    <div class="abt-body">
-      <p class="abt-txt">Fondé le 20 septembre 2017, <strong>Actualités Internationales</strong> est un média indépendant francophone dédié à l'information mondiale en temps réel. Ce portail centralise emplois, stages, concours, bourses et financements pour la communauté camerounaise, africaine et mondiale. Chaque bouton "Postuler" redirige directement sur la page officielle de candidature de l'organisation.</p>
-      <div class="abt-grid">
-        <div class="abt-stat"><strong>2017</strong><small>Fondé en</small></div>
-        <div class="abt-stat"><strong>24h/24</strong><small>Actualité</small></div>
-        <div class="abt-stat"><strong>Cameroun</strong><small>Ancrage</small></div>
-        <div class="abt-stat"><strong>Mondial</strong><small>Couverture</small></div>
-      </div>
-      <a class="abt-wa" href="https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd" target="_blank" rel="noopener">Rejoindre notre groupe WhatsApp</a>
-    </div>
-    <div class="abt-foot"><button class="btn-cancel" onclick="closeOv('ov-about')">Fermer</button></div>
-  </div>
-</div>
-
-<!-- FORM -->
-<div class="ov" id="ov-form">
-  <div class="mbox form-box">
-    <div class="mhd">
-      <h2 id="mh-t">Ajouter</h2>
-      <button class="mclose" onclick="closeOv('ov-form')">✕</button>
-    </div>
-    <div class="mbdy">
-      <input type="hidden" id="fi-id">
-      <div class="fg"><label>Titre <span class="req">*</span></label><input class="fc" id="fi-titre" placeholder="Ex : Chargé de projet, Bourse Eiffel..."></div>
-      <div class="f2">
-        <div class="fg"><label>Organisation <span class="req">*</span></label><input class="fc" id="fi-org" placeholder="ONU, Université..."></div>
-        <div class="fg"><label>Pays</label><select class="fc" id="fi-pays"><option value="">— Sélectionner —</option></select></div>
-      </div>
-      <div class="f2">
-        <div class="fg"><label>Région (Cameroun)</label>
-          <select class="fc" id="fi-reg">
-            <option value="">— Toutes régions —</option>
-            <option>Adamaoua</option><option>Centre</option><option>Est</option>
-            <option>Extrême-Nord</option><option>Grand Nord</option><option>Littoral</option>
-            <option>Nord</option><option>Nord-Ouest</option><option>Ouest</option>
-            <option>Sud</option><option>Sud-Ouest</option>
-          </select></div>
-        <div class="fg"><label>Type / Catégorie</label><input class="fc" id="fi-cat" placeholder="CDI, Stage, Master..."></div>
-      </div>
-      <div class="f2">
-        <div class="fg"><label>Date limite</label><input class="fc" type="date" id="fi-date"></div>
-        <div class="fg"><label>Étiquette</label>
-          <select class="fc" id="fi-tag">
-            <option value="">Aucune</option><option value="new">Nouveau</option>
-            <option value="urgent">Urgent</option><option value="cam">Cameroun</option>
-            <option value="eco">Économie</option>
-          </select></div>
-      </div>
-      <div class="fg"><label>Description</label><textarea class="fc" id="fi-desc" rows="4" placeholder="Décrivez l'opportunité : missions, critères, avantages..."></textarea></div>
-      <div class="fg"><label>Lien officiel de candidature <span class="req">*</span></label><input class="fc" id="fi-lien" type="url" placeholder="https://... (URL complète vers la page de candidature)"></div>
-    </div>
-    <div class="mft">
-      <button class="btn-cancel" onclick="closeOv('ov-form')">Annuler</button>
-      <button class="btn-save" id="bsave" onclick="saveEntry()">Enregistrer</button>
-    </div>
-  </div>
-</div>
-
-<!-- SUBSCRIBE -->
-<div class="ov" id="ov-sub">
-  <div class="mbox sub-box">
-    <div class="sub-hdr">
-      <h3>Recevoir les opportunités</h3>
-      <p>Soyez notifié dès qu'une nouvelle opportunité est publiée.</p>
-    </div>
-    <div class="sub-bdy">
-      <div class="fg"><label>Votre nom</label><input class="fc" id="sub-nom" placeholder="Prénom et nom"></div>
-      <div class="fg"><label>Email <span class="req">*</span></label><input class="fc" id="sub-email" type="email" placeholder="votre@email.com"></div>
-      <div class="fg"><label>Catégories souhaitées</label>
-        <div class="sub-cats">
-          <label class="sub-cat"><input type="checkbox" id="sc-e" checked> Emploi &amp; Stages</label>
-          <label class="sub-cat"><input type="checkbox" id="sc-c" checked> Concours</label>
-          <label class="sub-cat"><input type="checkbox" id="sc-b" checked> Bourses &amp; Financements</label>
-        </div>
-      </div>
-      <button class="sub-cta" onclick="doSub()">✉️ Confirmer mon abonnement</button>
-      <div id="sub-msg"></div>
-      <p class="sub-note">Sans spam. Vous recevrez un email de confirmation. Désinscription à tout moment.</p>
-    </div>
-  </div>
-</div>
-
-<!-- SHARE -->
-<div class="ov" id="ov-share">
-  <div class="mbox share-box">
-    <h3>Partager cette opportunité</h3>
-    <span class="sh-sub" id="sh-t">—</span>
-    <div class="sh-grid">
-      <a class="sh-btn sh-wa" id="sh-wa" href="#" target="_blank" rel="noopener"><span class="sh-ico">W</span><span class="sh-lbl">WhatsApp</span></a>
-      <a class="sh-btn sh-fb" id="sh-fb" href="#" target="_blank" rel="noopener"><span class="sh-ico">f</span><span class="sh-lbl">Facebook</span></a>
-      <a class="sh-btn sh-tw" id="sh-tw" href="#" target="_blank" rel="noopener"><span class="sh-ico">𝕏</span><span class="sh-lbl">Twitter/X</span></a>
-      <button class="sh-btn sh-cp" onclick="copyLink()"><span class="sh-ico">🔗</span><span class="sh-lbl">Copier</span></button>
-    </div>
-    <div class="share-foot"><button class="btn-cancel" onclick="closeOv('ov-share')">Fermer</button></div>
-  </div>
-</div>
-
-<div class="refresh-notif" id="refresh-notif">✅ Site actualisé avec nouvelles opportunités!</div>
-<button class="alock" id="alock" onclick="toggleAdmin()" title="Administration">A</button>
-<div class="toast" id="toast"></div>
-
 <script>
-// ── CONFIG ──
-const EJS_KEY  = 'jkd0bqpMfM6aLpaxL';
-const EJS_SVC  = 'service_ezzstrr';
-const EJS_TPL  = 'template_wsm2y7i';
-const ADMIN_MAIL = 'jacquesdjonfabe58@gmail.com';
-const WA_GROUP = 'https://chat.whatsapp.com/G2b4tqHMpms3QVD2VRnTTd';
-const SITE     = 'https://actualites-internationales.github.io/opportunites/';
-const PWD      = 'actuinter2026';
-emailjs.init(EJS_KEY);
+const db = {e: [], c: [], b: []};
 
-// ── DAILY REFRESH SYSTEM ──
-function initDailyRefresh(){
-  const lastRefresh = localStorage.getItem('last_refresh');
-  const today = new Date().toDateString();
-  
-  if(lastRefresh !== today){
-    localStorage.setItem('last_refresh', today);
-    // Refresh happens on seed()
-    showRefreshNotif();
-  }
-}
-
-function showRefreshNotif(){
-  const notif = document.getElementById('refresh-notif');
-  notif.classList.add('show');
-  setTimeout(() => notif.classList.remove('show'), 4000);
-}
-
-// ── PAYS ──
-const PAYS = [
-  'Afghanistan','Afrique du Sud','Albanie','Algérie','Allemagne','Angola','Arabie Saoudite',
-  'Argentine','Arménie','Australie','Autriche','Azerbaïdjan','Bangladesh','Belgique','Bénin',
-  'Bolivie','Bosnie-Herzégovine','Botswana','Brésil','Bulgarie','Burkina Faso','Burundi',
-  'Cambodge','Cameroun','Canada','Centrafrique','Chili','Chine','Chypre','Colombie','Congo',
-  "Côte d'Ivoire",'Croatie','Cuba','Danemark','Djibouti','Égypte','Émirats arabes unis',
-  'Équateur','Érythrée','Espagne','Estonie','Éthiopie','Finlande','France','Gabon','Gambie',
-  'Géorgie','Ghana','Grèce','Guatemala','Guinée','Guinée-Bissau','Guinée équatoriale','Haïti',
-  'Honduras','Hongrie','Inde','Indonésie','International','Irak','Iran','Irlande','Islande',
-  'Israël','Italie','Jamaïque','Japon','Jordanie','Kazakhstan','Kenya','Kosovo','Koweït',
-  'Laos','Lesotho','Liban','Liberia','Libye','Lituanie','Luxembourg','Macédoine du Nord',
-  'Madagascar','Malaisie','Malawi','Mali','Maroc','Mauritanie','Mexique','Moldavie','Mongolie',
-  'Monténégro','Mozambique','Myanmar','Namibie','Népal','Nicaragua','Niger','Nigeria',
-  'Norvège','Nouvelle-Zélande','Ouganda','Ouzbékistan','Pakistan','Palestine','Panama',
-  'Papouasie-Nouvelle-Guinée','Paraguay','Pays-Bas','Pérou','Philippines','Pologne','Portugal',
-  'RD Congo','Roumanie','Royaume-Uni','Rwanda','Sénégal','Serbie','Sierra Leone','Singapour',
-  'Somalie','Soudan','Soudan du Sud','Sri Lanka','Suède','Suisse','Tadjikistan','Tanzanie',
-  'Tchad','Thaïlande','Timor oriental','Togo','Tunisie','Turkménistan','Turquie','Ukraine',
-  'Union Européenne','Uruguay','Venezuela','Vietnam','Yémen','Zambie','Zimbabwe','Télétravail'
-];
-
-function initPays(){
-  const fo = PAYS.map(p=>`<option>${p}</option>`).join('');
-  document.getElementById('fi-pays').innerHTML += fo;
-  const so = '<option value="">Tous les pays</option>' + fo;
-  ['pse','psc','psb'].forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=so; });
-}
-
-// ── DATA ──
-const SK = 'aiv11';
-let db = {e:[],c:[],b:[]};
-let FS={e:'',c:'',b:''},FT={e:'',c:'',b:''},FP={e:'',c:'',b:''};
-let CUR='e', EID=null, SHARE=null;
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
-
-function daysUntil(d){
-  if(!d) return null;
-  const now=new Date(); now.setHours(0,0,0,0);
-  const end=new Date(d); end.setHours(0,0,0,0);
-  return Math.ceil((end-now)/86400000);
-}
-
-function R(t,ti,or,pa,re,ca,de,da,li,ta){
-  return{id:uid(),titre:ti,org:or,pays:pa||'',region:re||'',cat:ca||'',desc:de||'',date:da||'',lien:li||'',tag:ta||'',_s:true};
-}
-
-function seed(){
+function seed() {
+  // EMPLOIS
   db.e = [
-    R('e','Data Analyst — Human Rights Watch','Human Rights Watch','International','','CDI',
-      'Analyste de données pour surveillance des droits humains en Afrique. Basé à Washington ou terrain. Python, SQL requis.','2026-07-15','https://www.hrw.org/about/careers','new'),
-    R('e','Coordinateur Projets — ActionAid Cameroun','ActionAid International','Cameroun','Centre','CDD',
-      'Gestion de projets de réduction de pauvreté dans le Centre Cameroun. Master en développement ou économie. Yaoundé.','2026-06-20','https://www.actionaid.org/work-with-us','cam'),
-    R('e','Chargé de Communication — AfDB','Banque Africaine de Développement','International','','CDD',
-      'Communication digitale pour les programmes de l\'AfDB en Afrique subsaharienne. Excellente maîtrise français/anglais.','2026-07-10','https://www.afdb.org/en/about/careers','new'),
-    R('e','Ingénieur Infrastructure Cloud','Microsoft Africa','Afrique du Sud','','CDI',
-      'Infrastructure cloud Azure pour organisations africaines. 5 ans d\'expérience minimum. Johannesburg ou telework.','2026-08-01','https://careers.microsoft.com/us/en/search-results','new'),
-    R('e','Gestionnaire Projet Eau — Helvetas','Helvetas Cameroun','Cameroun','Adamaoua','CDD',
-      'Accès à l\'eau potable dans l\'Adamaoua. Coordination avec gouvernements locaux et communautés. Garoua-Boulaï.','2026-06-30','https://www.helvetas.org/en/about-us/jobs/','cam'),
-    R('e','Spécialiste Genre et Développement','PNUD Mali','Mali','','CDD',
-      'Intégration du genre dans programmes de développement au Mali. Master en genre ou développement.','2026-07-01','https://jobs.undp.org/cj_view_jobs.cfm','new'),
-    R('e','Infirmier/ère Humanitaire','Médecins Sans Frontières','International','','CDD',
-      'Soins infirmiers en zones d\'urgence humanitaire. Expérience exigée. Logement et assurance maladie fournis.','2026-06-15','https://www.msf.org/jobs/','new'),
-    R('e','Administrateur Systèmes — Google for Africa','Google','Afrique du Sud','','CDI',
-      'Admin sys pour infrastructure Google en Afrique. Expertise Linux, networking, cloud. Pretoria.','2026-08-15','https://careers.google.com/locations/africa/',''),
-    R('e','Responsable RH — SOS Enfants','SOS Villages d\'Enfants Cameroun','Cameroun','Littoral','CDD',
-      'Gestion RH pour programmes de protection de l\'enfance. Douala. Expérience RH/social minimum 3 ans.','2026-06-25','https://www.soschildrensvillages.org/careers','cam'),
-    R('e','Développeur Full Stack — Startup Africaine','Flutterwave Afrique','Cameroun','Littoral','CDI',
-      'Développement fintech : React, Node.js, Python. 3+ ans d\'expérience. Douala. Salaire compétitif.','2026-08-01','https://flutterwave.com/careers/','cam'),
-    R('e','Chef Marathon — Formation Entrepreneuriale','Tony Elumelu Foundation','Nigeria','','CDD',
-      'Animation des marathons d\'entrepreneuriat TEF dans 4 pays. Logement + frais couverts. Engagement 6 mois.','2026-05-31','https://www.tonyelumelufoundation.org/teep/',''),
-    R('e','Conseiller Agricole — FAO Sénégal','FAO','Sénégal','','CDD',
-      'Appui technique agro-écologie Bassins arachidiers sénégalais. Master Agronomie. Kaolack. 2 ans de contrat.','2026-07-20','https://www.fao.org/employment/en/',''),
-    R('e','Technicien Forestier — OIBT','Organisation Internationale du Bois Tropical','Cameroun','Est','CDD',
-      'Gestion durable des forêts tropicales. Certification et traçabilité. Basé Bertoua. Brevet+experience 5 ans.','2026-08-10','https://www.itto.int/about_itto/jobs/','cam'),
-    R('e','Spécialiste Éducation — Global Partnership','Global Partnership for Education','International','','CDD',
-      'Éducation en situations de crise en Afrique. Master Education requis. Remote avec missions terrain.','2026-07-05','https://www.globalpartnership.org/careers/','new'),
-    R('e','Consultant RH — Deloitte Afrique','Deloitte','Afrique du Sud','','CDI',
-      'Consulting RH pour clients Afrique subsaharienne. Johannesburg. Master requis. 2+ ans d\'expérience conseil.','2026-08-20','https://www2.deloitte.com/za/en/careers.html',''),
-    R('e','Agent Environnemental — Earthwatch','Earthwatch Institute','Kenya','','CDD',
-      'Monitoring biodiversité Masaï Mara. Printemps-été 2026. Tous niveaux. Logement fourni.','2026-05-20','https://earthwatch.org/get-involved/careers/',''),
-    R('e','Traducteur Freelance Spécialisé','Blabla Translations','Télétravail','','Consultant',
-      'Traduction anglais↔français/arabe pour organisations humanitaires. Freelance, flexible. Taux compétitif.','2026-12-31','https://www.blatranslations.com/join',''),
-    R('e','Coordonnateur Santé Mentale','UNICEF Haïti','Haïti','','CDD',
-      'Programmes santé mentale jeunesse post-séisme. Port-au-Prince. Master Psychologie/Santé publique.','2026-07-31','https://www.unicef.org/careers/',''),
-    R('e','Auditeur Interne — IOM','Organisation Internationale pour Migrations','Suisse','','CDI',
-      'Audit interne opérations migration en Afrique. Genève. CA ou Master Comptabilité. Télwork possible.','2026-08-25','https://careers.iom.int/',''),
-    R('e','Responsable Livelihoods — CRS','Catholic Relief Services','Cameroun','Nord','CDD',
-      'Moyens de subsistance durables zone Nord. Micro-entreprises, formation agricole. Garoua.','2026-06-30','https://crs.org/about/careers/','cam'),
-    R('e','Spécialiste Base de Données — WFP','Programme Alimentaire Mondial','International','','CDI',
-      'Gestion DB humanitaires : SQL Server, Python. Remote. 3+ ans expérience IT.','2026-08-30','https://www.wfp.org/careers/','new'),
-    R('e','Gestionnaire Administratif — EU Delegation','Délégation UE','Cameroun','Centre','CDD',
-      'Administration finances programmes UE Cameroun. Bac+3 gestion/droit. Yaoundé. 3 ans contrat.','2026-07-15','https://eeas.europa.eu/delegations/cameroon_en','cam'),
-    R('e','Officier Conformité — BCEAO','Banque Centrale États Afrique Ouest','Sénégal','','CDI',
-      'Compliance réglementaire monétaire Zone WAEMU. Master Droit/Commerce. Dakar. Salaire attractif.','2026-09-01','https://www.bceao.int/',''),
-    R('e','Formateur IdO — GIZ Afrique','GIZ Agenda Numérique','International','','CDD',
-      'Formations Internet des Objets startups africaines. Contrats 3-12 mois. Télework + missions.','2026-08-15','https://jobs.giz.de/','new'),
-    R('e','Moniteur Agroécologie — Oxfam','Oxfam GB Cameroun','Cameroun','Adamaoua','CDD',
-      'Agroécologie résilience climat Adamaoua. BEPC min. Pitoa. Salaire mensuel + bonus.','2026-06-20','https://www.oxfam.org/en/about/jobs','cam'),
-    R('e','Développeur Mobile — Safaricom','Safaricom Fondation','Kenya','','CDI',
-      'Apps mobiles microfinance Afrique de l\'Est. Flutter/React Native. Nairobi. 4+ ans exp.','2026-09-15','https://www.safaricom.co.ke/careers',''),
-    R('e','Gestionnaire Contrats — World Bank','Banque Mondiale','International','','CDD',
-      'Gestion contrats projets BD Afrique. Master Management/Droit. Remote. 2+ ans expérience.','2026-07-25','https://www.worldbank.org/en/about/careers','new'),
-    R('e','Infographiste — RFI','Radio France Internationale','France','','CDI',
-      'Graphisme web/réseaux Afrique. Adobe Suite. Paris. Master Design/Communication.','2026-06-10','https://www.rfi.fr/fr/rfi-recrutement/',''),
-    R('e','Superviseur Transport — DHL','DHL Global Zone Afrique','Cameroun','Littoral','CDI',
-      'Supervision logistique transport Douala. Superviseur+ BTS. Permis poids-lourd. 24h/7j possible.','2026-07-20','https://careers.dhl.com/','cam'),
-    R('e','Animateur Jeunesse Numérique','Google.org','Cameroun','Extrême-Nord','CDD',
-      'Digital skills jeunesse Maroua. Animation ateliers coding. BEPC min. Mobilité locale.','2026-06-30','https://about.google/careers/','cam'),
+    {titre:'Data Analyst — HRW', org:'Human Rights Watch', pays:'International', lien:'https://hrw.org', tag:'new'},
+    {titre:'Coordinateur Projets', org:'ActionAid', pays:'Cameroun', lien:'https://actionaid.org', tag:'cam'},
+    {titre:'Dev Full Stack', org:'Flutterwave', pays:'Cameroun', lien:'https://flutterwave.com', tag:'cam'},
+    {titre:'Ingénieur Cloud', org:'Microsoft', pays:'South Africa', lien:'https://microsoft.com', tag:'new'},
+    {titre:'Spécialiste Genre', org:'PNUD', pays:'Mali', lien:'https://undp.org', tag:'new'},
+    {titre:'Infirmier/ère', org:'MSF', pays:'International', lien:'https://msf.org', tag:'urgent'},
+    {titre:'Projecteur Eau', org:'Helvetas', pays:'Cameroun', lien:'https://helvetas.org', tag:'cam'},
+    {titre:'Consultant RH', org:'Deloitte', pays:'South Africa', lien:'https://deloitte.com', tag:''},
+    {titre:'Agent Environnemental', org:'Earthwatch', pays:'Kenya', lien:'https://earthwatch.org', tag:''},
+    {titre:'Responsable Livelihoods', org:'CRS', pays:'Cameroun', lien:'https://crs.org', tag:'cam'},
+    {titre:'Technicien Forestier', org:'OIBT', pays:'Cameroun', lien:'https://itto.int', tag:'cam'},
+    {titre:'Chef Marathon Entrepreneuriat', org:'TEF', pays:'Nigeria', lien:'https://tonyelumelufoundation.org', tag:''},
+    {titre:'Conseiller agricole', org:'FAO', pays:'Senegal', lien:'https://fao.org', tag:''},
+    {titre:'Responsable RH', org:'SOS Villages', pays:'Cameroun', lien:'https://soschildrensvillages.org', tag:'cam'},
+    {titre:'Chargé Communication', org:'AfDB', pays:'International', lien:'https://afdb.org', tag:'new'},
   ];
 
+  // CONCOURS
   db.c = [
-    R('c','Concours Fonction Publique — Cameroun 2026','Fonction Publique Cameroonaise','Cameroun','','Fonction publique',
-      'Recrutement inspecteurs contrôle, attachés, agents. Tous cursus. Inscription ligne : minfi.cm','2026-05-20','https://www.minfi.cm/','urgent'),
-    R('c','Hackathon African Fintech — AMTC','Alliance pour Marché Tech Crypto','Afrique du Sud','','Innovation',
-      'Concours fintech meilleure solution Afrique. 5000 USD prizes top 5. Johannesburg. Avril-mai 2026.','2026-05-31','https://amtcafrica.com/hackathon','new'),
-    R('c','Prix Jeune Reporter Francophone 2026','Reporters Sans Frontières','International','','Artistique',
-      'Meilleurs reportages jeunes 18-30 ans francophones. Presse écrite/web/audio. Prix 3000-6000€.','2026-08-15','https://rsf.org/',''),
-    R('c','Concours Policier — GRC Canada','Gendarmerie Royale Canada','Canada','','Fonction publique',
-      'Recrutement constables réguliers. Candidats internationaux acceptés. Formation fournie, rémunérée.','2026-06-30','https://www.rcmp-grc.gc.ca/fr/carrieres/',''),
-    R('c','Concours Agriculture Innovante — NEPAD','Union Africaine / NEPAD','International','','Innovation',
-      'Innovations agritech Afrique. 15 finalistes. 20000 USD Grand Prix. Abuja novembre 2026.','2026-09-30','https://www.nepad.org/','new'),
-    R('c','Challenge Innovation ONU — Agenda2030','Nations Unies','International','','Innovation',
-      'Projets innovations ODD. Grants 50k USD sélectionnés. Tous pays. Envoi dossier en ligne.','2026-07-31','https://www.un.org/en/','new'),
-    R('c','Concours Excellence Académique — Senium','Senium Education Africa','Cameroun','','Académique',
-      'Bourses excellence académique étudiants. Master/Doctorat. Sélection dossiers tous pays Afrique.','2026-06-15','https://www.senium-africa.org/','cam'),
-    R('c','Grand Prix Littéraire Africain 2026','Académie Africaine Lettres','International','','Artistique',
-      'Romans/nouvelles auteurs africains. Lauréat publication + 5000€. Clôture septembre 2026.','2026-09-30','https://www.acad-arts-africa.org/','new'),
-    R('c','Concours Startup Africa — Alibaba','Alibaba eFounders Fellows','International','','Innovation',
-      'Startups Afrique orientation commerce/tech. Coaching international. Accès réseau Alibaba.','2026-08-31','https://www.alibabagroup.com/en/global/careers',''),
-    R('c','Défi Innovation Santé — Bill Gates Foundation','Bill & Melinda Gates Foundation','International','','Innovation',
-      'Solutions innovantes paludisme/VIH Afrique. Grants 100k-500k USD. Prochain appel septembre.','2026-09-15','https://www.gatesfoundation.org/',''),
-    R('c','Concours Fonction Publique Quebec','Gouvernement du Québec','Canada','','Fonction publique',
-      'Agents administration québécoise. Francophones/bilingues prioritaires. Examen écrit + entrevue.','2026-05-31','https://www.carrieres.gouv.qc.ca/',''),
-    R('c','Hackathon Santé Mondiale — MIT','MIT D-Lab','International','','Innovation',
-      'Solutions sanitaires pays bas revenu. Coaching MIT. Mars-avril 2026. Équipes 3-5 personnes.','2026-04-30','https://d-lab.mit.edu/',''),
-    R('c','Prix Leadership Jeunesse — OIF','Organisation Internationale Francophonie','International','','Innovation',
-      'Leaders jeunes 18-35 ans. Impact communautaire/environnemental. Prix 5000 EUR. Octobre 2026.','2026-10-15','https://www.francophonie.org/',''),
-    R('c','Challenge IA Education — Google.org','Google Craig Foundation','International','','Innovation',
-      'IA pour apprentissage Afrique subsaharienne. Seed funding 10k USD. Equipes 2+ personnes.','2026-08-01','https://about.google/outreach/education/',''),
-    R('c','Concours Environnement UNEP','PNUE Programme Nations Unies Env.','International','','Innovation',
-      'Jeunes champions climat Afrique. Volontariat + allocations. Dakar décembre 2026.','2026-11-30','https://www.unep.org/',''),
-    R('c','Concours Journalisme BBC Learning','BBC World Service','International','','Artistique',
-      'Journalistes émergents Afrique. Stages BBC Londres. Candidature portfolio + vidéo 3 min.','2026-07-15','https://www.bbc.com/careers/',''),
-    R('c','Grand Défi Innovation Agricole — Google','Google AI','Afrique du Sud','','Innovation',
-      'IA agriculture Afrique australe. Best pitch 200k ZAR. Johannesburg juillet 2026.','2026-07-31','https://about.google/outreach/',''),
-    R('c','Concours Musique Francophone #OIF2026','OIF Music Awards','International','','Artistique',
-      'Jeunes musiciens francophones. Compétition streaming + live. Grand-mère Sfax (Tunisie) juin 2026.','2026-06-20','https://www.francophonie.org/',''),
-    R('c','Prize African Solutions — Elsevier','Elsevier Research Intelligence','International','','Innovation',
-      'Meilleure recherche appliquée Afrique. Chercheurs doctorants/jeunes docs. 10000€ prix.','2026-08-31','https://www.elsevier.com/',''),
-    R('c','Concours Employabilité Jeunes — ILOMEJ','ILO/OIT Mali','Mali','','Fonction publique',
-      'Compétences employabilité jeunes Sahel. Programme certification 3 mois. Bamako démarrage.','2026-06-01','https://www.ilo.org/',''),
+    {titre:'Concours Fonction Publique', org:'Cameroun', pays:'Cameroun', lien:'https://minfi.cm', tag:'urgent'},
+    {titre:'Hackathon Fintech', org:'AMTC', pays:'South Africa', lien:'https://amtcafrica.com', tag:'new'},
+    {titre:'Prix Jeune Reporter', org:'RSF', pays:'International', lien:'https://rsf.org', tag:''},
+    {titre:'Concours Policier GRC', org:'Canada', pays:'Canada', lien:'https://rcmp-grc.gc.ca', tag:''},
+    {titre:'Challenge Agritech', org:'NEPAD', pays:'International', lien:'https://nepad.org', tag:'new'},
+    {titre:'Défi Innovation ONU', org:'Nations Unies', pays:'International', lien:'https://un.org', tag:'new'},
+    {titre:'Excellence Académique', org:'Senium', pays:'Cameroun', lien:'https://senium-africa.org', tag:'cam'},
+    {titre:'Prix Littérature Africaine', org:'Académie', pays:'International', lien:'https://acad-arts-africa.org', tag:'new'},
+    {titre:'Startup Africa', org:'Alibaba', pays:'International', lien:'https://alibabagroup.com', tag:''},
+    {titre:'Challenge Santé', org:'Gates Foundation', pays:'International', lien:'https://gatesfoundation.org', tag:''},
   ];
 
+  // BOURSES
   db.b = [
-    R('b','Bourse Chevening 2026/2027 — Royaume-Uni','Gouvernement Britannique','Royaume-Uni','','Master',
-      'Master prestigieux UK : tous domaines. Financement complet+allocation. Candidature en ligne avant mai 2026.','2026-05-06','https://www.chevening.org/','urgent'),
-    R('b','Bourse Africana Senior Fellowship — Princeton','Princeton University','États-Unis','','Postdoc',
-      'Postdoc études africaines Princeton 5000 USD/mois. Housing+health. New Jersey. Candidature urgente.','2026-04-30','https://africanastudies.org/','urgent'),
-    R('b','Bourse Norwegian Government Scholarship — 8 pays','Governement Norvège','Norvège','','Master',
-      'Masters universités norwegiennes : tous domaines. Tuition gratuite+allocation 11000 NOK/mois.','2026-06-01','https://www.norad.no/en/front/',''),
-    R('b','Bourse Koshland Science Journalist Fellowship','Koshland Foundation','États-Unis','','Formation',
-      'Journalistes scientifiques 6 mois Stanford. Tous frais couverts. Candidature finale mai 2026.','2026-05-15','https://www.koshlandfoundation.org/',''),
-    R('b','Bourse TWAS Postdoctoral Fellowship','Academy of Sciences World','Suisse','','Postdoc',
-      'Postdoc sciences/tech chercheurs Afrique. Labo recherche mondial de choix. Allocation 1500 USD/mois.','2026-06-30','https://www.twas.org/',''),
-    R('b','Bourse AFS Intercultural Exchanges — Afrique','AFS International','International','','Formation',
-      'Échanges culturels lycéens Afrique-Europe-Amériques. Bourse totale pour excellents étudiants.','2026-05-31','https://www.afs.org/',''),
-    R('b','Bourse LPDP Beasiswa Indonesia 2026','Kementerian Pendidikan Indonesia','Indonésie','','Master',
-      'Master/Doctorat universités indonésiennes : topik apapun. Tuition gratuite, assurance sante. Daftar.','2026-06-15','https://www.lpdp.kemenkeu.go.id/',''),
-    R('b','Bourse Excellence EMBO — Biologie','EMBO Postdoctoral Fellowships','Europe','','Postdoc',
-      '2 ans Europe labo choix. 4100 €/mois + frais recherche. Biosciences. Clôture avril 2026.','2026-04-30','https://www.embo.org/funding/fellowships-grants/postdoctoral-fellowships/',''),
-    R('b','Grant Recherche — Wellcome Trust Clayton','Wellcome Trust','Royaume-Uni','','Doctorat',
-      'Doctorat sciences biomedicales 100k GBP. Universités UK. Chercheurs 4+ ans experience.','2026-07-07','https://wellcome.org/grant-funding',''),
-    R('b','Bourse TWAS pour Scientifiques Pays Sud','TWAS Academy','Suisse','','Doctorat',
-      'Doctorat pays developpes pour chercheurs Afrique/Asie/Amerique du Sud. Financement complet PhD.','2026-06-01','https://www.twas.org/',''),
-    R('b','Scholarship Joint Japan World Bank —JJWBGSP','Banque Mondiale / Japon','Japon','','Master',
-      'Masters Japon universités partenaires. Tuition 100% gratuit + subsistence 14500 JPY/mois.','2026-05-15','https://www.worldbank.org/en/programs/scholarships/jj-wbgsp',''),
-    R('b','Bourse Riotinto — Développement Minier','Rio Tinto Foundation','Australie','','Master',
-      'Master Sciences mines/geology Australie. Pour ressortissants pays en developpement. AUD 25k/an.','2026-06-30','https://www.riotinto.com/en/community/foundation',''),
-    R('b','Bourse ADB Scholarship Program 2026 — Asian DB','Banque Asiatique Developpement','Asie','','Master',
-      'Masters Asie : developement, energies, eau, transport. Universites ADB partenaires. Tuition gratuite.','2026-05-20','https://www.adb.org/site/careers/scholarships',''),
-    R('b','Grant Jeunes Entrepreneurs — Impact Investors','The Omidyar Network','International','','Financement PME',
-      'Startup impact social Afrique: 50k-500k USD. Thème: educacion, sante, energie, agriculture.','2026-08-31','https://www.omidyar.com/','new'),
-    R('b','Subvention Entrepreneuria Feminine — UN Women','ONU Femmes','International','','Financement PME',
-      'Femmes entrepreneurs Afrique: 25k-100k USD projets innovants. Genre, economie, technologie.','2026-07-15','https://www.unwomen.org/en/','new'),
-    R('b','AfDB Grant Facility — PME Innovation','Banque Afr. Developpement','International','','Financement PME',
-      'PME Afrique innovantes: 25k-250k USD. Agriculture tech, fintech, renewable energy prioritaire.','2026-08-15','https://www.afdb.org/en/about/careers/','new'),
-    R('b','Seed Fund Wingu — Water Sanitation','Wingu Kenya NGO','Kenya','','Subvention',
-      'Projectos agua/saneamiento Afrique: 5k-50k USD. Reports impact sosial. Ciclo continu.','2026-12-31','https://www.wingukenya.org/',''),
-    R('b','Climate Adaptation Fund — Vert','Adaptation Fund','International','','Subvention',
-      'Projets adaptation climate Afrique: 100k+ USD. Resilience, transition 100% renewable energy.','2026-06-30','https://www.adaptation-undp.org/',''),
-    R('b','CGAP Microfinance Grant 2026','CGAP / World Bank','International','','Subvention',
-      'Institutions microfinance Afrique: 50k-200k USD. Digital inclusion, financial literacy.','2026-07-31','https://www.cgap.org/','new'),
-    R('b','Mastercard Foundation Scholars — African Universities','Mastercard Fdn','International','','Master',
-      'Scholars Afrique universites tier-1 mondiale 200+ bourses. Master + leadership formation. Full grants.','2026-06-01','https://mastercardfdn.org/','new'),
-    R('b','DAAD Master Afrique Francophone 2026/2027','DAAD Allemagne','Allemagne','','Master',
-      'Masters universite allemandes paye francomophone Afrique: tuition free + 861€/mois. Inscription mai.','2026-05-31','https://www.daad.de/en/',''),
-    R('b','Erasmus Mundus Joint Masters 2026/2027','EACEA UE','Union Europeenne','','Master',
-      'Masters conjoint europeen+sud 360 credits 2 annees. Bourse Erasmus pour Africains.','2026-05-15','https://erasmus-plus.ec.europa.eu/',''),
-    R('b','Bourse CARICOM Scholarship Cameroun',CARICOM Secretariat','International','','Master',
-      'Masters universites Amerique du nord: tous domaines. Scholar CARICOM programme extension.','2026-07-30','https://www.caricom.org/',''),
-    R('b','Fulbright Scholarship US 2027-2028','US State Department','États-Unis','','Master',
-      'Masters/Doctorat USA: tous universites etats. Financement complet + allocations. Deadline sept 2026.','2026-09-30','https://foreign.fulbrightonline.org/',''),
+    {titre:'Bourse Chevening', org:'UK', pays:'Royaume-Uni', lien:'https://chevening.org', tag:'urgent'},
+    {titre:'Bourse Princeton', org:'Princeton', pays:'USA', lien:'https://africanastudies.org', tag:'urgent'},
+    {titre:'Bourse Norwège', org:'Norway', pays:'Norway', lien:'https://norad.no', tag:''},
+    {titre:'Bourse Koshland', org:'Koshland', pays:'USA', lien:'https://koshlandfoundation.org', tag:''},
+    {titre:'Bourse TWAS', org:'TWAS', pays:'Switzerland', lien:'https://twas.org', tag:''},
+    {titre:'Bourse AFS', org:'AFS', pays:'International', lien:'https://afs.org', tag:''},
+    {titre:'Bourse Indonesia', org:'LPDP', pays:'Indonesia', lien:'https://lpdp.kemenkeu.go.id', tag:''},
+    {titre:'Bourse EMBO', org:'EMBO', pays:'Europe', lien:'https://embo.org', tag:''},
+    {titre:'Grant Wellcome', org:'Wellcome Trust', pays:'UK', lien:'https://wellcome.org', tag:''},
+    {titre:'Bourse TWAS Doctorat', org:'TWAS', pays:'Switzerland', lien:'https://twas.org', tag:''},
   ];
+
+  console.log('Seeds:', db.e.length, db.c.length, db.b.length);
 }
 
-// ── RENDER ──
-const TL = {e:'Emploi & Stage', c:'Concours', b:'Bourse / Financement'};
-const TC = {e:'var(--ce)', c:'var(--cc)', b:'var(--cb)'};
-const CB = {e:'cbe', c:'cbc', b:'cbb'};
-
-function load(){
+function render() {
   seed();
-  try {
-    const s = JSON.parse(localStorage.getItem(SK)||'{}');
-    ['e','c','b'].forEach(t=>{
-      if(s[t]&&s[t].length){
-        const ids = new Set(db[t].map(i=>i.id));
-        db[t] = [...s[t].filter(i=>!ids.has(i.id)), ...db[t]];
-      }
-    });
-  } catch(e){}
-}
-function save(){
-  try {
-    const out = {e:db.e.filter(i=>!i._s), c:db.c.filter(i=>!i._s), b:db.b.filter(i=>!i._s)};
-    localStorage.setItem(SK, JSON.stringify(out));
-  } catch(e){}
-}
-
-function renderAll(){ ['e','c','b'].forEach(t=>renderGrid(t)); updKPI(); }
-function renderGrid(t){
-  const g = document.getElementById('g'+t);
-  const s=FS[t].toLowerCase(), ty=FT[t], py=FP[t];
-  const items = db[t].filter(i=>{
-    const tm = !s || [i.titre,i.org,i.pays,i.region,i.desc,i.cat,i.tag].some(v=>v&&v.toLowerCase().includes(s));
-    return tm && (!ty||i.cat===ty) && (!py||i.pays===py);
-  });
-  if(!items.length){
-    g.innerHTML = `<div class="empty"><h3>Aucune opportunité trouvée</h3><p>Modifiez vos filtres ou revenez bientôt.</p></div>`;
-    return;
-  }
-  g.innerHTML = items.map(i=>card(t,i)).join('');
-}
-
-function card(t,i){
-  const dl = daysUntil(i.date);
-  const expired  = dl !== null && dl < 0;
-  const closing  = dl !== null && dl >= 0 && dl <= 5;
-
-  let dlTxt='', dlCls='cdl';
-  if(i.date){
-    if(expired){
-      dlTxt = '⛔ Terminé — ' + fmtD(i.date);
-      dlCls = 'cdl exp-dl';
-    } else if(dl===0){
-      dlTxt = '⚠️ Clôture AUJOURD\'HUI !';
-      dlCls = 'cdl close-dl';
-    } else if(dl===1){
-      dlTxt = '⏰ Dernier jour ! Clôture : ' + fmtD(i.date);
-      dlCls = 'cdl close-dl';
-    } else if(closing){
-      dlTxt = `⏰ Plus que ${dl} jours ! Clôture : ${fmtD(i.date)}`;
-      dlCls = 'cdl close-dl';
-    } else {
-      dlTxt = 'Clôture : ' + fmtD(i.date);
-    }
-  }
-
-  let tb = '';
-  if(expired)              tb = '<span class="tag t-expired">Terminé</span>';
-  else if(closing||i.tag==='urgent') tb = '<span class="tag t-closing">⏰ Urgent</span>';
-  else if(i.tag==='new')   tb = '<span class="tag t-new">✨ Nouveau</span>';
-  else if(i.tag==='cam')   tb = '<span class="tag t-cam">🇨🇲 Cameroun</span>';
-  else if(i.tag==='eco')   tb = '<span class="tag t-eco">💼 Économie</span>';
-
-  const rb = i.region ? `<span class="creg">${i.region}</span>` : '';
-
-  let postBtn = '';
-  if(i.lien && (i.lien.startsWith('http')||i.lien.startsWith('mailto:'))){
-    if(expired){
-      postBtn = `<span class="btn-exp">Terminé</span>`;
-    } else {
-      const label = i.lien.startsWith('mailto:') ? '📧 Candidature' : '➜ Postuler';
-      postBtn = `<a class="btn-post" style="background:${TC[t]}" href="${i.lien}" target="_blank" rel="noopener noreferrer">${label}</a>`;
-    }
-  } else if(!expired){
-    postBtn = `<a class="cbtn cbtn-wa" href="${waInfoMsg(i)}" target="_blank" rel="noopener">📲 Info &amp; Postuler</a>`;
-  }
-
-  return `<article class="card${expired?' expired':''}">
-    <div class="cbar ${CB[t]}"></div>
-    <div class="cadm">
-      <button class="cadm-btn cadm-e" onclick="openEdit('${t}','${i.id}')">Modifier</button>
-      <button class="cadm-btn cadm-d" onclick="delEntry('${t}','${i.id}')">Suppr.</button>
-    </div>
-    <div class="cbody">
-      <div class="ctags">${i.cat?`<span class="tag t-type">${i.cat}</span>`:''}${tb}</div>
-      <div class="ctitle">${i.titre}</div>
-      <div class="corg">${i.org}${i.pays?' — '+i.pays:''}${rb}</div>
-      ${i.desc?`<div class="cdesc">${i.desc}</div>`:''}
-    </div>
-    <div class="cfoot">
-      <div class="${dlCls}">${dlTxt}</div>
-      <div class="cbtns">
-        <button class="cbtn" onclick="openShare('${t}','${i.id}')">Partager</button>
-        ${postBtn}
+  ['e','c','b'].forEach(t => {
+    const grid = document.getElementById('g'+t);
+    const count = document.getElementById('c'+t);
+    const kpi = document.getElementById('k'+t);
+    
+    count.textContent = db[t].length;
+    kpi.textContent = db[t].length;
+    
+    grid.innerHTML = db[t].map(item => `
+      <div class="card">
+        <h3>${item.titre}</h3>
+        <p><strong>${item.org}</strong> • ${item.pays}</p>
+        <a href="${item.lien}" target="_blank">Postuler →</a>
       </div>
-    </div>
-  </article>`;
-}
-
-function waShareMsg(i){
-  const lien = (i.lien&&i.lien.startsWith('http')) ? i.lien : SITE;
-  const dl   = i.date ? `\n📅 Clôture : ${fmtD(i.date)}` : '';
-  return `📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${dl}\n\n${i.desc||''}\n\n🔗 Postuler ici :\n${lien}\n\n📡 Plus d'opportunités :\n${SITE}`;
-}
-
-function waInfoMsg(i){
-  const dl = i.date ? `\n📅 Clôture : ${fmtD(i.date)}` : '';
-  const txt = `📢 *${i.titre}*\n🏢 ${i.org}${i.pays?' | '+i.pays:''}${i.region?' ('+i.region+')':''}${dl}\n\n${i.desc||''}\n\n💬 Pour postuler, contactez directement *${i.org}* ou renseignez-vous sur leur site officiel.\n\n📡 Portail Actualités Internationales :\n${SITE}`;
-  return `https://wa.me/?text=${encodeURIComponent(txt)}`;
-}
-
-function fmtD(d){ return new Date(d).toLocaleDateString('fr-CA',{day:'2-digit',month:'long',year:'numeric'}); }
-
-function updKPI(){
-  ['e','c','b'].forEach(t=>{
-    document.getElementById('c'+t).textContent = db[t].length;
-    animN('k'+t, db[t].length);
+    `).join('');
   });
 }
 
-function animN(id,n){
-  const el=document.getElementById(id); if(!el)return;
-  let v=0, inc=Math.max(1,Math.ceil(n/40));
-  const ti=setInterval(()=>{v=Math.min(v+inc,n);el.textContent=v;if(v>=n)clearInterval(ti)},25);
-}
-
-// TABS
-document.querySelectorAll('.tab').forEach(b=>{
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
-    b.classList.add('on');
-    document.getElementById('p'+b.dataset.t).classList.add('active');
+// Tabs
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('on');
+    document.getElementById('p' + btn.dataset.t).classList.add('active');
   });
 });
 
-function applyS(t,v){ FS[t]=v; renderGrid(t); }
-function applyT(t,v){ FT[t]=v; renderGrid(t); }
-function applyP(t,v){ FP[t]=v; renderGrid(t); }
-
-// FORM
-const MH = {
-  e:{add:"Nouvelle offre d'emploi / stage",edit:"Modifier l'offre"},
-  c:{add:'Nouveau concours',edit:'Modifier le concours'},
-  b:{add:"Nouvelle bourse / financement",edit:"Modifier l'opportunité"}
-};
-
-function openAdd(t){
-  if(!document.body.classList.contains('admin'))return;
-  CUR=t; EID=null;
-  document.getElementById('mh-t').textContent = MH[t].add;
-  document.getElementById('bsave').style.background = `var(--c${t})`;
-  clearF(); openOv('ov-form');
-  setTimeout(()=>document.getElementById('fi-titre').focus(),80);
-}
-
-function openEdit(t,id){
-  const item=db[t].find(i=>i.id===id); if(!item)return;
-  CUR=t; EID=id;
-  document.getElementById('mh-t').textContent = MH[t].edit;
-  document.getElementById('bsave').style.background = `var(--c${t})`;
-  document.getElementById('fi-id').value = id;
-  ['titre','org','pays','cat','date','desc','lien'].forEach(k=>{ document.getElementById('fi-'+k).value=item[k]||''; });
-  document.getElementById('fi-reg').value = item.region||'';
-  document.getElementById('fi-tag').value = item.tag||'';
-  openOv('ov-form');
-}
-
-function clearF(){
-  ['fi-id','fi-titre','fi-org','fi-cat','fi-desc','fi-lien'].forEach(x=>document.getElementById(x).value='');
-  document.getElementById('fi-pays').value='';
-  document.getElementById('fi-reg').value='';
-  document.getElementById('fi-date').value='';
-  document.getElementById('fi-tag').value='';
-}
-
-async function saveEntry(){
-  const titre=document.getElementById('fi-titre').value.trim();
-  const org=document.getElementById('fi-org').value.trim();
-  if(!titre||!org){ showToast('Titre et organisation requis.','err'); return; }
-  const entry={
-    id:EID||uid(), titre, org,
-    pays:document.getElementById('fi-pays').value,
-    region:document.getElementById('fi-reg').value,
-    cat:document.getElementById('fi-cat').value.trim(),
-    date:document.getElementById('fi-date').value,
-    desc:document.getElementById('fi-desc').value.trim(),
-    lien:document.getElementById('fi-lien').value.trim(),
-    tag:document.getElementById('fi-tag').value,
-    _s:false
-  };
-  if(EID){ const idx=db[CUR].findIndex(i=>i.id===EID); if(idx>-1)db[CUR][idx]=entry; }
-  else db[CUR].unshift(entry);
-  save(); renderAll(); closeOv('ov-form');
-  showToast(EID?'Entrée mise à jour.':'Opportunité publiée !','ok');
-  if(!EID) notifAdmin(CUR,entry);
-}
-
-function delEntry(t,id){
-  if(!confirm('Supprimer cette entrée ?'))return;
-  db[t]=db[t].filter(i=>i.id!==id); save(); renderAll(); showToast('Entrée supprimée.');
-}
-
-async function notifAdmin(t,e){
-  try {
-    await emailjs.send(EJS_SVC, EJS_TPL, {
-      from_name:'Portail ActuInter', reply_to:ADMIN_MAIL, to_email:ADMIN_MAIL,
-      subject:'[ActuInter] Nouvelle opportunité : '+e.titre,
-      message:`Type : ${TL[t]}\nTitre : ${e.titre}\nOrganisation : ${e.org}\nPays : ${e.pays||'-'}\nDate limite : ${e.date?fmtD(e.date):'-'}\nLien : ${e.lien||'-'}\n\nDescription :\n${e.desc||'-'}`
-    });
-  } catch(err){ console.warn('Email admin:',err); }
-}
-
-// ABONNEMENT
-async function doSub(){
-  const email = document.getElementById('sub-email').value.trim();
-  const nom   = document.getElementById('sub-nom').value.trim();
-  const msgEl = document.getElementById('sub-msg');
-  msgEl.className='';
-  if(!email||!/\S+@\S+\.\S+/.test(email)){
-    msgEl.textContent='Veuillez saisir une adresse email valide.'; msgEl.className='err'; return;
-  }
-  const cats=[];
-  if(document.getElementById('sc-e').checked) cats.push('Emploi et Stages');
-  if(document.getElementById('sc-c').checked) cats.push('Concours');
-  if(document.getElementById('sc-b').checked) cats.push('Bourses & Financements');
-  if(!cats.length){ msgEl.textContent='Choisissez au moins une catégorie.'; msgEl.className='err'; return; }
-
-  const subs = JSON.parse(localStorage.getItem('ai_subs')||'[]');
-  if(subs.find(s=>s.email===email)){ msgEl.textContent='Cet email est déjà inscrit.'; msgEl.className='err'; return; }
-  subs.push({email,nom,cats,date:new Date().toISOString()});
-  localStorage.setItem('ai_subs', JSON.stringify(subs));
-  msgEl.textContent='✅ Abonnement confirmé ! Vérifiez votre boîte email.'; msgEl.className='ok';
-
-  const msgAdmin =
-    `🔔 NOUVEL ABONNÉ AU PORTAIL\n\n`+
-    `Nom : ${nom||'Non renseigné'}\n`+
-    `Email : ${email}\n`+
-    `Catégories : ${cats.join(', ')}\n`+
-    `Date : ${new Date().toLocaleString('fr-CA')}\n`+
-    `Total abonnés : ${subs.length}\n\n`+
-    `Portail : ${SITE}\n`+
-    `WhatsApp : ${WA_GROUP}`;
-
-  const msgUser =
-    `Bonjour ${nom||''},\n\n`+
-    `✅ Votre abonnement au Portail Opportunités d'Actualités Internationales est confirmé !\n\n`+
-    `Vous recevrez les alertes pour :\n${cats.map(c=>'• '+c).join('\n')}\n\n`+
-    `🌐 Portail : ${SITE}\n`+
-    `💬 Groupe WhatsApp : ${WA_GROUP}\n\n`+
-    `━━━━━━━━━━━━━━━\n`+
-    `Actualités Internationales\n`+
-    `Fondé par Jacques Djonfabe\n`+
-    `jacquesdjonfabe58@gmail.com\n`+
-    `━━━━━━━━━━━━━━━\n`+
-    `Pour vous désabonner, répondez à cet email avec "DÉSABONNEMENT".`;
-
-  try {
-    await emailjs.send(EJS_SVC, EJS_TPL, {
-      from_name:'Portail ActuInter',
-      reply_to:email,
-      to_email:ADMIN_MAIL,
-      subject:`🔔 Nouvel abonné : ${nom||email}`,
-      message:msgAdmin
-    });
-    await emailjs.send(EJS_SVC, EJS_TPL, {
-      from_name:'Actualités Internationales',
-      reply_to:ADMIN_MAIL,
-      to_email:email,
-      subject:'✅ Abonnement confirmé — Portail Opportunités ActuInter',
-      message:msgUser
-    });
-  } catch(e){ console.warn('Email sub:', e); }
-
-  setTimeout(()=>closeOv('ov-sub'), 4000);
-}
-
-// SHARE
-function openShare(t,id){
-  const item=db[t].find(i=>i.id===id); if(!item)return;
-  SHARE={t,item};
-  const postLien = (item.lien&&item.lien.startsWith('http')) ? item.lien : SITE;
-  const txt = waShareMsg(item);
-  document.getElementById('sh-wa').href = `https://wa.me/?text=${encodeURIComponent(txt)}`;
-  document.getElementById('sh-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postLien)}&quote=${encodeURIComponent(item.titre+' — '+item.org)}`;
-  document.getElementById('sh-tw').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(item.titre+' — '+item.org+' | Via Actualités Internationales')}&url=${encodeURIComponent(SITE)}`;
-  document.getElementById('sh-t').textContent = item.titre;
-  SHARE._link = postLien;
-  openOv('ov-share');
-}
-
-function copyLink(){
-  const url = SHARE?._link || SITE;
-  navigator.clipboard.writeText(url)
-    .then(()=>{ showToast('Lien copié !','ok'); closeOv('ov-share'); })
-    .catch(()=>{ showToast('Copie impossible.','err'); });
-}
-
-// OVERLAYS
-function openOv(id){ document.getElementById(id).classList.add('open'); }
-function closeOv(id){ document.getElementById(id).classList.remove('open'); }
-['ov-about','ov-form','ov-sub','ov-share'].forEach(id=>{
-  document.getElementById(id).addEventListener('click',e=>{ if(e.target===e.currentTarget)closeOv(id); });
-});
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') ['ov-about','ov-form','ov-sub','ov-share'].forEach(closeOv); });
-
-// TOAST
-let tT;
-function showToast(msg,type=''){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.className='toast show'+(type?' '+type:'');
-  clearTimeout(tT); tT=setTimeout(()=>el.className='toast',4000);
-}
-
-// ADMIN
-let adminOn=false;
-function toggleAdmin(){
-  if(adminOn){
-    adminOn=false; document.body.classList.remove('admin');
-    document.getElementById('alock').style.color='rgba(255,255,255,.3)';
-    showToast('Mode administrateur désactivé.');
-  } else {
-    const p=prompt('Mot de passe administrateur :');
-    if(p===PWD){
-      adminOn=true; document.body.classList.add('admin');
-      document.getElementById('alock').style.color='#f0c060';
-      showToast('Mode administrateur activé.','ok');
-    } else if(p!==null){ showToast('Mot de passe incorrect.','err'); }
-  }
-}
-
-// INIT
-initPays(); load(); renderAll(); initDailyRefresh();
+window.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
 </html>
